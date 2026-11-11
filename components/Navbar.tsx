@@ -285,7 +285,7 @@ export default function Navbar() {
               }`}
               href="/faculty"
             >
-              FACULTY
+              LECTURER PANEL
             </Link>
 
             <Link
@@ -368,7 +368,7 @@ export default function Navbar() {
             href="/faculty"
             className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-xl"
           >
-            Academic Staff &amp; Faculty
+            Lecturer Panel
           </Link>
           <Link
             onClick={() => setMobileMenuOpen(false)}

@@ -4,6 +4,7 @@ import { ToastProvider } from "@/context/ToastContext";
 import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FloatingContact from "@/components/FloatingContact";
 
 export const metadata: Metadata = {
   title: "GSC LMS - Educational Institute Management System",
@@ -33,6 +34,7 @@ export default function RootLayout({
               <Navbar />
               <main className="flex-1">{children}</main>
               <Footer />
+              <FloatingContact />
             </div>
           </AuthProvider>
         </ToastProvider>

@@ -61,11 +61,11 @@ export default function FacultyPage() {
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
             <Link href="/" className="hover:text-sliit-orange transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-sliit-orange">Faculty &amp; Academic Staff</span>
+            <span className="text-sliit-orange">Lecturer Panel</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight">
-            Distinguished Academic Faculty
+            Distinguished Lecturer Panel
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl">
@@ -125,7 +125,7 @@ export default function FacultyPage() {
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
             <input
               type="text"
-              placeholder="Search faculty name, title..."
+              placeholder="Search lecturer name, title, department..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-sliit-orange"

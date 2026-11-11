@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   GraduationCap,
@@ -29,6 +29,43 @@ export default function HomePage() {
   const [searchLevel, setSearchLevel] = useState("all");
   const [searchKeyword, setSearchKeyword] = useState("");
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  // Typewriter effect for "Global Stanford Campus"
+  const [typedText, setTypedText] = useState("");
+
+  useEffect(() => {
+    const text = "Global Stanford Campus";
+    let currentIndex = 0;
+    let isDeleting = false;
+    let timeoutId: NodeJS.Timeout;
+
+    const typeLoop = () => {
+      if (!isDeleting) {
+        if (currentIndex <= text.length) {
+          setTypedText(text.slice(0, currentIndex));
+          currentIndex++;
+          timeoutId = setTimeout(typeLoop, 110);
+        } else {
+          timeoutId = setTimeout(() => {
+            isDeleting = true;
+            typeLoop();
+          }, 3500);
+        }
+      } else {
+        if (currentIndex > 0) {
+          currentIndex--;
+          setTypedText(text.slice(0, currentIndex));
+          timeoutId = setTimeout(typeLoop, 50);
+        } else {
+          isDeleting = false;
+          timeoutId = setTimeout(typeLoop, 500);
+        }
+      }
+    };
+
+    timeoutId = setTimeout(typeLoop, 300);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   const stats = [
     { number: "19+", label: "Years of Academic Roots", sub: "Est. 2007 in Sri Lanka" },
@@ -199,15 +236,17 @@ export default function HomePage() {
         {/* Background Image with Deep Navy Gradient */}
         <div className="absolute inset-0 -z-10">
           <img
-            src="/images/gsc_convocation_bmich_group.jpeg"
-            alt="Global Stanford Campus Convocation"
-            className="w-full h-full object-cover object-center opacity-30 scale-105 transition-transform duration-1000"
+            src="/images/hero-campus-bg.jpg"
+            alt="Global Stanford Campus Academic Building"
+            className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1833] via-[#0f264d]/90 to-[#16366b]/80" />
+          {/* Rich university navy overlay for maximum contrast and readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#09172f]/95 via-[#0f264d]/85 to-[#16366b]/80" />
+          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#09172f]/40 to-[#09172f]/90" />
         </div>
 
         {/* Hero Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 w-full flex-1 flex flex-col justify-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 w-full flex-1 flex flex-col justify-center">
           <div className="max-w-3xl space-y-6">
             {/* Accreditation Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold tracking-wide">
@@ -215,21 +254,19 @@ export default function HomePage() {
               <span>UGC RECOGNISED PATHWAYS • TVEC REGISTERED • EST. 2007</span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
-              Excellence in Higher Education.{" "}
-              <span className="text-sliit-orange block mt-2">
-                A World of Opportunities.
+            {/* Typewriter Animated Headline */}
+            <div className="space-y-2">
+              <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-200 tracking-wide block font-serif italic">
+                Welcome to,
               </span>
-            </h1>
-
-            {/* Concise Subtitle (No walls of text!) */}
-            <p className="text-slate-200 text-base sm:text-lg leading-relaxed font-normal max-w-2xl">
-              Join thousands of successful graduates. Pursue UGC-recognized Bachelor’s degrees, 1-Year Fast-Track Top-Up pathways, 24 specialized diplomas, MBA, and PhD research across 6 island-wide learning centres.
-            </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight leading-tight flex items-center flex-wrap min-h-[1.25em]">
+                <span className="text-white drop-shadow-md">{typedText}</span>
+                <span className="inline-block w-1 sm:w-1.5 h-10 sm:h-12 lg:h-16 bg-sliit-orange ml-2 animate-pulse rounded-full" />
+              </h1>
+            </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href="#programmes-explorer"
                 className="px-7 py-3.5 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-sliit-orange/30 transition-all hover:scale-[1.03] flex items-center gap-2"
@@ -238,15 +275,13 @@ export default function HomePage() {
                 <ArrowRight className="w-4 h-4" />
               </a>
 
-              <a
-                href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/about"
                 className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 backdrop-blur-md transition-all flex items-center gap-2"
               >
-                <Phone className="w-4 h-4 text-emerald-400" />
-                <span>WhatsApp Admissions</span>
-              </a>
+                <span>About Our Campus</span>
+                <ArrowRight className="w-4 h-4 text-sliit-orange" />
+              </Link>
             </div>
           </div>
         </div>
@@ -970,7 +1005,7 @@ export default function HomePage() {
                 Academic Leadership
               </span>
               <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
-                Learn from Renowned Faculty
+                Distinguished Lecturer Panel
               </h2>
               <p className="text-slate-600 text-xs sm:text-sm mt-1">
                 Over 28 qualified professors, PhD holders, industry consultants, and senior lecturers.
@@ -980,7 +1015,7 @@ export default function HomePage() {
               href="/faculty"
               className="inline-flex items-center gap-2 text-xs font-bold text-sliit-navy hover:text-sliit-orange transition-colors"
             >
-              <span>Explore All 28 Faculty Members</span>
+              <span>Explore All 28 Lecturers</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -1214,22 +1249,20 @@ export default function HomePage() {
             Speak directly with an admissions advisor for personalized evaluation, fee structures, and immediate enrollment.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <a
-              href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/programmes"
               className="px-8 py-3.5 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white font-black text-sm uppercase tracking-wider shadow-xl shadow-sliit-orange/40 transition-all hover:scale-105 flex items-center gap-2"
             >
-              <span>APPLY VIA WHATSAPP NOW</span>
+              <span>EXPLORE ALL PROGRAMMES</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
-            <a
-              href="tel:0117173030"
+            </Link>
+            <Link
+              href="/branches"
               className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 transition-all flex items-center gap-2"
             >
-              <Phone className="w-4 h-4 text-slate-300" />
-              <span>Call Hotlines: 0117 173 030</span>
-            </a>
+              <Building className="w-4 h-4 text-slate-300" />
+              <span>Find Your Regional Campus</span>
+            </Link>
           </div>
         </div>
       </section>
