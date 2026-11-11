@@ -1,12 +1,1138 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import {
+  GraduationCap,
+  Award,
+  BookOpen,
+  Users,
+  MapPin,
+  Phone,
+  ArrowRight,
+  CheckCircle2,
+  Calendar,
+  Search,
+  Sparkles,
+  ChevronRight,
+  ShieldCheck,
+  Building,
+  Laptop,
+  Briefcase,
+  HelpCircle,
+  ExternalLink,
+  ChevronDown,
+} from "lucide-react";
 
 export default function HomePage() {
+  const [activeTab, setActiveTab] = useState<"bachelors" | "diplomas" | "higher" | "postgrad" | "phd" | "fintech">("bachelors");
+  const [searchLevel, setSearchLevel] = useState("all");
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  const stats = [
+    { number: "19+", label: "Years of Academic Roots", sub: "Est. 2007 in Sri Lanka" },
+    { number: "4,500+", label: "Qualified Graduates", sub: "Across All Disciplines" },
+    { number: "24+", label: "Diploma & Degree Streams", sub: "Undergraduate to PhD" },
+    { number: "6", label: "Regional Campuses", sub: "Island-wide Network" },
+    { number: "100%", label: "UGC Recognised Pathways", sub: "TVEC Registered Institute" },
+  ];
+
+  const bachelors = [
+    {
+      title: "BBA in Business Management (1-Year Fast-Track Top-Up)",
+      credits: "120 Credits",
+      duration: "1 Year Fast-Track (or 3-4 Yrs)",
+      mode: "Blended (Online / Weekend)",
+      desc: "Designed for diploma and higher diploma holders seeking direct final-year degree completion with UGC recognition.",
+      inquiry: "1-Year Fast-Track Top-Up Degree",
+    },
+    {
+      title: "BBA in Information Systems & Technology",
+      credits: "120 Credits",
+      duration: "1 Year Top-Up / 3 Years",
+      mode: "Weekend / Digital Learning",
+      desc: "Comprehensive curriculum combining enterprise software, database management, and executive computing.",
+      inquiry: "BBA in Information Systems",
+    },
+    {
+      title: "BBA in Human Resource Management",
+      credits: "120 Credits",
+      duration: "1 Year Top-Up / 3 Years",
+      mode: "Blended Learning",
+      desc: "Equipping aspiring leaders with strategic talent management, labour law, and organizational leadership skills.",
+      inquiry: "BBA in HRM",
+    },
+    {
+      title: "BBA in Economics & Global Finance",
+      credits: "120 Credits",
+      duration: "1 Year Top-Up / 3 Years",
+      mode: "Blended Learning",
+      desc: "Focus on corporate finance, international economics, financial modelling, and market dynamics.",
+      inquiry: "BBA in Economics",
+    },
+  ];
+
+  const diplomas = [
+    { name: "Diploma in Artificial Intelligence (AI)", field: "Technology", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Cybersecurity & Network Defense", field: "Technology", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Blockchain & Web3 Technologies", field: "Technology", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Information Technology (IT)", field: "Technology", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Business Management", field: "Management", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Human Resource Management (HRM)", field: "Management", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Digital Marketing & E-Commerce", field: "Marketing", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Tourism & Hospitality Management", field: "Hospitality", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Logistics & Supply Chain Management", field: "Logistics", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Psychology & Counselling", field: "Healthcare", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Primary School Education & Teaching", field: "Education", duration: "6-12 Months", credits: "30 Credits" },
+    { name: "Diploma in Professional English", field: "Languages", duration: "6-12 Months", credits: "30 Credits" },
+  ];
+
+  const higherDiplomas = [
+    { title: "Higher Diploma in Business Administration", duration: "18 Months", credits: "60 Credits", path: "Leads to Final Year BBA" },
+    { title: "Higher Diploma in Information Technology & Computing", duration: "18 Months", credits: "60 Credits", path: "Direct Software/IT Pathway" },
+    { title: "Higher Diploma in Human Resource Leadership", duration: "18 Months", credits: "60 Credits", path: "Leads to Final Year BBA" },
+    { title: "Higher Diploma in Logistics & Global Supply Chains", duration: "18 Months", credits: "60 Credits", path: "Industry-aligned accreditation" },
+  ];
+
+  const postgradPrograms = [
+    {
+      title: "Master of Education (M.Ed)",
+      credits: "60 Credits",
+      duration: "2 Years",
+      desc: "Designed for education administrators, principals, and senior teachers aiming for academic leadership.",
+      badge: "Postgraduate Degree",
+    },
+    {
+      title: "Master of Business Administration (MBA) — Management",
+      credits: "60 Credits",
+      duration: "2 Years",
+      desc: "Executive strategic management, international business, and leadership for corporate professionals.",
+      badge: "Postgraduate Degree",
+    },
+    {
+      title: "Master of Business Administration (MBA) — Banking & Finance",
+      credits: "60 Credits",
+      duration: "2 Years",
+      desc: "Advanced financial management, risk analysis, and capital markets for banking sector executives.",
+      badge: "Postgraduate Degree",
+    },
+    {
+      title: "Postgraduate Diploma in Education Management",
+      credits: "32 Credits",
+      duration: "1 Year",
+      desc: "Curriculum planning, pedagogical governance, and institutional management.",
+      badge: "PG Diploma",
+    },
+  ];
+
+  const doctoralPrograms = [
+    {
+      title: "Doctor of Philosophy (PhD) in Management",
+      credits: "60 Credits",
+      duration: "3 Years",
+      desc: "Original research, thesis defense, and academic publication under internationally qualified supervisors.",
+    },
+    {
+      title: "Doctor of Philosophy (PhD) in Education",
+      credits: "60 Credits",
+      duration: "3 Years",
+      desc: "Rigorous educational research tackling educational leadership, curriculum development, and pedagogy.",
+    },
+  ];
+
+  const fintechPrograms = [
+    {
+      title: "Asian FinTech Academy (AFTA) Executive Certification",
+      partner: "HKU-Based Coursework & Global Curriculum",
+      venue: "Hilton Colombo Executive Cohorts & Digital Sessions",
+      desc: "Comprehensive modules covering blockchain, AI in finance, RegTech, payment systems, and digital currencies.",
+    },
+    {
+      title: "GAFM USA Board Certifications & Fellowships",
+      partner: "Global Academy of Finance & Management (USA)",
+      venue: "Triple ISO 21001 / 29993 / 9001 Certified Framework",
+      desc: "Internationally chartered certifications recognised across global financial institutions and multinational corporations.",
+    },
+    {
+      title: "Recognised Prior Learning (RPL) Evaluation Pathway",
+      partner: "Global Accreditation Board",
+      venue: "Direct Assessment of Executive Work Experience",
+      desc: "Evaluate your years of managerial or technical expertise to receive formal degree credits or certifications.",
+    },
+  ];
+
+  const campuses = [
+    { city: "Kelaniya", type: "Main Campus & Head Office", phone: "0117 173 030", mobile: "0744 124 772", addr: "No 255, 3rd Floor, Kandy Road, Dalugama" },
+    { city: "Kandy", type: "Regional Centre (Central)", phone: "0812 121 821", mobile: "0744 124 773", addr: "Kandy City Center Area, Kandy" },
+    { city: "Matara", type: "Regional Centre (Southern)", phone: "041 765 5556", mobile: "0744 124 780", addr: "Anagarika Dharmapala Mawatha, Matara" },
+    { city: "Badulla", type: "Regional Centre (Uva)", phone: "0744 124 771", mobile: "0744 124 771", addr: "Lower King Street, Badulla" },
+    { city: "Ampara", type: "Regional Centre (Eastern)", phone: "0744 124 774", mobile: "0744 124 774", addr: "Main Street, Ampara" },
+    { city: "Jaffna", type: "Regional Centre (Northern)", phone: "0744 124 772", mobile: "0744 124 772", addr: "Hospital Road, Jaffna" },
+  ];
+
+  const faqs = [
+    {
+      q: "Are degrees from Global Stanford Campus recognized by UGC Sri Lanka?",
+      a: "Yes. All Bachelor's degrees, BBA top-ups, MBA, and PhD programs offered through Global Stanford Campus are delivered via UGC-recognized partner universities and TVEC registered educational frameworks.",
+    },
+    {
+      q: "What is the 1-Year Fast-Track BBA Top-Up Degree?",
+      a: "The Top-Up pathway allows candidates holding an HND, Advanced Diploma, full professional qualification (CIMA, CIM, ABE), or relevant work experience to enter directly into the final year (120 Credits) and graduate in 12 months.",
+    },
+    {
+      q: "Can I study while working full-time?",
+      a: "Yes! All programmes feature flexible weekend batches (Saturday or Sunday) along with live interactive online lectures and 24/7 LMS access designed specifically for working executives and professionals.",
+    },
+    {
+      q: "What certifications are provided by Asian FinTech Academy (AFTA) & GAFM?",
+      a: "AFTA programs feature curriculum based on HKU (Hong Kong University) FinTech courses, with residential/executive sessions held at Hilton Colombo. GAFM USA board certifications operate under Triple ISO 21001/29993/9001 quality frameworks.",
+    },
+  ];
+
   return (
-    <>
-<section id="hero" className="relative min-h-[94vh] flex items-center justify-center overflow-hidden z-10 pt-20 pb-16 px-4 sm:px-6 lg:px-8"><div className="absolute inset-0 overflow-hidden pointer-events-none -z-10"><video autoPlay loop muted playsInline poster="/images/gsc_convocation_bmich_group.jpeg" className="w-full h-full object-cover object-center scale-[1.03] transition-transform duration-1000"><source src="/video/sample.mp4" type="video/mp4"/><source src="/sample.mp4" type="video/mp4"/></video><div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-slate-950/95"></div><div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-slate-950/50 to-slate-950/90"></div></div><button className="absolute bottom-6 right-6 z-30 p-2.5 rounded-full bg-slate-900/80 backdrop-blur-md text-white/80 hover:text-white border border-white/20 hover:border-white/40 transition-all shadow-lg hover:scale-105" aria-label="Unmute background sound" title="Unmute video audio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-volume-x w-4 h-4 text-slate-300" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><line x1="22" x2="16" y1="9" y2="15" /><line x1="16" x2="22" y1="9" y2="15" /></svg></button><div className="relative max-w-5xl mx-auto w-full text-center space-y-8 z-20"><div className="inline-flex flex-wrap items-center justify-center gap-2.5 p-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/15 shadow-2xl"><span className="flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-600/90 text-white text-[11px] font-black uppercase tracking-wider shadow-xs"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-award w-3.5 h-3.5" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /><circle cx="12" cy="8" r="6" /></svg>Est. 2018 · Roots Since 2007</span><span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-slate-200 text-[11px] font-semibold tracking-wide border border-white/10"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check w-3.5 h-3.5 text-emerald-400" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>UGC Recognized Degrees</span><span className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-slate-200 text-[11px] font-semibold tracking-wide border border-white/10"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield w-3.5 h-3.5 text-amber-400" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /></svg>Triple ISO Certified Partner</span></div><div className="space-y-4 max-w-4xl mx-auto"><h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.08]">Shaping Tomorrow’s <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-amber-300">Leaders<span className="absolute left-0 bottom-1 w-full h-[3px] bg-gradient-to-r from-red-500 to-amber-400 rounded-full"></span></span>, Today.</h1><p className="text-base sm:text-lg lg:text-xl text-slate-300 font-medium max-w-2xl mx-auto leading-relaxed">Sri Lanka’s premier higher education institute delivering UGC-recognized Bachelor’s degrees, fast-track 1-year Top-Up pathways, Master of Education (M.Ed), MBA, and doctoral research.</p></div><div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"><a href="#programs" className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-red-700 via-red-600 to-rose-700 hover:from-red-800 hover:to-rose-800 text-white font-extrabold text-sm shadow-xl shadow-red-900/40 transition-all duration-200 hover:scale-[1.02] hover:-translate-y-0.5 flex items-center justify-center gap-2.5 group"><span>Explore 40+ Academic Programmes</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a><a href="#fintech" className="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800/90 text-slate-100 hover:text-white font-bold text-sm border border-white/20 backdrop-blur-md shadow-lg transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2"><span>Asian FinTech &amp; GAFM Certifications</span></a></div><div className="pt-6 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto text-left"><div className="p-3 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 text-left"><p className="text-xs font-black text-white">1-Year Top-Up</p><p className="text-[11px] text-slate-400 mt-0.5 leading-snug">Fast-track degree completion</p></div><div className="p-3 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 text-left"><p className="text-xs font-black text-white">Bilingual Delivery</p><p className="text-[11px] text-slate-400 mt-0.5 leading-snug">English &amp; Sinhala medium</p></div><div className="p-3 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 text-left"><p className="text-xs font-black text-white">Blended Learning</p><p className="text-[11px] text-slate-400 mt-0.5 leading-snug">On-campus, online &amp; weekend</p></div><div className="p-3 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 text-left"><p className="text-xs font-black text-white">Island-wide Hubs</p><p className="text-[11px] text-slate-400 mt-0.5 leading-snug">12 regional learning centres</p></div></div><div className="pt-4"><a href="#stats" className="inline-flex flex-col items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer group"><span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-red-400 transition-colors">Discover Global Stanford</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down w-4 h-4 text-red-500 animate-bounce" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a></div></div></section><section id="stats" className="relative py-12 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-6xl mx-auto space-y-6"><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"><a className="block h-full no-underline" href="/about"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-red-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#991b1b", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-red-50 border-red-100 text-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-award w-5 h-5" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /><circle cx="12" cy="8" r="6" /></svg></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-red-50/80 border-red-100 text-red-700 hover:bg-red-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-3xl sm:text-4xl font-black tracking-tight leading-none">2007</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Higher Education Roots</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">17+ years serving students in Sri Lanka</p></div></div></a><a className="block h-full no-underline" href="/programmes"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-rose-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#be123c", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-rose-50 border-rose-100 text-rose-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-book-open w-5 h-5" aria-hidden="true"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-rose-50/80 border-rose-100 text-rose-700 hover:bg-rose-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-3xl sm:text-4xl font-black tracking-tight leading-none">45+</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Academic Programmes</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Diplomas, Top-Ups, Masters &amp; PhD</p></div></div></a><a className="block h-full no-underline" href="/branches"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-amber-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#b45309", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-amber-50 border-amber-100 text-amber-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-5 h-5" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-amber-50/80 border-amber-100 text-amber-700 hover:bg-amber-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-3xl sm:text-4xl font-black tracking-tight leading-none">12 Hubs</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Regional Campuses</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Island-wide face-to-face academic centres</p></div></div></a><a className="block h-full no-underline" href="/certifications"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#0f172a", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-slate-100 border-slate-200 text-slate-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield w-5 h-5" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /></svg></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-3xl sm:text-4xl font-black tracking-tight leading-none">Triple ISO</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Global Standard</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">ISO 21001, 29993, 9001 certified</p></div></div></a></div></div></section><section id="start-journey" className="relative py-12 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-6xl mx-auto rounded-3xl bg-white border border-slate-200/90 shadow-xl overflow-hidden"><div className="grid lg:grid-cols-12 gap-6 lg:gap-8 p-6 sm:p-8 lg:p-10 items-center"><div className="lg:col-span-6 space-y-4"><div className="space-y-1.5"><span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-black uppercase tracking-wider border border-red-100"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles w-3.5 h-3.5 text-red-600" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></svg>Your Academic Future Starts Here</span><h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">Start Your Journey at <span className="text-red-700">Global Stanford</span></h2></div><p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">Whether you are completing a foundational diploma, fast-tracking to a Bachelor&#x27;s degree in 12 months, or advancing to an M.Ed or PhD, we provide recognized pathways without disrupting your career.</p><div className="p-4 rounded-2xl bg-gradient-to-r from-red-50 via-rose-50 to-amber-50 border border-red-100/80 shadow-xs"><p className="text-slate-900 font-extrabold text-sm leading-snug">UGC-Recognized Diplomas &amp; Degree Programmes with Full Transcripts &amp; Recognition Verification</p><p className="text-xs text-slate-600 mt-1 leading-relaxed">Accepted by national educational authorities, international employers, and foreign postgraduate universities.</p></div><div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-0.5"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-red-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#991b1b", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-red-50 border-red-100 text-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-red-50/80 border-red-100 text-red-700 hover:bg-red-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-lg font-black">UGC Recognized</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Accreditation</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Accepted by educational authorities &amp; employers</p></div></div><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-amber-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#b45309", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-amber-50 border-amber-100 text-amber-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-graduation-cap w-5 h-5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-amber-50/80 border-amber-100 text-amber-700 hover:bg-amber-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-lg font-black">1-Year Top-Up</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Fast-Track</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Complete degree in 12 months for diploma holders</p></div></div><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#0f172a", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-slate-100 border-slate-200 text-slate-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles w-5 h-5" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></svg></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-lg font-black">Triple Delivery</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Flexibility</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">On-campus, online LMS, or blended study options</p></div></div></div><div className="pt-2 flex flex-wrap items-center gap-4"><a href="#programs" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-red-700 hover:bg-red-800 text-white font-bold text-xs shadow-md shadow-red-700/20 transition-all hover:scale-[1.02] cursor-pointer"><span>View All 5 Academic Tiers</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a><a href="#about" className="text-xs font-bold text-slate-700 hover:text-red-700 transition-colors underline underline-offset-4 cursor-pointer">Read Institutional Heritage</a></div></div><div className="lg:col-span-6"><div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-slate-950 group"><div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-900 flex items-center justify-center"><img src="/images/gsc_graduates_1.png" alt="Global Stanford Campus Graduates in Ceremonial Convocation Regalia" className="w-full h-full object-contain sm:object-cover transition-all duration-500"/><div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-950/70 backdrop-blur-md text-white text-xs font-bold border border-white/10">1 of 3</div><div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-red-700 text-white text-[11px] font-bold shadow-sm">Graduation Class</div><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent p-4 pt-10 text-white"><p className="text-xs sm:text-sm font-semibold leading-snug drop-shadow-sm">Global Stanford Campus Graduates in Ceremonial Convocation Regalia</p></div><button aria-label="Previous photo" className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/60 hover:bg-red-700 text-white flex items-center justify-center transition-all opacity-80 hover:opacity-100 cursor-pointer shadow-md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left w-5 h-5" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg></button><button aria-label="Next photo" className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/60 hover:bg-red-700 text-white flex items-center justify-center transition-all opacity-80 hover:opacity-100 cursor-pointer shadow-md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right w-5 h-5" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></button></div><div className="p-3 bg-slate-900 border-t border-white/10 flex items-center gap-2.5 overflow-x-auto"><button className="relative w-20 h-14 rounded-lg overflow-hidden border-2 transition-all cursor-pointer bg-slate-800 shrink-0 border-red-500 ring-2 ring-red-400/40 scale-105"><img src="/images/gsc_graduates_1.png" alt="Graduation Class" className="w-full h-full object-cover"/></button><button className="relative w-20 h-14 rounded-lg overflow-hidden border-2 transition-all cursor-pointer bg-slate-800 shrink-0 border-white/20 opacity-60 hover:opacity-100 hover:border-white/40"><img src="/images/gsc_convocation_2.jpeg" alt="BMICH Ceremony" className="w-full h-full object-cover"/></button><button className="relative w-20 h-14 rounded-lg overflow-hidden border-2 transition-all cursor-pointer bg-slate-800 shrink-0 border-white/20 opacity-60 hover:opacity-100 hover:border-white/40"><img src="/images/gsc_convocation_1.jpeg" alt="Degree Conferment" className="w-full h-full object-cover"/></button><span className="text-[11px] text-slate-400 font-medium pl-2 hidden sm:inline">Click thumbnail to view</span></div></div></div></div></div></section><section id="about" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-6xl mx-auto space-y-10"><div className="flex flex-col md:flex-row md:items-end justify-between gap-4"><div className="space-y-3 max-w-2xl"><span className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">Institutional Heritage &amp; Vision</span><h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">Serving Sri Lanka <span className="text-red-700">Since 2007</span></h2><p className="text-slate-600 text-sm sm:text-base leading-relaxed">With higher education roots established in 2007 and the foundation of Global Stanford Campus in 2018, we deliver accredited foreign university degrees at an accessible cost.</p></div><button className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-white hover:bg-red-50 text-slate-700 hover:text-red-700 transition-colors border border-slate-200 shadow-xs self-start md:self-auto cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-languages w-4 h-4 text-red-600 shrink-0" aria-hidden="true"><path d="m5 8 6 6" /><path d="m4 14 6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1" /><path d="m22 22-5-10-5 10" /><path d="M14 18h6" /></svg><span>සිංහල මාධ්‍යයෙන් කියවන්න</span></button></div><div className="grid grid-cols-1 md:grid-cols-12 gap-5"><div className="md:col-span-8 relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-lg group min-h-[380px] flex flex-col justify-end"><img src="/images/gsc_convocation_bmich_group.jpeg" alt="Global Stanford Campus Grand Annual Convocation at BMICH Colombo" className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"/><div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/45 to-transparent"></div><div className="relative z-10 p-6 sm:p-8 space-y-3 text-white"><div className="flex flex-wrap items-center gap-2"><span className="px-3 py-1 rounded-full bg-red-700 text-white text-[11px] font-black uppercase tracking-wider">Annual Convocation · BMICH Colombo</span><span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-slate-100 text-[11px] font-semibold">Hundreds of Graduands Annually</span></div><h3 className="text-xl sm:text-2xl font-black text-white leading-tight">A Prestigious Tradition of Academic &amp; Pedagogical Excellence</h3><p className="text-slate-300 text-xs sm:text-sm max-w-xl leading-relaxed">Celebrating graduating batches of educators, management professionals, and doctoral scholars before distinguished foreign university representatives and local dignitaries.</p><div className="pt-2"><a className="inline-flex items-center gap-2 text-xs font-bold text-red-300 hover:text-white transition-colors" href="/about"><span>Explore Full Heritage &amp; Convocation Galleries</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a></div></div></div><div className="md:col-span-4 rounded-3xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4"><div className="space-y-3"><span className="text-[10px] font-bold uppercase tracking-wider text-red-700">Official Charter</span><h3 className="text-xl font-black text-slate-900">Roots &amp; Recognition</h3><div className="text-xs text-slate-600 leading-relaxed space-y-2.5"><p><strong className="text-slate-900">Global (Est. 2007)</strong> has evolved into <strong className="text-slate-900">Global Stanford Campus (Est. 2018)</strong>, providing Sri Lankan students access to UGC-recognized qualifications from leading foreign universities.</p><p>Dedicated pathways for educators, school principals, and lecturers to gain internationally accredited Bachelor&#x27;s, Master&#x27;s (M.Ed), and PhD degrees in Education.</p></div></div><div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs"><span className="text-slate-500 font-semibold">Bilingual Delivery</span><span className="font-extrabold text-red-700">English &amp; Sinhala</span></div></div><div className="md:col-span-6 rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-slate-900 to-slate-950 text-white shadow-md space-y-4 flex flex-col justify-between"><div className="space-y-4"><div className="w-10 h-10 rounded-xl bg-red-600/30 border border-red-500/40 flex items-center justify-center text-red-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-target w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg></div><div className="space-y-1.5"><p className="text-[10px] font-bold uppercase tracking-wider text-red-400">Our Shared Vision</p><h4 className="text-lg font-black text-white">Revolutionizing Studies in South Asia</h4><p className="text-xs text-slate-300 leading-relaxed">Creating an inclusive, rigorous learning environment that nurtures both academic brilliance and future-ready career competence across Sri Lanka.</p></div></div><div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400"><div className="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg><span>UGC Verification Guidance</span></div><a className="flex items-center gap-1 text-slate-300 hover:text-white transition-colors" href="/privacy"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span><span>Sri Lanka PDPA Compliant Privacy</span></a></div></div><div className="md:col-span-6 rounded-3xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-sm space-y-4 flex flex-col justify-between"><div className="space-y-3"><div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-graduation-cap w-5 h-5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg></div><div><p className="text-[10px] font-bold uppercase tracking-wider text-red-700">Pedagogical Framework</p><h4 className="text-lg font-black text-slate-900">Continuous Assessment &amp; Applied Pedagogy</h4><p className="text-xs text-slate-600 mt-1 leading-relaxed">Assignment-based continuous assessment relieves examination anxiety, while practical classroom research and doctoral thesis supervision guarantee graduate readiness.</p></div><div className="grid grid-cols-2 gap-2 pt-2"><div className="flex items-center gap-1.5 text-xs text-slate-700 font-medium"><span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0"></span><span className="truncate">Professional Teaching Competence</span></div><div className="flex items-center gap-1.5 text-xs text-slate-700 font-medium"><span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0"></span><span className="truncate">Critical Thinking &amp; Analysis</span></div><div className="flex items-center gap-1.5 text-xs text-slate-700 font-medium"><span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0"></span><span className="truncate">Applied Educational Leadership</span></div><div className="flex items-center gap-1.5 text-xs text-slate-700 font-medium"><span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0"></span><span className="truncate">Doctoral Research Supervision</span></div></div></div><div className="pt-3 border-t border-slate-100"><a className="text-xs font-bold text-red-700 hover:text-red-800 flex items-center gap-1.5" href="/about"><span>Read Full Pedagogy &amp; 10 Graduate Attributes</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a></div></div></div></div></section><section id="programs" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-6xl mx-auto space-y-10"><div className="flex flex-col md:flex-row md:items-end justify-between gap-6"><div className="space-y-3 max-w-2xl"><span className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">Academic Pathways</span><h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">40+ UGC-Recognized <span className="text-red-700">Programmes</span></h2><p className="text-slate-600 text-sm sm:text-base leading-relaxed">From foundational 30-credit diplomas to accredited PhD doctorates, explore structured academic progressions designed for school leavers, working educators, and corporate executives.</p></div><div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-slate-100 border border-slate-200/80 self-start md:self-auto"><button className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer bg-white text-red-700 shadow-xs">All Pathways</button><button className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer text-slate-600 hover:text-slate-900 hover:bg-white/60">1-Year Top-Up</button><button className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer text-slate-600 hover:text-slate-900 hover:bg-white/60">M.Ed / MBA / PhD</button><button className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer text-slate-600 hover:text-slate-900 hover:bg-white/60">Diplomas</button></div></div><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"><a className="block h-full no-underline" href="/programmes#bachelors"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-red-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#991b1b", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-red-50 border-red-100 text-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-award w-5 h-5" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /><circle cx="12" cy="8" r="6" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">High Demand</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-red-50/80 border-red-100 text-red-700 hover:bg-red-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-xl sm:text-2xl font-black leading-snug">Bachelor of Business Administration &amp; 1-Year Top-Up</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Tier 03 · Featured · 120 Credits · 12 Months Fast-Track</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Designed for HND, Advanced Diploma, or 30-to-60 credit holders to complete their full UGC-recognized Bachelor’s degree within one year. Available in English and Sinhala medium with assignment-based assessments.</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock w-3.5 h-3.5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg><span>120 Credits · 12 Months Fast-Track</span></span><span className="font-bold flex items-center gap-1 group-hover:underline"><span>View Syllabus</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a><a className="block h-full no-underline" href="/programmes#postgraduate"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-rose-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#be123c", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-rose-50 border-rose-100 text-rose-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-graduation-cap w-5 h-5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Postgraduate</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-rose-50/80 border-rose-100 text-rose-700 hover:bg-rose-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-xl sm:text-2xl font-black leading-snug">Master of Education (M.Ed) &amp; MBA</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Tier 04 · Masters · 2 Years · 60 Credits</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Premier postgraduate qualifications for school principals, educators, and corporate executives. Specialized tracks in Education Management, General Management, and Banking &amp; Finance.</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock w-3.5 h-3.5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg><span>2 Years · 60 Credits</span></span><span className="font-bold flex items-center gap-1 group-hover:underline"><span>View Syllabus</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a><a className="block h-full no-underline" href="/programmes#doctorates"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#0f172a", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-slate-100 border-slate-200 text-slate-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check w-5 h-5" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Doctorate</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-xl sm:text-2xl font-black leading-snug">Doctor of Philosophy (PhD) in Education &amp; Management</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Tier 05 · Terminal · 3 Years · 60 Research Credits</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Advanced doctoral research and dissertation pathway under senior professorial supervision, producing recognized scholars and university-level educators.</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock w-3.5 h-3.5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg><span>3 Years · 60 Research Credits</span></span><span className="font-bold flex items-center gap-1 group-hover:underline"><span>View Syllabus</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a><a className="block h-full no-underline" href="/programmes#diplomas"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-red-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#991b1b", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-red-50 border-red-100 text-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-book-open w-5 h-5" aria-hidden="true"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Entry Level</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-red-50/80 border-red-100 text-red-700 hover:bg-red-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-xl sm:text-2xl font-black leading-snug">24 Diploma Programmes</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Tier 01 · Foundation · 30 Credits · 6–12 Months</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Comprehensive foundational diplomas in Artificial Intelligence, Information Technology, Primary Teaching, Child Psychology, and Business.</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock w-3.5 h-3.5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg><span>30 Credits · 6–12 Months</span></span><span className="font-bold flex items-center gap-1 group-hover:underline"><span>View Syllabus</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a><a className="block h-full no-underline" href="/programmes#higher-diplomas"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-amber-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#b45309", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-amber-50 border-amber-100 text-amber-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles w-5 h-5" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Higher Diploma</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-amber-50/80 border-amber-100 text-amber-700 hover:bg-amber-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-xl sm:text-2xl font-black leading-snug">8 Higher Diplomas</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Tier 02 · Intermediate · 60 Credits · 1 Year</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Advanced diploma qualifications in Education Management, Psychology, and Primary Teaching for professional teachers and team leads.</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock w-3.5 h-3.5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg><span>60 Credits · 1 Year</span></span><span className="font-bold flex items-center gap-1 group-hover:underline"><span>View Syllabus</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a></div><div className="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl"><div className="space-y-1 text-center sm:text-left"><h4 className="text-lg sm:text-xl font-black text-white">Need detailed course syllabi, fee structures, or module breakdowns?</h4><p className="text-xs sm:text-sm text-slate-300">Browse our complete academic directory covering 40+ qualifications across 5 tiers.</p></div><a className="px-6 py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs shadow-lg transition-all hover:scale-[1.02] shrink-0 flex items-center gap-2" href="/programmes"><span>Open Complete Catalog &amp; Syllabus</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a></div></div></section><section id="fintech" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-6xl mx-auto space-y-10"><div className="text-center max-w-3xl mx-auto space-y-3"><span className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">Global Designations &amp; Executive Credentials</span><h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">International Board Certifications &amp; <span className="text-red-700">FinTech</span></h2><div className="w-16 h-1 bg-red-700 mx-auto rounded-full"></div><p className="text-slate-600 text-sm sm:text-base leading-relaxed">In exclusive partnership with the Asian FinTech Academy (AFTA) and IBS International Board of Standards (USA), certified under a Triple-ISO global framework.</p></div><div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch"><div className="rounded-3xl bg-slate-950 text-white p-7 sm:p-9 shadow-xl border border-white/10 flex flex-col justify-between space-y-6 relative overflow-hidden group"><div className="space-y-5 relative z-10"><div className="flex flex-wrap items-center gap-2"><span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-black uppercase tracking-wider">AFTA · HKU FinTech Foundation</span><span className="px-2.5 py-1 rounded-full bg-white/10 text-slate-300 text-[10px] font-semibold">Executive Cohort · Hilton Colombo</span></div><div className="space-y-2"><h3 className="text-2xl sm:text-3xl font-black leading-snug">Asian FinTech Academy Executive Qualifications</h3><p className="text-slate-300 text-xs sm:text-sm leading-relaxed">Curriculum formulated by <strong className="text-white">The University of Hong Kong (HKU)</strong>, ranked 1st globally in FinTech regulation research. Tailored for corporate executives and banking leaders seeking direct certification.</p></div><div className="flex flex-wrap gap-1.5 pt-1"><span className="px-2.5 py-1 rounded-lg bg-white/[0.08] border border-white/10 text-[11px] font-bold text-amber-300">CFP (FinTech)</span><span className="px-2.5 py-1 rounded-lg bg-white/[0.08] border border-white/10 text-[11px] font-bold text-amber-300">CAIFP (AI in Finance)</span><span className="px-2.5 py-1 rounded-lg bg-white/[0.08] border border-white/10 text-[11px] font-bold text-amber-300">MBP (Metaverse &amp; Blockchain)</span><span className="px-2.5 py-1 rounded-lg bg-white/[0.08] border border-white/10 text-[11px] font-bold text-amber-300">MCFP</span><span className="px-2.5 py-1 rounded-lg bg-white/[0.08] border border-white/10 text-[11px] font-bold text-amber-300">ChFP</span></div><div className="relative rounded-2xl overflow-hidden border border-white/15 bg-slate-900 p-2 shadow-lg"><img src="/images/afta_certificate_sample.jpeg" alt="AFTA FinTech Board Certificate Specimen" className="rounded-xl w-full h-44 object-cover object-center group-hover:scale-102 transition-transform duration-500"/><div className="absolute bottom-3 left-4 px-2.5 py-0.5 rounded bg-black/75 text-[10px] font-bold text-amber-400 backdrop-blur-xs">Official HKU-AFTA Certificate Specimen</div></div></div><div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10"><a className="text-xs font-black text-amber-400 hover:text-amber-300 flex items-center gap-1.5 transition-colors" href="/certifications#fintech"><span>View Executive FinTech Syllabus</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a><a href="https://wa.me/94741623123" target="_blank" rel="noreferrer" className="text-[11px] font-bold text-slate-300 hover:text-white flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3 h-3 text-emerald-400" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg><span>Inquire Cohort Dates</span></a></div></div><div id="gafm" className="rounded-3xl bg-white text-slate-900 p-7 sm:p-9 shadow-xl border border-slate-200/90 flex flex-col justify-between space-y-6 group scroll-mt-24"><div className="space-y-5"><div className="flex flex-wrap items-center gap-2"><span className="px-3 py-1 rounded-full bg-red-50 text-red-700 border border-red-200 text-[10px] font-black uppercase tracking-wider">IBS GAFM USA · Triple ISO Framework</span><span className="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Recognised in 40+ Nations</span></div><div className="space-y-2"><h3 className="text-2xl sm:text-3xl font-black text-slate-900 leading-snug">80+ GAFM Board Designations Across 16 Sectors</h3><p className="text-slate-600 text-xs sm:text-sm leading-relaxed">US-based Global Academy of Finance and Management credentials recognized across FINRA, U.S. Dept of Labor O*NET, and international corporate bodies under ISO 21001, 29993, and 9001.</p></div><div className="flex flex-wrap gap-1.5 pt-1"><span className="px-2.5 py-1 rounded-lg bg-red-50 border border-red-100 text-[11px] font-bold text-red-700">ChFM (Finance)</span><span className="px-2.5 py-1 rounded-lg bg-red-50 border border-red-100 text-[11px] font-bold text-red-700">MFP (Master Financial Planner)</span><span className="px-2.5 py-1 rounded-lg bg-red-50 border border-red-100 text-[11px] font-bold text-red-700">CWM (Wealth)</span><span className="px-2.5 py-1 rounded-lg bg-red-50 border border-red-100 text-[11px] font-bold text-red-700">CIPM (Project)</span><span className="px-2.5 py-1 rounded-lg bg-red-50 border border-red-100 text-[11px] font-bold text-red-700">CAIP (AI)</span><span className="px-2.5 py-1 rounded-lg bg-red-50 border border-red-100 text-[11px] font-bold text-red-700">AFA</span></div><div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 p-2 shadow-sm"><img src="/images/gafm_certificate_sample.jpeg" alt="GAFM Board Certificate Specimen" className="rounded-xl w-full h-44 object-cover object-center group-hover:scale-102 transition-transform duration-500"/><div className="absolute bottom-3 left-4 px-2.5 py-0.5 rounded bg-slate-950/80 text-[10px] font-bold text-white backdrop-blur-xs">Official GAFM USA Board Certification Specimen</div></div></div><div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3"><a className="text-xs font-black text-red-700 hover:text-red-800 flex items-center gap-1.5 transition-colors" href="/certifications#gafm"><span>Browse 80+ GAFM Designations</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a><span className="text-[11px] font-bold text-slate-500">Awarding Ceremony in Colombo</span></div></div></div><div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-red-950 via-slate-900 to-slate-950 text-white shadow-xl border border-red-900/30 flex flex-col lg:flex-row lg:items-center justify-between gap-6"><div className="space-y-2 max-w-2xl"><span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-wider"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles w-3 h-3" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></svg>RPL Accelerated Pathway</span><h4 className="text-xl sm:text-2xl font-black text-white">Practicing Manager, Accountant, or Engineer in Sri Lanka?</h4><p className="text-xs sm:text-sm text-slate-300 leading-relaxed">Through Recognized Prior Learning (RPL), your existing corporate experience and degrees are credited directly toward internationally recognized board certifications without retaking full coursework.</p></div><div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0"><a href="https://wa.me/94741623123" target="_blank" rel="noreferrer" className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-lg transition-all flex items-center justify-center gap-2 hover:scale-[1.02]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg><span>WhatsApp CV for RPL Review</span></a><a className="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all text-center" href="/certifications#rpl">Learn More</a></div></div></div></section><section id="faculty" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-6xl mx-auto space-y-10"><div className="flex flex-col md:flex-row md:items-end justify-between gap-6"><div className="space-y-3 max-w-2xl"><span className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">Distinguished Academic Leadership</span><h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">Guided by <span className="text-red-700">28 Academic Leaders</span></h2><p className="text-slate-600 text-sm sm:text-base leading-relaxed">Our university-approved doctoral panels, senior professors, and chartered industry practitioners provide continuous dissertation mentorship and hands-on supervision.</p></div><a className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-red-50 text-slate-900 hover:text-red-700 font-extrabold text-xs border-2 border-slate-200 hover:border-red-300 shadow-xs transition-all self-start md:self-auto shrink-0" href="/faculty"><span>Meet All 28 Faculty Members</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4 text-red-600" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a></div><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"><div className="p-5 sm:p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300 flex flex-col justify-between group"><div className="space-y-4"><div className="flex items-start gap-4"><div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border-2 border-slate-200 group-hover:border-red-400 transition-colors shadow-xs bg-slate-100"><img src="/images/staff_portraits/staff_sandya_kumari.jpeg" alt="Prof. K. W. Sandya N. Kumari" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div><div className="min-w-0 flex-1"><span className="text-[10px] font-black uppercase tracking-wider text-red-700">Tech &amp; Mathematics</span><h3 className="text-base font-black text-slate-900 leading-snug group-hover:text-red-700 transition-colors">Prof. K. W. Sandya N. Kumari</h3><p className="text-xs font-bold text-slate-700 mt-0.5">Professor of Mathematics &amp; Statistics</p></div></div><div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 text-xs leading-relaxed"><p className="font-semibold text-slate-800 line-clamp-1">PhD in Mathematics, MSc in Applied Statistics, BSc Special</p><p className="text-[11px] text-slate-500 mt-1 flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg><span>Focus: Quantitative Research &amp; Statistical Modeling</span></p></div></div><div className="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500"><span>Doctoral &amp; Master Panel</span><span className="font-bold text-red-700 group-hover:underline">Active Supervisor</span></div></div><div className="p-5 sm:p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300 flex flex-col justify-between group"><div className="space-y-4"><div className="flex items-start gap-4"><div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border-2 border-slate-200 group-hover:border-red-400 transition-colors shadow-xs bg-slate-100"><img src="/images/staff_portraits/staff_sampath_bandara.jpeg" alt="Dr. Sampath Bandara" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div><div className="min-w-0 flex-1"><span className="text-[10px] font-black uppercase tracking-wider text-red-700">Faculty of Education</span><h3 className="text-base font-black text-slate-900 leading-snug group-hover:text-red-700 transition-colors">Dr. Sampath Bandara</h3><p className="text-xs font-bold text-slate-700 mt-0.5">Senior Lecturer in Education</p></div></div><div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 text-xs leading-relaxed"><p className="font-semibold text-slate-800 line-clamp-1">PhD in Education, MBA, MEd, BSc</p><p className="text-[11px] text-slate-500 mt-1 flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg><span>Focus: Pedagogical Sciences &amp; M.Ed Supervision</span></p></div></div><div className="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500"><span>Doctoral &amp; Master Panel</span><span className="font-bold text-red-700 group-hover:underline">Active Supervisor</span></div></div><div className="p-5 sm:p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300 flex flex-col justify-between group"><div className="space-y-4"><div className="flex items-start gap-4"><div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border-2 border-slate-200 group-hover:border-red-400 transition-colors shadow-xs bg-slate-100"><img src="/images/staff_portraits/staff_asanka_weerasinghe.jpeg" alt="Dr. Asanka Weerasinghe" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div><div className="min-w-0 flex-1"><span className="text-[10px] font-black uppercase tracking-wider text-red-700">Business &amp; Management</span><h3 className="text-base font-black text-slate-900 leading-snug group-hover:text-red-700 transition-colors">Dr. Asanka Weerasinghe</h3><p className="text-xs font-bold text-slate-700 mt-0.5">Senior Lecturer in Management</p></div></div><div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 text-xs leading-relaxed"><p className="font-semibold text-slate-800 line-clamp-1">PhD in Management, PGD, BSc (Mgt) Hons, ICA (f)</p><p className="text-[11px] text-slate-500 mt-1 flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg><span>Focus: Corporate Strategy &amp; MBA Research Panels</span></p></div></div><div className="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500"><span>Doctoral &amp; Master Panel</span><span className="font-bold text-red-700 group-hover:underline">Active Supervisor</span></div></div><div className="p-5 sm:p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300 flex flex-col justify-between group"><div className="space-y-4"><div className="flex items-start gap-4"><div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border-2 border-slate-200 group-hover:border-red-400 transition-colors shadow-xs bg-slate-100"><img src="/images/staff_portraits/staff_prashanthan.jpeg" alt="Dr. Nagalingam Prashanthan" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div><div className="min-w-0 flex-1"><span className="text-[10px] font-black uppercase tracking-wider text-red-700">Linguistics &amp; English</span><h3 className="text-base font-black text-slate-900 leading-snug group-hover:text-red-700 transition-colors">Dr. Nagalingam Prashanthan</h3><p className="text-xs font-bold text-slate-700 mt-0.5">Doctor of Education &amp; Linguistics</p></div></div><div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 text-xs leading-relaxed"><p className="font-semibold text-slate-800 line-clamp-1">PhD in Education, MEd, MA, PGDE in TESL</p><p className="text-[11px] text-slate-500 mt-1 flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg><span>Focus: Applied Linguistics &amp; Curriculum Design</span></p></div></div><div className="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500"><span>Doctoral &amp; Master Panel</span><span className="font-bold text-red-700 group-hover:underline">Active Supervisor</span></div></div><div className="p-5 sm:p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300 flex flex-col justify-between group"><div className="space-y-4"><div className="flex items-start gap-4"><div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border-2 border-slate-200 group-hover:border-red-400 transition-colors shadow-xs bg-slate-100"><img src="/images/staff_portraits/staff_jude_devabandu.jpeg" alt="Dr. Jude Arjuna Devabandu" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div><div className="min-w-0 flex-1"><span className="text-[10px] font-black uppercase tracking-wider text-red-700">Management Studies</span><h3 className="text-base font-black text-slate-900 leading-snug group-hover:text-red-700 transition-colors">Dr. Jude Arjuna Devabandu</h3><p className="text-xs font-bold text-slate-700 mt-0.5">Doctor of Business Administration</p></div></div><div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 text-xs leading-relaxed"><p className="font-semibold text-slate-800 line-clamp-1">PhD in Business, MBA, PGD in Business Administration</p><p className="text-[11px] text-slate-500 mt-1 flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg><span>Focus: Executive Leadership &amp; PhD Supervision</span></p></div></div><div className="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500"><span>Doctoral &amp; Master Panel</span><span className="font-bold text-red-700 group-hover:underline">Active Supervisor</span></div></div><div className="p-5 sm:p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300 flex flex-col justify-between group"><div className="space-y-4"><div className="flex items-start gap-4"><div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border-2 border-slate-200 group-hover:border-red-400 transition-colors shadow-xs bg-slate-100"><img src="/images/staff_portraits/staff_faizar.jpeg" alt="Eng. A.R.M. Faizar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div><div className="min-w-0 flex-1"><span className="text-[10px] font-black uppercase tracking-wider text-red-700">IT &amp; Project Management</span><h3 className="text-base font-black text-slate-900 leading-snug group-hover:text-red-700 transition-colors">Eng. A.R.M. Faizar</h3><p className="text-xs font-bold text-slate-700 mt-0.5">Chartered Engineering Specialist</p></div></div><div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 text-xs leading-relaxed"><p className="font-semibold text-slate-800 line-clamp-1">MBA, MSc, BTech, CMA, PMP, PBA, CGBA</p><p className="text-[11px] text-slate-500 mt-1 flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg><span>Focus: Project Management &amp; FinTech Operations</span></p></div></div><div className="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500"><span>Doctoral &amp; Master Panel</span><span className="font-bold text-red-700 group-hover:underline">Active Supervisor</span></div></div></div><div className="p-5 rounded-2xl bg-red-50 border border-red-100 text-red-950 text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-between gap-3"><p className="font-medium text-center sm:text-left">Undergraduate dissertations, M.Ed research portfolios, and PhD doctoral theses are supervised individually by qualified doctoral panels with UGC-aligned defense criteria.</p><a className="text-xs font-black text-red-700 hover:text-red-800 underline shrink-0" href="/faculty">Review Supervisory Guidelines</a></div></div></section><section id="branches" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-6xl mx-auto space-y-10"><div className="flex flex-col md:flex-row md:items-end justify-between gap-6"><div className="space-y-3 max-w-2xl"><span className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">Island-Wide Learning Network</span><h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">12 Regional Campuses &amp; <span className="text-red-700">Learning Centres</span></h2><p className="text-slate-600 text-sm sm:text-base leading-relaxed">Study face-to-face in your own region, attend weekend lectures, or receive localized administrative support for assignments, transcripts, and UGC verification.</p></div><a className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-red-50 text-slate-900 hover:text-red-700 font-extrabold text-xs border-2 border-slate-200 hover:border-red-300 shadow-xs transition-all self-start md:self-auto shrink-0" href="/branches"><span>View Maps &amp; Complete Addresses</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4 text-red-600" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a></div><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"><a className="block h-full no-underline" href="/branches"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-red-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#991b1b", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-red-50 border-red-100 text-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-5 h-5" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Main Hub</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-red-50/80 border-red-100 text-red-700 hover:bg-red-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-2xl font-black">Kelaniya / Colombo</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Central Academic Hub</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Regional Hub &amp; Central Admissions Office</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 group-hover:text-white" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg><span>0117 173 030</span></span><span className="text-[11px] font-semibold flex items-center gap-1 group-hover:underline"><span>Details</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a><a className="block h-full no-underline" href="/branches"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#0f172a", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-slate-100 border-slate-200 text-slate-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-5 h-5" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Regional Hub</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-2xl font-black">Kandy</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Central Regional Centre</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">High-tech smart lecture halls &amp; advisor suites</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 group-hover:text-white" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg><span>0812 121 821</span></span><span className="text-[11px] font-semibold flex items-center gap-1 group-hover:underline"><span>Details</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a><a className="block h-full no-underline" href="/branches"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-rose-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#be123c", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-rose-50 border-rose-100 text-rose-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-5 h-5" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Regional Hub</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-rose-50/80 border-rose-100 text-rose-700 hover:bg-rose-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-2xl font-black">Matara</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Southern Regional Centre</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Faculty of Education teacher support facility</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 group-hover:text-white" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg><span>041 765 5556</span></span><span className="text-[11px] font-semibold flex items-center gap-1 group-hover:underline"><span>Details</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a><a className="block h-full no-underline" href="/branches"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-amber-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#b45309", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-amber-50 border-amber-100 text-amber-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-5 h-5" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Regional Hub</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-amber-50/80 border-amber-100 text-amber-700 hover:bg-amber-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-2xl font-black">Badulla</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Uva Regional Centre</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Zonal teacher training &amp; weekend degree suites</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 group-hover:text-white" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg><span>0744 124 771</span></span><span className="text-[11px] font-semibold flex items-center gap-1 group-hover:underline"><span>Details</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a><a className="block h-full no-underline" href="/branches"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#047857", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-emerald-50 border-emerald-100 text-emerald-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-5 h-5" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Regional Hub</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-emerald-50/80 border-emerald-100 text-emerald-700 hover:bg-emerald-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-2xl font-black">Ampara</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Eastern Regional Centre</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Bilingual management &amp; diploma facility</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 group-hover:text-white" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg><span>0744 124 774</span></span><span className="text-[11px] font-semibold flex items-center gap-1 group-hover:underline"><span>Details</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a><a className="block h-full no-underline" href="/branches"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#0f172a", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-slate-100 border-slate-200 text-slate-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-5 h-5" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div><div className="transition-colors duration-300 "><span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 transition-colors">Regional Hub</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-2xl font-black">Jaffna</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Northern Regional Centre</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Undergraduate Top-Up &amp; research library suite</p><div className="mt-2"><div className="pt-2 flex items-center justify-between text-xs text-slate-600 group-hover:text-white transition-colors"><span className="font-bold flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 group-hover:text-white" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg><span>0744 124 772</span></span><span className="text-[11px] font-semibold flex items-center gap-1 group-hover:underline"><span>Details</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></span></div></div></div></div></a></div><div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-950 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md"><div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs font-semibold"><span className="text-red-400 uppercase tracking-widest font-black text-[10px] bg-red-950/60 px-2.5 py-1 rounded-md border border-red-800/40">Delivery Flexibility</span><span>🏛 On-Campus Sessions</span><span>📅 Weekend Working Professionals Classes</span><span>💻 Cloud LMS 24/7 Access</span></div><a className="text-xs font-bold text-amber-400 hover:text-amber-300 underline shrink-0" href="/programmes">Check Weekend Schedules</a></div></div></section><section id="testimonials" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-6xl mx-auto space-y-10"><div className="text-center max-w-2xl mx-auto space-y-3"><span className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">Student Stories &amp; Success</span><h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">Trusted by Educators &amp; <span className="text-red-700">Professionals</span></h2><div className="w-16 h-1 bg-red-700 mx-auto rounded-full"></div><p className="text-slate-600 text-sm sm:text-base leading-relaxed">Real outcomes from educators, school leaders, and corporate scholars advancing their careers across Sri Lanka.</p></div><div className="grid grid-cols-1 md:grid-cols-3 gap-6"><div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300 flex flex-col justify-between space-y-5"><div className="space-y-4"><div className="flex items-center justify-between"><div className="flex text-amber-500 text-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg></div><span className="text-[10px] font-bold text-red-700 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">Verified M.Ed Graduate</span></div><p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic">“I am really happy and satisfied with the campus. This opportunity paved the path towards my career life as well as my academic aspirations to the highest level. The supervisory guidance for thesis preparation was exceptional.”</p></div><div className="pt-4 border-t border-slate-100 flex items-center gap-3.5"><div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-slate-200"><img src="/images/faiza.jpg" alt="Ms. J.S. Faiza" className="w-full h-full object-cover"/></div><div className="min-w-0 flex-1"><h4 className="text-sm font-black text-slate-900 leading-tight">Ms. J.S. Faiza</h4><p className="text-[11px] text-slate-500 mt-0.5 truncate">Teacher · Uva Province - Badulla Zonal</p><p className="text-[10px] font-bold text-red-700 uppercase tracking-wide mt-0.5">Master of Education (M.Ed)</p></div></div></div><div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300 flex flex-col justify-between space-y-5"><div className="space-y-4"><div className="flex items-center justify-between"><div className="flex text-amber-500 text-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg></div><span className="text-[10px] font-bold text-red-700 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">Verified Postgraduate</span></div><p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic">“The weekend lecture schedules and assignment-based continuous evaluation made it possible to upgrade my qualifications without interrupting my school administrative responsibilities.”</p></div><div className="pt-4 border-t border-slate-100 flex items-center gap-3.5"><div className="w-12 h-12 rounded-xl bg-red-50 text-red-700 border border-red-100 flex items-center justify-center shrink-0 font-black text-sm">N</div><div className="min-w-0 flex-1"><h4 className="text-sm font-black text-slate-900 leading-tight">Ms. N.A.L. Kumudu Nimali</h4><p className="text-[11px] text-slate-500 mt-0.5 truncate">Government School Principal</p><p className="text-[10px] font-bold text-red-700 uppercase tracking-wide mt-0.5">Postgraduate Diploma in Education Management</p></div></div></div><div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300 flex flex-col justify-between space-y-5"><div className="space-y-4"><div className="flex items-center justify-between"><div className="flex text-amber-500 text-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-4 h-4 fill-amber-400 stroke-amber-500" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg></div><span className="text-[10px] font-bold text-red-700 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">Verified BBA Graduate</span></div><p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic">“After completing my HND, the 12-month fast-track Top-Up degree allowed me to gain an accredited Bachelor’s degree. The UGC verification process was handled seamlessly by the campus administration.”</p></div><div className="pt-4 border-t border-slate-100 flex items-center gap-3.5"><div className="w-12 h-12 rounded-xl bg-red-50 text-red-700 border border-red-100 flex items-center justify-center shrink-0 font-black text-sm">B</div><div className="min-w-0 flex-1"><h4 className="text-sm font-black text-slate-900 leading-tight">Mr. Chamara Bandara</h4><p className="text-[11px] text-slate-500 mt-0.5 truncate">Banking &amp; Financial Executive · Colombo</p><p className="text-[10px] font-bold text-red-700 uppercase tracking-wide mt-0.5">Bachelor of Business Administration (1-Year Top-Up)</p></div></div></div></div></div></section><section id="faq" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-4xl mx-auto space-y-10"><div className="text-center space-y-3"><span className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">Clear Answers</span><h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">Frequently Asked <span className="text-red-700">Questions</span></h2><div className="w-16 h-1 bg-red-700 mx-auto rounded-full"></div><p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">Everything you need to know about UGC recognition, study formats, 12-month top-ups, and executive board certifications.</p></div><div className="space-y-4"><div className="relative"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg><input type="text" placeholder="Search topics, UGC recognition, top-ups, certifications..." className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all shadow-xs placeholder:text-slate-400" aria-label="Search FAQs" value=""/></div><div className="flex flex-wrap items-center justify-center gap-1.5 p-1 rounded-xl bg-slate-100 border border-slate-200/80"><button className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer bg-white text-red-700 shadow-xs">All</button><button className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer text-slate-600 hover:text-slate-900 hover:bg-white/60">General</button><button className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer text-slate-600 hover:text-slate-900 hover:bg-white/60">Academics</button><button className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer text-slate-600 hover:text-slate-900 hover:bg-white/60">Certifications</button><button className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer text-slate-600 hover:text-slate-900 hover:bg-white/60">Admissions</button></div></div><div className="space-y-3.5"><div className="rounded-2xl transition-all duration-300 border bg-white border-red-300 shadow-md ring-1 ring-red-500/20"><button className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none" aria-expanded="true"><div className="flex items-center gap-3.5 sm:gap-4"><span className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-black text-xs transition-colors bg-red-700 text-white">01</span><div><span className="text-[10px] font-bold uppercase tracking-wider text-red-700/80 mb-0.5 block">General</span><h3 className="font-black text-sm sm:text-base leading-snug transition-colors text-red-700">What is Global Stanford Campus &amp; its Heritage?</h3></div></div><div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 bg-red-700 text-white rotate-45"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus w-4 h-4 stroke-[2.5]" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></div></button><div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-1 border-t border-slate-100 text-slate-700 text-xs sm:text-sm leading-relaxed space-y-3 animate-in fade-in duration-200"><p className="font-normal text-slate-700 leading-relaxed">Global has been a prominent higher education institute engaged in Sri Lanka&#x27;s tertiary education landscape since 2007. With the establishment of Global Stanford Campus in 2018, we deliver UGC-recognized bachelor&#x27;s degrees, postgraduate diplomas, master&#x27;s degrees (M.Ed / MBA), and doctorates (PhD) in partnership with leading American, European, and Asian universities at an affordable fee structure.</p></div></div><div className="rounded-2xl transition-all duration-300 border bg-white border-slate-200/90 hover:border-slate-300 hover:shadow-xs"><button className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none" aria-expanded="false"><div className="flex items-center gap-3.5 sm:gap-4"><span className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-black text-xs transition-colors bg-slate-100 text-slate-700">02</span><div><span className="text-[10px] font-bold uppercase tracking-wider text-red-700/80 mb-0.5 block">Academics</span><h3 className="font-black text-sm sm:text-base leading-snug transition-colors text-slate-900">What are Fast-Track Top-Up Degrees?</h3></div></div><div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 bg-slate-100 text-slate-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus w-4 h-4 stroke-[2.5]" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></div></button></div><div className="rounded-2xl transition-all duration-300 border bg-white border-slate-200/90 hover:border-slate-300 hover:shadow-xs"><button className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none" aria-expanded="false"><div className="flex items-center gap-3.5 sm:gap-4"><span className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-black text-xs transition-colors bg-slate-100 text-slate-700">03</span><div><span className="text-[10px] font-bold uppercase tracking-wider text-red-700/80 mb-0.5 block">Academics</span><h3 className="font-black text-sm sm:text-base leading-snug transition-colors text-slate-900">How are the Lectures and Assessments Conducted?</h3></div></div><div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 bg-slate-100 text-slate-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus w-4 h-4 stroke-[2.5]" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></div></button></div><div className="rounded-2xl transition-all duration-300 border bg-white border-slate-200/90 hover:border-slate-300 hover:shadow-xs"><button className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none" aria-expanded="false"><div className="flex items-center gap-3.5 sm:gap-4"><span className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-black text-xs transition-colors bg-slate-100 text-slate-700">04</span><div><span className="text-[10px] font-bold uppercase tracking-wider text-red-700/80 mb-0.5 block">Admissions</span><h3 className="font-black text-sm sm:text-base leading-snug transition-colors text-slate-900">How does the Campus assist with the UGC Verification Letter?</h3></div></div><div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 bg-slate-100 text-slate-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus w-4 h-4 stroke-[2.5]" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></div></button></div><div className="rounded-2xl transition-all duration-300 border bg-white border-slate-200/90 hover:border-slate-300 hover:shadow-xs"><button className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none" aria-expanded="false"><div className="flex items-center gap-3.5 sm:gap-4"><span className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-black text-xs transition-colors bg-slate-100 text-slate-700">05</span><div><span className="text-[10px] font-bold uppercase tracking-wider text-red-700/80 mb-0.5 block">Certifications</span><h3 className="font-black text-sm sm:text-base leading-snug transition-colors text-slate-900">What is the Asian FinTech Academy (AFTA) Pathway?</h3></div></div><div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 bg-slate-100 text-slate-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus w-4 h-4 stroke-[2.5]" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></div></button></div><div className="rounded-2xl transition-all duration-300 border bg-white border-slate-200/90 hover:border-slate-300 hover:shadow-xs"><button className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none" aria-expanded="false"><div className="flex items-center gap-3.5 sm:gap-4"><span className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-black text-xs transition-colors bg-slate-100 text-slate-700">06</span><div><span className="text-[10px] font-bold uppercase tracking-wider text-red-700/80 mb-0.5 block">Certifications</span><h3 className="font-black text-sm sm:text-base leading-snug transition-colors text-slate-900">What is GAFM and How Does Recognized Prior Learning (RPL) Work?</h3></div></div><div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 bg-slate-100 text-slate-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus w-4 h-4 stroke-[2.5]" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></div></button></div><div className="rounded-2xl transition-all duration-300 border bg-white border-slate-200/90 hover:border-slate-300 hover:shadow-xs"><button className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none" aria-expanded="false"><div className="flex items-center gap-3.5 sm:gap-4"><span className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-black text-xs transition-colors bg-slate-100 text-slate-700">07</span><div><span className="text-[10px] font-bold uppercase tracking-wider text-red-700/80 mb-0.5 block">Admissions</span><h3 className="font-black text-sm sm:text-base leading-snug transition-colors text-slate-900">How Can I Register or Inquire via WhatsApp?</h3></div></div><div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 bg-slate-100 text-slate-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus w-4 h-4 stroke-[2.5]" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></div></button></div><div className="rounded-2xl transition-all duration-300 border bg-white border-slate-200/90 hover:border-slate-300 hover:shadow-xs"><button className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none" aria-expanded="false"><div className="flex items-center gap-3.5 sm:gap-4"><span className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-black text-xs transition-colors bg-slate-100 text-slate-700">08</span><div><span className="text-[10px] font-bold uppercase tracking-wider text-red-700/80 mb-0.5 block">General</span><h3 className="font-black text-sm sm:text-base leading-snug transition-colors text-slate-900">How is Personal Data Protected Under Sri Lanka&#x27;s PDPA Act No. 9 of 2022?</h3></div></div><div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 bg-slate-100 text-slate-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus w-4 h-4 stroke-[2.5]" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></div></button></div></div></div></section><section id="news" className="relative py-20 px-4 sm:px-6 lg:px-8 z-10 scroll-mt-24"><div className="max-w-6xl mx-auto space-y-10"><div className="flex flex-col md:flex-row md:items-end justify-between gap-6"><div className="space-y-3 max-w-2xl"><span className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">Announcements &amp; Cohorts</span><h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">Latest Intakes &amp; <span className="text-red-700">News</span></h2><p className="text-slate-600 text-sm sm:text-base leading-relaxed">Stay up to date with new academic registrations, executive cohorts at the Hilton Colombo, and research panel notifications.</p></div><a className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-red-50 text-slate-900 hover:text-red-700 font-extrabold text-xs border-2 border-slate-200 hover:border-red-300 shadow-xs transition-all self-start md:self-auto shrink-0" href="/programmes"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-newspaper w-4 h-4 text-red-600" aria-hidden="true"><path d="M15 18h-5" /><path d="M18 14h-8" /><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2" /><rect width="8" height="4" x="10" y="6" rx="1" /></svg><span>View All Intakes</span></a></div><div className="grid grid-cols-1 md:grid-cols-2 gap-5"><a className="block h-full no-underline" href="/certifications#fintech"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-red-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#991b1b", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-red-50 border-red-100 text-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-bell w-5 h-5" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0" /><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /></svg></div><div className="transition-colors duration-300 "><span className="text-xs text-slate-400 group-hover:text-white/80 font-medium flex items-center gap-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock w-3.5 h-3.5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>Sep 28, 2026</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-red-50/80 border-red-100 text-red-700 hover:bg-red-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-xl sm:text-2xl font-black leading-snug">Executive FinTech Programme Cohort — Hilton Colombo</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Executive FinTech</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Asian FinTech Academy opens admissions for the HKU-based curriculum covering Blockchain, Digital Assets, and AI in Finance with Hilton Colombo awarding sessions.</p><div className="mt-2"><div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-slate-800 group-hover:text-white transition-colors"><span>View Intake Details &amp; Registration</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></div></div></div></div></a><a className="block h-full no-underline" href="/programmes#bachelors"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-amber-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#b45309", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-amber-50 border-amber-100 text-amber-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star w-5 h-5" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg></div><div className="transition-colors duration-300 "><span className="text-xs text-slate-400 group-hover:text-white/80 font-medium flex items-center gap-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock w-3.5 h-3.5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>Sep 22, 2026</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-amber-50/80 border-amber-100 text-amber-700 hover:bg-amber-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-xl sm:text-2xl font-black leading-snug">Top-Up Degree Intake 2026/2027 Registration Open</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Academic Intake</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Diploma and HND holders can now enroll for the 12-month fast-track Bachelor of Business Administration, available in English and Sinhala medium island-wide.</p><div className="mt-2"><div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-slate-800 group-hover:text-white transition-colors"><span>View Intake Details &amp; Registration</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></div></div></div></div></a><a className="block h-full no-underline" href="/programmes#postgraduate"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-rose-300 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#be123c", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-rose-50 border-rose-100 text-rose-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-zap w-5 h-5" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg></div><div className="transition-colors duration-300 "><span className="text-xs text-slate-400 group-hover:text-white/80 font-medium flex items-center gap-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock w-3.5 h-3.5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>Sep 18, 2026</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-rose-50/80 border-rose-100 text-rose-700 hover:bg-rose-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-xl sm:text-2xl font-black leading-snug">M.Ed and PhD Research Panels Inaugurated</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Faculty of Education</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Senior supervisory doctoral panels established for Master of Education (M.Ed) and PhD in Education thesis scholars across Sri Lanka.</p><div className="mt-2"><div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-slate-800 group-hover:text-white transition-colors"><span>View Intake Details &amp; Registration</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></div></div></div></div></a><a className="block h-full no-underline" href="/certifications#rpl"><div className="relative group p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-slate-400 transition-all duration-300 flex flex-col justify-between overflow-hidden select-none cursor-pointer "><div aria-hidden="true" className="pointer-events-none absolute w-11 h-11 rounded-full top-5 right-5 origin-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-0" style={{ "backgroundColor": "#0f172a", "transform": "scale(0)", "willChange": "transform" }}></div><div className="relative z-10"><div className="flex items-start justify-between gap-3 mb-4"><div className="w-11 h-11 rounded-xl border flex items-center justify-center transition-all duration-300 bg-slate-100 border-slate-200 text-slate-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-globe w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg></div><div className="transition-colors duration-300 "><span className="text-xs text-slate-400 group-hover:text-white/80 font-medium flex items-center gap-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock w-3.5 h-3.5" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>Sep 10, 2026</span></div><div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ml-auto bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 "><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></div></div><div className="font-black tracking-tight leading-snug transition-colors duration-300 text-slate-900"><span className="text-xl sm:text-2xl font-black leading-snug">GAFM Board Certifications — RPL Evaluation Window</span></div><p className="text-xs font-bold uppercase tracking-wider mt-2 transition-colors duration-300 text-slate-700">Board Certification</p></div><div className="relative z-10 mt-4"><p className="text-[11px] sm:text-xs leading-relaxed pt-3 border-t transition-colors duration-300 border-slate-100 text-slate-500">Practicing managers, accountants, and engineers can submit professional CVs for accelerated board certification under the Triple-ISO framework.</p><div className="mt-2"><div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-slate-800 group-hover:text-white transition-colors"><span>View Intake Details &amp; Registration</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></div></div></div></div></a></div></div></section><section className="relative py-20 px-4 sm:px-6 lg:px-8 z-10"><div className="max-w-6xl mx-auto rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-red-950 text-white p-8 sm:p-12 lg:p-16 shadow-2xl border border-white/10 relative overflow-hidden"><div className="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-red-600/20 blur-3xl pointer-events-none"></div><div className="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div><div className="relative z-10 max-w-3xl mx-auto text-center space-y-6"><div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-bold border border-white/15 backdrop-blur-md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-graduation-cap w-4 h-4 text-red-400" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg><span>Admissions Open for 2026/2027 Academic Year</span></div><h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">Ready to Take the Next Step in Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-300 to-amber-300">Academic Career</span>?</h2><p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">Speak with an academic counselor today. Learn about our 1-year Top-Up qualifications, M.Ed &amp; MBA programmes, doctoral research supervision, and flexible weekend schedules.</p><div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-3"><a href="https://wa.me/94741623123" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm shadow-xl transition-all duration-200 hover:scale-[1.02] flex items-center justify-center gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-4 h-4" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg><span>WhatsApp Your CV: +94 74 162 3123</span></a><a className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-sm shadow-xl transition-all duration-200 hover:scale-[1.02] flex items-center justify-center gap-2" href="/programmes"><span>Explore All 40+ Programmes</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4 text-red-600" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a></div><div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs text-slate-400 font-semibold"><span>📞 Central Hotline: 0117 173 030 / 0744 124 772</span><span>🏛 12 Campuses Island-wide</span><span>✓ UGC Recognition Letter Support</span></div></div></div></section>
-    </>
+    <div className="bg-[#f8fafc] text-slate-900 pt-20">
+      {/* ============================================================== */}
+      {/* 1. SLIIT STYLE HERO BANNER & SEARCH WIDGET                     */}
+      {/* ============================================================== */}
+      <section className="relative min-h-[85vh] lg:min-h-[88vh] flex flex-col justify-between overflow-hidden bg-[#0f264d]">
+        {/* Background Image with Deep Navy Gradient */}
+        <div className="absolute inset-0 -z-10">
+          <img
+            src="/images/gsc_convocation_bmich_group.jpeg"
+            alt="Global Stanford Campus Convocation"
+            className="w-full h-full object-cover object-center opacity-30 scale-105 transition-transform duration-1000"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1833] via-[#0f264d]/90 to-[#16366b]/80" />
+        </div>
+
+        {/* Hero Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 w-full flex-1 flex flex-col justify-center">
+          <div className="max-w-3xl space-y-6">
+            {/* Accreditation Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold tracking-wide">
+              <span className="w-2 h-2 rounded-full bg-sliit-orange animate-pulse"></span>
+              <span>UGC RECOGNISED PATHWAYS • TVEC REGISTERED • EST. 2007</span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
+              Excellence in Higher Education.{" "}
+              <span className="text-sliit-orange block mt-2">
+                A World of Opportunities.
+              </span>
+            </h1>
+
+            {/* Concise Subtitle (No walls of text!) */}
+            <p className="text-slate-200 text-base sm:text-lg leading-relaxed font-normal max-w-2xl">
+              Join thousands of successful graduates. Pursue UGC-recognized Bachelor’s degrees, 1-Year Fast-Track Top-Up pathways, 24 specialized diplomas, MBA, and PhD research across 6 island-wide learning centres.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href="#programmes-explorer"
+                className="px-7 py-3.5 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-sliit-orange/30 transition-all hover:scale-[1.03] flex items-center gap-2"
+              >
+                <span>CHOOSE YOUR PROGRAMME</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
+                target="_blank"
+                rel="noreferrer"
+                className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 backdrop-blur-md transition-all flex items-center gap-2"
+              >
+                <Phone className="w-4 h-4 text-emerald-400" />
+                <span>WhatsApp Admissions</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* SLIIT Style Quick Programme Finder Bar */}
+        <div className="w-full bg-white/95 backdrop-blur-md border-t border-white/20 py-5 px-4 sm:px-6 lg:px-8 shadow-2xl">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3.5 items-center">
+              <div>
+                <label className="block text-[11px] font-black uppercase text-slate-500 mb-1">
+                  Degree Level
+                </label>
+                <select
+                  value={searchLevel}
+                  onChange={(e) => setSearchLevel(e.target.value)}
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-sliit-orange"
+                >
+                  <option value="all">All Study Levels</option>
+                  <option value="bachelors">1-Year BBA Top-Up / Bachelors</option>
+                  <option value="diplomas">24 Specialized Diplomas</option>
+                  <option value="higher">Higher Diplomas (60 Cr)</option>
+                  <option value="postgrad">Postgraduate (M.Ed &amp; MBA)</option>
+                  <option value="phd">Doctor of Philosophy (PhD)</option>
+                  <option value="fintech">Asian FinTech &amp; GAFM USA</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-black uppercase text-slate-500 mb-1">
+                  Field of Study
+                </label>
+                <select
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-sliit-orange"
+                >
+                  <option>All Academic Fields</option>
+                  <option>Business Management &amp; HR</option>
+                  <option>Artificial Intelligence &amp; IT</option>
+                  <option>Cybersecurity &amp; Blockchain</option>
+                  <option>Economics &amp; Global Finance</option>
+                  <option>Psychology &amp; Counselling</option>
+                  <option>Education &amp; Teaching</option>
+                  <option>Tourism &amp; Logistics</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-black uppercase text-slate-500 mb-1">
+                  Campus Location
+                </label>
+                <select
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-sliit-orange"
+                >
+                  <option>Kelaniya (Main Campus)</option>
+                  <option>Kandy Regional Campus</option>
+                  <option>Matara Regional Campus</option>
+                  <option>Badulla Regional Campus</option>
+                  <option>Ampara Regional Campus</option>
+                  <option>Jaffna Regional Campus</option>
+                </select>
+              </div>
+
+              <div className="pt-2 md:pt-4">
+                <a
+                  href="#programmes-explorer"
+                  className="w-full py-2.5 px-4 bg-sliit-navy hover:bg-[#0f264d] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-md transition-all"
+                >
+                  <Search className="w-4 h-4 text-sliit-orange" />
+                  <span>FIND PROGRAMMES</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 2. SLIIT STYLE METRIC STATS BANNER                             */}
+      {/* ============================================================== */}
+      <section className="bg-[#112850] text-white py-12 px-4 sm:px-6 lg:px-8 border-y border-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8 text-center">
+            {stats.map((s, idx) => (
+              <div key={idx} className="space-y-1">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-sliit-orange tracking-tight">
+                  {s.number}
+                </div>
+                <div className="text-sm font-bold text-slate-100">{s.label}</div>
+                <div className="text-[11px] text-slate-400 font-medium">{s.sub}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 3. SLIIT STYLE PROGRAMMES EXPLORER WITH TABS                   */}
+      {/* ============================================================== */}
+      <section id="programmes-explorer" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="text-center space-y-3 mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sliit-orange/10 text-sliit-orange text-xs font-bold tracking-wider uppercase">
+            Study at Global Stanford Campus
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+            Shape Your Future,{" "}
+            <span className="text-sliit-navy">Choose the Right Programme</span>
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-normal">
+            Whether you want a 1-year top-up degree, a specialized diploma, or doctoral research, explore our industry-focused curricula.
+          </p>
+
+          {/* Category Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-6">
+            <button
+              onClick={() => setActiveTab("bachelors")}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                activeTab === "bachelors"
+                  ? "bg-sliit-navy text-white shadow-md shadow-sliit-navy/30"
+                  : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+              }`}
+            >
+              🎓 1-Year BBA Top-Up (120 Cr)
+            </button>
+            <button
+              onClick={() => setActiveTab("diplomas")}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                activeTab === "diplomas"
+                  ? "bg-sliit-navy text-white shadow-md shadow-sliit-navy/30"
+                  : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+              }`}
+            >
+              📜 24 Diplomas (30 Cr)
+            </button>
+            <button
+              onClick={() => setActiveTab("higher")}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                activeTab === "higher"
+                  ? "bg-sliit-navy text-white shadow-md shadow-sliit-navy/30"
+                  : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+              }`}
+            >
+              🏛️ Higher Diplomas (60 Cr)
+            </button>
+            <button
+              onClick={() => setActiveTab("postgrad")}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                activeTab === "postgrad"
+                  ? "bg-sliit-navy text-white shadow-md shadow-sliit-navy/30"
+                  : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+              }`}
+            >
+              🎓 Postgraduate (M.Ed &amp; MBA)
+            </button>
+            <button
+              onClick={() => setActiveTab("phd")}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                activeTab === "phd"
+                  ? "bg-sliit-navy text-white shadow-md shadow-sliit-navy/30"
+                  : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+              }`}
+            >
+              🔬 PhD Doctorates
+            </button>
+            <button
+              onClick={() => setActiveTab("fintech")}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                activeTab === "fintech"
+                  ? "bg-sliit-navy text-white shadow-md shadow-sliit-navy/30"
+                  : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+              }`}
+            >
+              💳 FinTech &amp; GAFM
+            </button>
+          </div>
+        </div>
+
+        {/* Tab 1: Bachelors Top-Up */}
+        {activeTab === "bachelors" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
+            {bachelors.map((b, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-card hover:shadow-cardHover transition-all flex flex-col justify-between group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-sliit-orange/10 text-sliit-orange">
+                      {b.credits}
+                    </span>
+                    <span className="text-xs text-slate-500 font-semibold">{b.duration}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-sliit-navy transition-colors">
+                    {b.title}
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{b.desc}</p>
+                  <div className="text-[11px] text-slate-500 font-medium">
+                    <span className="font-bold text-slate-700">Delivery:</span> {b.mode}
+                  </div>
+                </div>
+
+                <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+                  <Link
+                    href="/programmes#bachelors"
+                    className="text-xs font-bold text-sliit-navy hover:text-sliit-orange transition-colors flex items-center gap-1"
+                  >
+                    <span>View Curriculum</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </Link>
+
+                  <a
+                    href={`https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(
+                      b.inquiry
+                    )}.`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white font-bold text-xs shadow-sm transition-all"
+                  >
+                    Apply on WhatsApp
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Tab 2: 24 Diplomas */}
+        {activeTab === "diplomas" && (
+          <div className="space-y-6 animate-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {diplomas.map((d, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:border-sliit-navy hover:shadow-card transition-all flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-black uppercase text-slate-400">{d.field}</span>
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-700">
+                        {d.credits}
+                      </span>
+                    </div>
+                    <h4 className="font-bold text-sm text-slate-900 leading-snug">{d.name}</h4>
+                    <p className="text-[11px] text-slate-500 font-medium">Duration: {d.duration}</p>
+                  </div>
+
+                  <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between">
+                    <Link
+                      href="/programmes#diplomas"
+                      className="text-[11px] font-bold text-sliit-navy hover:underline"
+                    >
+                      Syllabus
+                    </Link>
+                    <a
+                      href={`https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(
+                        d.name
+                      )}.`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-bold"
+                    >
+                      Inquire
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center pt-2">
+              <Link
+                href="/programmes#diplomas"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-sliit-navy text-white text-xs font-bold hover:bg-[#0f264d] transition-colors"
+              >
+                <span>View Full List of All 24 Diplomas</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: Higher Diplomas */}
+        {activeTab === "higher" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
+            {higherDiplomas.map((h, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-card hover:shadow-cardHover transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-slate-100 text-slate-700">
+                      {h.credits}
+                    </span>
+                    <span className="text-xs text-slate-500 font-semibold">{h.duration}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900">{h.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Advanced 60-credit framework serving as the intermediate foundation leading directly into final-year Bachelor&apos;s degrees.
+                  </p>
+                  <div className="text-[11px] text-sliit-orange font-bold flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Progression: {h.path}</span>
+                  </div>
+                </div>
+
+                <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+                  <Link
+                    href="/programmes#higher-diplomas"
+                    className="text-xs font-bold text-sliit-navy hover:underline"
+                  >
+                    View Modules
+                  </Link>
+                  <a
+                    href={`https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(
+                      h.title
+                    )}.`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white font-bold text-xs"
+                  >
+                    Apply Now
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Tab 4: Postgraduate (M.Ed & MBA) */}
+        {activeTab === "postgrad" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
+            {postgradPrograms.map((p, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-card hover:shadow-cardHover transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-sliit-navy/10 text-sliit-navy font-bold">
+                      {p.badge} • {p.credits}
+                    </span>
+                    <span className="text-xs text-slate-500 font-semibold">{p.duration}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900">{p.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{p.desc}</p>
+                </div>
+
+                <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+                  <Link
+                    href="/programmes#postgraduate"
+                    className="text-xs font-bold text-sliit-navy hover:underline"
+                  >
+                    Curriculum &amp; Admission
+                  </Link>
+                  <a
+                    href={`https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(
+                      p.title
+                    )}.`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white font-bold text-xs"
+                  >
+                    Apply Now
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Tab 5: PhD Research */}
+        {activeTab === "phd" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
+            {doctoralPrograms.map((d, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-card hover:shadow-cardHover transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-sliit-orange/10 text-sliit-orange">
+                      Doctoral Degree • {d.credits}
+                    </span>
+                    <span className="text-xs text-slate-500 font-semibold">{d.duration}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900">{d.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{d.desc}</p>
+                </div>
+
+                <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+                  <Link
+                    href="/programmes#doctorates"
+                    className="text-xs font-bold text-sliit-navy hover:underline"
+                  >
+                    Research Guidelines
+                  </Link>
+                  <a
+                    href={`https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(
+                      d.title
+                    )}.`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white font-bold text-xs"
+                  >
+                    Submit Proposal
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Tab 6: FinTech & GAFM */}
+        {activeTab === "fintech" && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
+            {fintechPrograms.map((f, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-card hover:shadow-cardHover transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-sliit-orange">
+                    {f.partner}
+                  </span>
+                  <h3 className="text-base font-bold text-slate-900 leading-snug">{f.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{f.desc}</p>
+                  <p className="text-[11px] text-slate-500 font-semibold">📍 {f.venue}</p>
+                </div>
+
+                <div className="pt-4 mt-4 border-t border-slate-100">
+                  <Link
+                    href="/certifications"
+                    className="w-full py-2.5 rounded-xl bg-sliit-navy hover:bg-[#0f264d] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+                  >
+                    <span>View Certification Details</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* ============================================================== */}
+      {/* 4. SLIIT STYLE "WHY CHOOSE GSC" 4-PILLAR FEATURE GRID          */}
+      {/* ============================================================== */}
+      <section className="bg-slate-100/70 py-20 px-4 sm:px-6 lg:px-8 border-y border-slate-200/80">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="text-center space-y-3">
+            <span className="text-xs font-black uppercase tracking-wider text-sliit-orange">
+              The Global Stanford Advantage
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              A Legacy of Academic Excellence
+            </h2>
+            <p className="text-slate-600 text-sm max-w-xl mx-auto font-normal">
+              Designed for forward-thinking students and executives who demand recognized credentials and career acceleration.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white rounded-2xl p-6 shadow-card hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
+                <ShieldCheck className="w-6 h-6 text-sliit-orange" />
+              </div>
+              <h3 className="font-bold text-base text-slate-900">UGC Recognised Pathways</h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                Degree pathways articulated through UGC-recognized universities and accredited under the Tertiary and Vocational Education Commission (TVEC).
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 shadow-card hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
+                <Briefcase className="w-6 h-6 text-sliit-orange" />
+              </div>
+              <h3 className="font-bold text-base text-slate-900">1-Year Top-Up Completion</h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                Direct final-year entry for HND, CIMA, or experienced diploma holders, saving you 2 years while attaining a full 120-credit BBA degree.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 shadow-card hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
+                <Laptop className="w-6 h-6 text-sliit-orange" />
+              </div>
+              <h3 className="font-bold text-base text-slate-900">Smart Modern Classrooms</h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                Equipped with interactive smart displays, enterprise LMS, hybrid streaming for distance learners, and 24/7 digital library access.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 shadow-card hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
+                <Award className="w-6 h-6 text-sliit-orange" />
+              </div>
+              <h3 className="font-bold text-base text-slate-900">Global FinTech &amp; GAFM</h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                Direct partnerships with Asian FinTech Academy (AFTA) and GAFM USA with executive masterclasses at luxury hotels like Hilton Colombo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 5. SLIIT STYLE CAMPUS LIFE & FACILITIES (REAL PHOTOS)          */}
+      {/* ============================================================== */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+        <div className="text-center space-y-3">
+          <span className="text-xs font-black uppercase tracking-wider text-sliit-orange">
+            Experience GSC
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Discover Life at Global Stanford Campus
+          </h2>
+          <p className="text-slate-600 text-sm max-w-xl mx-auto font-normal">
+            Take a look at our grand convocation ceremonies, smart learning facilities, and vibrant academic community.
+          </p>
+        </div>
+
+        {/* Photo Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-2 relative rounded-3xl overflow-hidden shadow-card group h-72 sm:h-96">
+            <img
+              src="/images/gsc_convocation_bmich_group.jpeg"
+              alt="BMICH Convocation"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+              <span className="px-3 py-1 rounded-full bg-sliit-orange text-white text-[10px] font-black uppercase w-max mb-2">
+                Annual Convocation
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold leading-tight">
+                Grand Convocation at BMICH Colombo
+              </h3>
+              <p className="text-xs text-slate-200 mt-1">
+                Celebrating thousands of qualified graduates awarded international degrees and diplomas.
+              </p>
+            </div>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden shadow-card group h-72 sm:h-96">
+            <img
+              src="/images/gsc_smart_classroom.jpeg"
+              alt="Smart Classrooms"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+              <span className="px-3 py-1 rounded-full bg-sliit-navy text-white text-[10px] font-black uppercase w-max mb-2">
+                Modern Infrastructure
+              </span>
+              <h3 className="text-lg font-bold leading-tight">
+                Smart Digital Classrooms
+              </h3>
+              <p className="text-xs text-slate-200 mt-1">
+                Interactive multimedia lecture theatres and executive teaching facilities.
+              </p>
+            </div>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden shadow-card group h-64 sm:h-80">
+            <img
+              src="/images/gsc_academic_procession.jpeg"
+              alt="Academic Procession"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+              <span className="px-3 py-1 rounded-full bg-sliit-orange text-white text-[10px] font-black uppercase w-max mb-2">
+                Faculty Heritage
+              </span>
+              <h3 className="text-base font-bold">Academic Procession</h3>
+              <p className="text-xs text-slate-200 mt-0.5">
+                Led by prominent professors and industry scholars.
+              </p>
+            </div>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden shadow-card group h-64 sm:h-80">
+            <img
+              src="/images/afta_fintech_banner.jpeg"
+              alt="Hilton Colombo Cohort"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+              <span className="px-3 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-black uppercase w-max mb-2">
+                Executive Workshops
+              </span>
+              <h3 className="text-base font-bold">Hilton Colombo Cohorts</h3>
+              <p className="text-xs text-slate-200 mt-0.5">
+                FinTech masterclasses and corporate executive forums.
+              </p>
+            </div>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden shadow-card group h-64 sm:h-80">
+            <img
+              src="/images/gsc_convocation_1.jpeg"
+              alt="Graduate Honors"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+              <span className="px-3 py-1 rounded-full bg-sliit-navy text-white text-[10px] font-black uppercase w-max mb-2">
+                Student Honors
+              </span>
+              <h3 className="text-base font-bold">Empowering Leaders</h3>
+              <p className="text-xs text-slate-200 mt-0.5">
+                Guiding students towards prestigious global careers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 6. SLIIT STYLE DISTINGUISHED FACULTY CARDS                    */}
+      {/* ============================================================== */}
+      <section className="bg-slate-100/60 py-20 px-4 sm:px-6 lg:px-8 border-y border-slate-200/80">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className="text-xs font-black uppercase tracking-wider text-sliit-orange">
+                Academic Leadership
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
+                Learn from Renowned Faculty
+              </h2>
+              <p className="text-slate-600 text-xs sm:text-sm mt-1">
+                Over 28 qualified professors, PhD holders, industry consultants, and senior lecturers.
+              </p>
+            </div>
+            <Link
+              href="/faculty"
+              className="inline-flex items-center gap-2 text-xs font-bold text-sliit-navy hover:text-sliit-orange transition-colors"
+            >
+              <span>Explore All 28 Faculty Members</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {[
+              { name: "Dr. Sandya Kumari", role: "Dean / Senior Lecturer", img: "/images/staff_portraits/staff_sandya_kumari.jpeg", dept: "Management" },
+              { name: "Sampath Bandara", role: "Head of Academic Programs", img: "/images/staff_portraits/staff_sampath_bandara.jpeg", dept: "Academics" },
+              { name: "Asanka Weerasinghe", role: "Consultant / Lecturer", img: "/images/staff_portraits/staff_asanka_weerasinghe.jpeg", dept: "FinTech" },
+              { name: "Prof. Jude Devabandu", role: "Visiting Professor", img: "/images/staff_portraits/staff_jude_devabandu.jpeg", dept: "Education" },
+              { name: "Faizar Farook", role: "Corporate Lecturer", img: "/images/staff_portraits/staff_faizar.jpeg", dept: "Business" },
+              { name: "K. Prashanthan", role: "Senior Lecturer", img: "/images/staff_portraits/staff_prashanthan.jpeg", dept: "Information Tech" },
+            ].map((f, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-4 text-center border border-slate-200/90 shadow-card hover:shadow-cardHover transition-all flex flex-col items-center group"
+              >
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-3 border-2 border-slate-200 group-hover:border-sliit-orange transition-colors">
+                  <img src={f.img} alt={f.name} className="w-full h-full object-cover" />
+                </div>
+                <h4 className="font-bold text-xs text-slate-900 group-hover:text-sliit-navy transition-colors">
+                  {f.name}
+                </h4>
+                <p className="text-[10px] text-sliit-orange font-bold mt-0.5">{f.role}</p>
+                <span className="mt-2 text-[9px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
+                  {f.dept}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 7. SLIIT STYLE ISLAND-WIDE CAMPUSES CARDS                     */}
+      {/* ============================================================== */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+        <div className="text-center space-y-3">
+          <span className="text-xs font-black uppercase tracking-wider text-sliit-orange">
+            Regional Presence
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Island-wide Campus Network
+          </h2>
+          <p className="text-slate-600 text-sm max-w-xl mx-auto font-normal">
+            Accessible higher education across Sri Lanka with modern regional learning centres.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {campuses.map((c, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-card hover:shadow-cardHover transition-all space-y-4 flex flex-col justify-between"
+            >
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-black text-slate-900">{c.city}</span>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sliit-orange/10 text-sliit-orange">
+                    {c.type}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500">{c.addr}</p>
+                <div className="space-y-1 pt-2 text-xs">
+                  <p className="flex items-center gap-2 text-slate-700">
+                    <Phone className="w-3.5 h-3.5 text-sliit-orange" />
+                    <span>Tel: <a href={`tel:${c.phone}`} className="font-mono font-bold hover:underline">{c.phone}</a></span>
+                  </p>
+                  <p className="flex items-center gap-2 text-slate-700">
+                    <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Mobile: <a href={`tel:${c.mobile}`} className="font-mono font-bold hover:underline">{c.mobile}</a></span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <Link href="/branches" className="text-xs font-bold text-sliit-navy hover:underline">
+                  Branch Details
+                </Link>
+                <a
+                  href={`https://wa.me/94741623123?text=Hello%2C%20I%20would%20like%20to%20visit%20the%20${encodeURIComponent(
+                    c.city
+                  )}%20campus.`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-3 py-1.5 rounded-lg bg-sliit-orange hover:bg-sliit-orange-600 text-white font-bold text-[11px]"
+                >
+                  Contact Branch
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 8. SLIIT STYLE INTAKE & EVENTS ANNOUNCEMENT BANNER             */}
+      {/* ============================================================== */}
+      <section className="bg-[#0f264d] text-white py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className="text-xs font-black uppercase tracking-wider text-sliit-orange">
+                What’s Happening at GSC
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1">
+                Upcoming Intakes &amp; Academic Notices
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
+              <div className="w-14 h-14 rounded-xl bg-sliit-orange text-white flex flex-col items-center justify-center shrink-0 font-black">
+                <span className="text-lg leading-none">2026</span>
+                <span className="text-[10px] uppercase">INTAKE</span>
+              </div>
+              <div className="space-y-1.5">
+                <h4 className="font-bold text-sm text-white">2026/2027 Academic Year Admissions</h4>
+                <p className="text-xs text-slate-300">
+                  Applications are open for 24 Diplomas and 1-Year Fast-Track BBA Top-Up programmes across all centres.
+                </p>
+                <a
+                  href="https://wa.me/94741623123?text=Hello%2C%20I%20would%20like%20to%20apply%20for%20the%202026/2027%20intake."
+                  className="inline-flex items-center gap-1 text-xs font-bold text-sliit-orange hover:underline pt-1"
+                >
+                  <span>Apply for this Intake</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
+              <div className="w-14 h-14 rounded-xl bg-sliit-navy-600 text-white flex flex-col items-center justify-center shrink-0 font-black">
+                <span className="text-lg leading-none">AFTA</span>
+                <span className="text-[10px] uppercase">FINTECH</span>
+              </div>
+              <div className="space-y-1.5">
+                <h4 className="font-bold text-sm text-white">Hilton Executive FinTech Cohort</h4>
+                <p className="text-xs text-slate-300">
+                  Upcoming weekend executive masterclass and networking sessions at Hilton Colombo with HKU curriculum.
+                </p>
+                <Link
+                  href="/certifications#fintech"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-sliit-orange hover:underline pt-1"
+                >
+                  <span>Enroll in FinTech Cohort</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
+              <div className="w-14 h-14 rounded-xl bg-emerald-600 text-white flex flex-col items-center justify-center shrink-0 font-black">
+                <span className="text-lg leading-none">BMICH</span>
+                <span className="text-[10px] uppercase">AWARDS</span>
+              </div>
+              <div className="space-y-1.5">
+                <h4 className="font-bold text-sm text-white">Annual Convocation Registration</h4>
+                <p className="text-xs text-slate-300">
+                  Graduating students are invited to complete graduation registration for the upcoming BMICH ceremony.
+                </p>
+                <a
+                  href="tel:0117173030"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-sliit-orange hover:underline pt-1"
+                >
+                  <span>Call Convocation Desk</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 9. SLIIT STYLE SEARCHABLE FAQ ACCORDION                        */}
+      {/* ============================================================== */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
+        <div className="text-center space-y-3">
+          <span className="text-xs font-black uppercase tracking-wider text-sliit-orange">
+            Clear Answers
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-slate-600 text-xs sm:text-sm">
+            Everything you need to know about UGC recognition, study formats, 12-month top-ups, and GAFM certifications.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          {faqs.map((f, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs"
+            >
+              <button
+                onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                className="w-full p-5 text-left flex items-center justify-between font-bold text-sm text-slate-900 hover:text-sliit-navy transition-colors"
+              >
+                <span>{f.q}</span>
+                <ChevronDown
+                  className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
+                    activeFaq === idx ? "rotate-180 text-sliit-orange" : ""
+                  }`}
+                />
+              </button>
+              {activeFaq === idx && (
+                <div className="px-5 pb-5 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3 animate-fade-in font-normal">
+                  {f.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 10. FINAL SLIIT HIGH-CONVERTING CTA BANNER                     */}
+      {/* ============================================================== */}
+      <section className="bg-gradient-to-r from-[#0a1833] via-[#16366b] to-[#0f264d] text-white py-16 px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <span className="px-4 py-1.5 rounded-full bg-sliit-orange text-white text-xs font-black uppercase tracking-wider inline-block">
+            Start Your Academic Journey Today
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+            Ready to Earn Your UGC Recognised Degree?
+          </h2>
+          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+            Speak directly with an admissions advisor for personalized evaluation, fee structures, and immediate enrollment.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <a
+              href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
+              target="_blank"
+              rel="noreferrer"
+              className="px-8 py-3.5 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white font-black text-sm uppercase tracking-wider shadow-xl shadow-sliit-orange/40 transition-all hover:scale-105 flex items-center gap-2"
+            >
+              <span>APPLY VIA WHATSAPP NOW</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href="tel:0117173030"
+              className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 transition-all flex items-center gap-2"
+            >
+              <Phone className="w-4 h-4 text-slate-300" />
+              <span>Call Hotlines: 0117 173 030</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

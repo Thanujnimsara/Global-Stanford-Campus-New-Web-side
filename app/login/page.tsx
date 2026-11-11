@@ -156,12 +156,12 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-between text-slate-900 antialiased selection:bg-red-900 selection:text-white pt-16">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-between text-slate-900 antialiased selection:bg-sliit-navy selection:text-white pt-16">
       {/* Top Header */}
       <header className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-red-700 transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-sliit-navy transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Campus Portal</span>
@@ -207,7 +207,7 @@ function LoginForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. admin@stanfordcampus.edu.lk"
-                  className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-white border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-red-700/20 focus:border-red-700 hover:border-slate-400"
+                  className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-white border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-sliit-orange/30 focus:border-sliit-orange hover:border-slate-400"
                   required
                   autoFocus
                   autoComplete="username"
@@ -217,7 +217,7 @@ function LoginForm() {
 
             {/* Dynamic Role Indicator */}
             <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200/80 transition-all">
-              <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center shrink-0 text-red-700 shadow-2xs">
+              <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center shrink-0 text-sliit-navy shadow-2xs">
                 <RoleIcon className="w-4 h-4" />
               </div>
               <div className="flex-1 min-w-0">
@@ -239,7 +239,7 @@ function LoginForm() {
                 <button
                   type="button"
                   onClick={() => setForgotModal({ ...forgotModal, open: true, email: email })}
-                  className="text-xs font-medium text-slate-500 hover:text-red-700 transition-colors cursor-pointer"
+                  className="text-xs font-medium text-slate-500 hover:text-sliit-orange transition-colors cursor-pointer"
                 >
                   Forgot password?
                 </button>
@@ -254,7 +254,7 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full pl-10 pr-10 py-2.5 text-sm bg-white border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-red-700/20 focus:border-red-700 hover:border-slate-400"
+                  className="w-full pl-10 pr-10 py-2.5 text-sm bg-white border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-sliit-orange/30 focus:border-sliit-orange hover:border-slate-400"
                   required
                   autoComplete="current-password"
                 />
@@ -275,7 +275,7 @@ function LoginForm() {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-slate-300 text-red-700 focus:ring-red-700"
+                  className="w-4 h-4 rounded border-slate-300 text-sliit-orange focus:ring-sliit-orange"
                 />
                 <span className="text-xs text-slate-600 font-medium">Keep me signed in</span>
               </label>
@@ -284,7 +284,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900 text-white font-bold text-sm shadow-md shadow-red-700/25 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
+              className="w-full py-2.5 px-4 rounded-xl bg-sliit-orange hover:bg-sliit-orange-hover text-white font-bold text-sm shadow-md shadow-orange-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
             >
               {loading ? (
                 <span>Authenticating...</span>
@@ -359,7 +359,7 @@ function LoginForm() {
           <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-slate-900 font-bold text-base">
-                <HelpCircle className="w-5 h-5 text-red-700" />
+                <HelpCircle className="w-5 h-5 text-sliit-orange" />
                 <span>Password Recovery</span>
               </div>
               <button
@@ -390,7 +390,7 @@ function LoginForm() {
                 placeholder="Institutional email address"
                 value={forgotModal.email}
                 onChange={(e) => setForgotModal({ ...forgotModal, email: e.target.value })}
-                className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-700"
+                className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sliit-orange"
               />
               <div className="flex justify-end gap-2">
                 <button
@@ -403,7 +403,7 @@ function LoginForm() {
                 <button
                   type="submit"
                   disabled={forgotModal.loading}
-                  className="px-4 py-2 text-xs font-bold text-white bg-red-700 hover:bg-red-800 rounded-xl"
+                  className="px-4 py-2 text-xs font-bold text-white bg-sliit-orange hover:bg-sliit-orange-hover rounded-xl shadow-xs"
                 >
                   {forgotModal.loading ? "Sending..." : "Send Instructions"}
                 </button>
@@ -437,7 +437,7 @@ function LoginForm() {
                   placeholder="Minimum 8 characters"
                   value={passwordModal.newPassword}
                   onChange={(e) => setPasswordModal({ ...passwordModal, newPassword: e.target.value })}
-                  className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-700"
+                  className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sliit-orange"
                 />
               </div>
               <div>
@@ -448,13 +448,13 @@ function LoginForm() {
                   placeholder="Repeat new password"
                   value={passwordModal.confirmPassword}
                   onChange={(e) => setPasswordModal({ ...passwordModal, confirmPassword: e.target.value })}
-                  className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-700"
+                  className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sliit-orange"
                 />
               </div>
               <button
                 type="submit"
                 disabled={passwordModal.loading}
-                className="w-full py-2.5 text-xs font-bold text-white bg-red-700 hover:bg-red-800 rounded-xl"
+                className="w-full py-2.5 text-xs font-bold text-white bg-sliit-orange hover:bg-sliit-orange-hover rounded-xl shadow-xs"
               >
                 {passwordModal.loading ? "Updating..." : "Update Password & Continue"}
               </button>
@@ -472,7 +472,7 @@ export default function LoginPage() {
       fallback={
         <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
           <div className="flex flex-col items-center gap-3">
-            <div className="w-8 h-8 border-3 border-red-700 border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-8 h-8 border-3 border-sliit-orange border-t-transparent rounded-full animate-spin"></div>
             <span className="text-xs font-semibold text-slate-500">Loading Secure Portal...</span>
           </div>
         </div>

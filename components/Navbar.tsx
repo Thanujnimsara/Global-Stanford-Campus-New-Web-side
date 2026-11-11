@@ -1,115 +1,220 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronDown, Phone, ArrowRight, Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import {
+  ChevronDown,
+  Phone,
+  ArrowRight,
+  Menu,
+  X,
+  GraduationCap,
+  Award,
+  Users,
+  MapPin,
+  HelpCircle,
+  LogIn,
+  Search,
+} from "lucide-react";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [programsDropdownOpen, setProgramsDropdownOpen] = useState(false);
   const [certDropdownOpen, setCertDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      {/* Top Banner */}
-      <div className="bg-slate-950 text-slate-300 text-[10px] py-1 px-4 sm:px-8 border-b border-white/10 hidden sm:block">
+      {/* SLIIT Style Top Utility Bar */}
+      <div className="bg-[#0f264d] text-slate-200 text-[11px] py-1.5 px-4 sm:px-8 border-b border-white/10 hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <p className="font-semibold tracking-wide text-slate-300 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
-            Admissions Open for 2026/2027 Academic Year • Island-wide Learning Centres • UGC Recognized Degrees
-          </p>
-          <div className="flex items-center gap-3 text-slate-400">
-            <span>Call: 0117 173 030 / 0744 124 772</span>
-            <span>•</span>
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sliit-orange/20 text-sliit-orange font-bold text-[10px] tracking-wide border border-sliit-orange/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-sliit-orange animate-ping"></span>
+              2026/2027 INTAKES OPEN
+            </span>
+            <span className="text-slate-300 text-xs hidden lg:inline">
+              UGC Recognised Degree Pathways • TVEC Registered Institute
+            </span>
+          </div>
+
+          <div className="flex items-center gap-4 text-slate-300 font-medium">
+            <a
+              href="tel:0117173030"
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
+            >
+              <Phone className="w-3 h-3 text-sliit-orange" />
+              <span>Hotline: 0117 173 030 / 0744 124 772</span>
+            </a>
+            <span className="text-white/20">|</span>
             <a
               href="https://wa.me/94741623123"
               target="_blank"
               rel="noreferrer"
-              className="text-emerald-400 font-bold hover:underline"
+              className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1"
             >
-              WhatsApp: +94 74 162 3123
+              <span>WhatsApp: +94 74 162 3123</span>
             </a>
+            <span className="text-white/20">|</span>
+            <Link
+              href="/login"
+              className="text-slate-300 hover:text-sliit-orange transition-colors flex items-center gap-1"
+            >
+              <LogIn className="w-3 h-3" />
+              <span>LMS Portal</span>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <div className="transition-all duration-300 bg-white/90 backdrop-blur-sm border-b border-slate-200/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-          {/* Logo & Brand */}
-          <Link className="flex items-center gap-2.5 group cursor-pointer" href="/">
-            <div className="w-8 h-8 rounded-lg overflow-hidden ring-2 ring-red-600/30 group-hover:ring-red-600 transition-all shadow-xs bg-white p-0.5">
+      {/* Main Navigation Bar */}
+      <div
+        className={`transition-all duration-300 ${
+          scrolled
+            ? "bg-white/95 backdrop-blur-md shadow-lg shadow-sliit-navy/5 border-b border-slate-200"
+            : "bg-white border-b border-slate-100 shadow-xs"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+          {/* Logo & Institute Brand */}
+          <Link className="flex items-center gap-3 group cursor-pointer" href="/">
+            <div className="w-11 h-11 rounded-xl overflow-hidden ring-2 ring-sliit-navy/15 group-hover:ring-sliit-orange transition-all shadow-xs bg-white p-1">
               <img src="/logo.png" alt="GSC Crest" className="w-full h-full object-contain" />
             </div>
             <div className="leading-tight">
-              <p className="text-slate-900 font-black text-sm tracking-tight group-hover:text-red-700 transition-colors">
-                Global Stanford <span className="text-red-700">CAMPUS</span>
-              </p>
-              <p className="text-slate-500 font-bold text-[9px] tracking-wider uppercase">
-                Higher Ed Since 2007 • UGC Recognized
+              <div className="flex items-center gap-1.5">
+                <span className="text-[#16366b] font-black text-lg tracking-tight group-hover:text-sliit-orange transition-colors">
+                  GLOBAL STANFORD
+                </span>
+                <span className="text-sliit-orange font-black text-lg tracking-tight">
+                  CAMPUS
+                </span>
+              </div>
+              <p className="text-slate-500 font-semibold text-[10px] tracking-wider uppercase">
+                Premier Higher Education • Roots Since 2007
               </p>
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-0.5">
+          {/* Desktop Nav Items */}
+          <nav className="hidden lg:flex items-center gap-1">
             <Link
-              className="px-2.5 py-1.5 text-xs rounded-lg transition-all font-bold cursor-pointer text-slate-800 hover:text-red-700 hover:bg-red-50/70"
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+                pathname === "/"
+                  ? "text-white bg-sliit-navy shadow-sm"
+                  : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+              }`}
               href="/"
             >
-              Home
-            </Link>
-            <Link
-              className="px-2.5 py-1.5 text-xs rounded-lg transition-all font-bold cursor-pointer text-slate-800 hover:text-red-700 hover:bg-red-50/70"
-              href="/about"
-            >
-              About Us
+              HOME
             </Link>
 
-            {/* Programs Dropdown */}
+            <Link
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+                pathname === "/about"
+                  ? "text-white bg-sliit-navy shadow-sm"
+                  : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+              }`}
+              href="/about"
+            >
+              ABOUT US
+            </Link>
+
+            {/* Academic Programs Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setProgramsDropdownOpen(true)}
               onMouseLeave={() => setProgramsDropdownOpen(false)}
             >
               <Link
-                className="flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg transition-all font-bold cursor-pointer text-slate-800 hover:text-red-700 hover:bg-red-50/70"
+                className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+                  pathname === "/programmes"
+                    ? "text-white bg-sliit-navy shadow-sm"
+                    : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+                }`}
                 href="/programmes"
               >
-                <span>Academic Programs</span>
-                <ChevronDown className="w-3 h-3 text-slate-500" />
+                <span>ACADEMIC PROGRAMMES</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    programsDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
               </Link>
               {programsDropdownOpen && (
-                <div className="absolute top-full left-0 w-64 bg-white rounded-xl shadow-xl border border-slate-200/80 p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute top-full left-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="px-3 py-1.5 mb-1 text-[10px] font-black uppercase tracking-wider text-sliit-orange">
+                    Study at Global Stanford
+                  </div>
+                  <Link
+                    href="/programmes#bachelors"
+                    className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold text-slate-800 hover:text-sliit-navy hover:bg-sliit-navy-50 rounded-xl transition-colors"
+                  >
+                    <GraduationCap className="w-4 h-4 text-sliit-orange shrink-0" />
+                    <div>
+                      <p className="font-bold">1-Year Fast-Track BBA Top-Up</p>
+                      <p className="text-[10px] text-slate-500 font-normal">
+                        Direct Degree Completion (120 Credits)
+                      </p>
+                    </div>
+                  </Link>
                   <Link
                     href="/programmes#diplomas"
-                    className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold text-slate-800 hover:text-sliit-navy hover:bg-sliit-navy-50 rounded-xl transition-colors"
                   >
-                    24 Diploma Programs (30 Cr)
+                    <Award className="w-4 h-4 text-sliit-navy shrink-0" />
+                    <div>
+                      <p className="font-bold">24 Diploma Programmes (30 Cr)</p>
+                      <p className="text-[10px] text-slate-500 font-normal">
+                        AI, Management, Economics, IT, Psychology, etc.
+                      </p>
+                    </div>
                   </Link>
                   <Link
                     href="/programmes#higher-diplomas"
-                    className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold text-slate-800 hover:text-sliit-navy hover:bg-sliit-navy-50 rounded-xl transition-colors"
                   >
-                    8 Higher Diplomas (60 Cr)
-                  </Link>
-                  <Link
-                    href="/programmes#bachelors"
-                    className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
-                  >
-                    1-Year Fast-Track BBA Top-Up
+                    <Award className="w-4 h-4 text-sliit-navy shrink-0" />
+                    <div>
+                      <p className="font-bold">8 Higher Diplomas (60 Cr)</p>
+                      <p className="text-[10px] text-slate-500 font-normal">
+                        Advanced Professional Qualifications
+                      </p>
+                    </div>
                   </Link>
                   <Link
                     href="/programmes#postgraduate"
-                    className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold text-slate-800 hover:text-sliit-navy hover:bg-sliit-navy-50 rounded-xl transition-colors"
                   >
-                    Postgraduate (M.Ed &amp; MBA)
+                    <GraduationCap className="w-4 h-4 text-sliit-orange shrink-0" />
+                    <div>
+                      <p className="font-bold">Postgraduate (M.Ed &amp; MBA)</p>
+                      <p className="text-[10px] text-slate-500 font-normal">
+                        Master of Education &amp; MBA Banking / Management
+                      </p>
+                    </div>
                   </Link>
                   <Link
                     href="/programmes#doctorates"
-                    className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold text-slate-800 hover:text-sliit-navy hover:bg-sliit-navy-50 rounded-xl transition-colors"
                   >
-                    Doctor of Philosophy (PhD)
+                    <GraduationCap className="w-4 h-4 text-sliit-navy shrink-0" />
+                    <div>
+                      <p className="font-bold">Doctor of Philosophy (PhD)</p>
+                      <p className="text-[10px] text-slate-500 font-normal">
+                        PhD in Management &amp; Education Research
+                      </p>
+                    </div>
                   </Link>
                 </div>
               )}
@@ -122,154 +227,173 @@ export default function Navbar() {
               onMouseLeave={() => setCertDropdownOpen(false)}
             >
               <Link
-                className="flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg transition-all font-bold cursor-pointer text-slate-800 hover:text-red-700 hover:bg-red-50/70"
+                className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+                  pathname === "/certifications"
+                    ? "text-white bg-sliit-navy shadow-sm"
+                    : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+                }`}
                 href="/certifications"
               >
-                <span>Certifications</span>
-                <ChevronDown className="w-3 h-3 text-slate-500" />
+                <span>CERTIFICATIONS</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    certDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
               </Link>
               {certDropdownOpen && (
-                <div className="absolute top-full left-0 w-60 bg-white rounded-xl shadow-xl border border-slate-200/80 p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute top-full left-0 w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="px-3 py-1.5 mb-1 text-[10px] font-black uppercase tracking-wider text-sliit-orange">
+                    Global Professional Bodies
+                  </div>
                   <Link
                     href="/certifications#fintech"
-                    className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                    className="block px-3 py-2 text-xs font-semibold text-slate-800 hover:text-sliit-navy hover:bg-sliit-navy-50 rounded-xl transition-colors"
                   >
-                    Asian FinTech Academy (AFTA)
+                    <p className="font-bold">Asian FinTech Academy (AFTA)</p>
+                    <p className="text-[10px] text-slate-500">
+                      HKU Course &amp; Hilton Executive Cohorts
+                    </p>
                   </Link>
                   <Link
                     href="/certifications#gafm"
-                    className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                    className="block px-3 py-2 text-xs font-semibold text-slate-800 hover:text-sliit-navy hover:bg-sliit-navy-50 rounded-xl transition-colors"
                   >
-                    GAFM Board Certifications
+                    <p className="font-bold">GAFM USA Board Certifications</p>
+                    <p className="text-[10px] text-slate-500">
+                      Triple ISO 21001/29993/9001 Framework
+                    </p>
                   </Link>
                   <Link
                     href="/certifications#rpl"
-                    className="block px-3 py-2 text-xs font-semibold text-slate-700 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                    className="block px-3 py-2 text-xs font-semibold text-slate-800 hover:text-sliit-navy hover:bg-sliit-navy-50 rounded-xl transition-colors"
                   >
-                    Prior Learning (RPL) Evaluation
+                    <p className="font-bold">Prior Learning (RPL) Evaluation</p>
+                    <p className="text-[10px] text-slate-500">
+                      Experience-Based Degree Progression
+                    </p>
                   </Link>
                 </div>
               )}
             </div>
 
             <Link
-              className="px-2.5 py-1.5 text-xs rounded-lg transition-all font-bold cursor-pointer text-slate-800 hover:text-red-700 hover:bg-red-50/70"
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+                pathname === "/faculty"
+                  ? "text-white bg-sliit-navy shadow-sm"
+                  : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+              }`}
               href="/faculty"
             >
-              Academic Staff
+              FACULTY
             </Link>
+
             <Link
-              className="px-2.5 py-1.5 text-xs rounded-lg transition-all font-bold cursor-pointer text-slate-800 hover:text-red-700 hover:bg-red-50/70"
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+                pathname === "/branches"
+                  ? "text-white bg-sliit-navy shadow-sm"
+                  : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+              }`}
               href="/branches"
             >
-              Branches
-            </Link>
-            <Link
-              className="px-2.5 py-1.5 text-xs rounded-lg transition-all font-bold cursor-pointer text-slate-800 hover:text-red-700 hover:bg-red-50/70"
-              href="/#faq"
-            >
-              FAQ
+              CAMPUSES
             </Link>
           </nav>
 
-          {/* CTA Buttons */}
-          <div className="hidden sm:flex items-center gap-2">
+          {/* SLIIT Style High-Contrast CTA Buttons */}
+          <div className="hidden sm:flex items-center gap-3">
             <a
-              href="https://wa.me/94741623123"
+              href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
               target="_blank"
               rel="noreferrer"
-              className="px-3 py-1.5 text-[11px] font-bold text-emerald-700 border border-emerald-300 rounded-lg hover:bg-emerald-50 transition-colors flex items-center gap-1"
+              className="px-5 py-2.5 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white text-xs font-black tracking-wide uppercase shadow-md shadow-sliit-orange/30 transition-all hover:scale-[1.03] flex items-center gap-1.5"
             >
-              <Phone className="w-3 h-3" />
-              <span>WhatsApp CV</span>
+              <span>APPLY NOW</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
+
             <Link
-              className="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900 text-white text-[11px] font-extrabold shadow-md shadow-red-700/25 transition-all hover:scale-[1.02] flex items-center gap-1.5"
               href="/login"
+              className="px-4 py-2.5 rounded-xl bg-[#0f264d] hover:bg-[#16366b] text-white text-xs font-bold shadow-sm transition-all hover:scale-[1.02] flex items-center gap-1.5"
             >
-              <span>Portal Login</span>
-              <ArrowRight className="w-3 h-3" />
+              <LogIn className="w-3.5 h-3.5 text-sliit-orange" />
+              <span>Portal</span>
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-700 hover:text-red-700 transition-colors"
-            aria-label="Toggle Navigation"
+            className="lg:hidden p-2 text-slate-700 hover:text-sliit-navy transition-colors rounded-lg hover:bg-slate-100"
+            aria-label="Toggle navigation"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-5 space-y-2 shadow-xl animate-in slide-in-from-top duration-200">
+        <div className="lg:hidden bg-white border-b border-slate-200 px-5 pt-4 pb-6 space-y-3 shadow-2xl animate-in slide-in-from-top duration-200">
           <Link
             onClick={() => setMobileMenuOpen(false)}
             href="/"
-            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-red-50 rounded-lg"
+            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-xl"
           >
             Home
           </Link>
           <Link
             onClick={() => setMobileMenuOpen(false)}
             href="/about"
-            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-red-50 rounded-lg"
+            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-xl"
           >
             About Us
           </Link>
           <Link
             onClick={() => setMobileMenuOpen(false)}
             href="/programmes"
-            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-red-50 rounded-lg"
+            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-xl"
           >
-            Academic Programs
+            Academic Programmes
           </Link>
           <Link
             onClick={() => setMobileMenuOpen(false)}
             href="/certifications"
-            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-red-50 rounded-lg"
+            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-xl"
           >
             Certifications (AFTA &amp; GAFM)
           </Link>
           <Link
             onClick={() => setMobileMenuOpen(false)}
             href="/faculty"
-            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-red-50 rounded-lg"
+            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-xl"
           >
-            Academic Staff
+            Academic Staff &amp; Faculty
           </Link>
           <Link
             onClick={() => setMobileMenuOpen(false)}
             href="/branches"
-            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-red-50 rounded-lg"
+            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-50 rounded-xl"
           >
-            Branches Network
+            Campuses &amp; Branches
           </Link>
-          <Link
-            onClick={() => setMobileMenuOpen(false)}
-            href="/#faq"
-            className="block px-3 py-2 text-sm font-bold text-slate-800 hover:bg-red-50 rounded-lg"
-          >
-            FAQ
-          </Link>
-          <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+
+          <div className="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
             <a
-              href="https://wa.me/94741623123"
+              href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
               target="_blank"
               rel="noreferrer"
-              className="w-full text-center py-2 text-xs font-bold text-emerald-700 border border-emerald-300 rounded-lg bg-emerald-50"
+              className="w-full text-center py-3 text-xs font-black text-white bg-sliit-orange rounded-xl shadow-md uppercase tracking-wider"
             >
-              WhatsApp: +94 74 162 3123
+              Apply for Admissions
             </a>
             <Link
               onClick={() => setMobileMenuOpen(false)}
               href="/login"
-              className="w-full text-center py-2 text-xs font-bold text-white bg-red-700 rounded-lg shadow-md"
+              className="w-full text-center py-2.5 text-xs font-bold text-slate-900 bg-slate-100 rounded-xl border border-slate-200 flex items-center justify-center gap-1.5"
             >
-              Portal Login
+              <LogIn className="w-4 h-4 text-sliit-orange" />
+              <span>Student / Lecturer LMS Portal</span>
             </Link>
           </div>
         </div>
@@ -277,4 +401,3 @@ export default function Navbar() {
     </header>
   );
 }
-

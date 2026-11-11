@@ -1,10 +1,159 @@
 import React from "react";
 import Link from "next/link";
+import { MapPin, Phone, Clock, ArrowRight, Building, Mail } from "lucide-react";
 
 export default function BranchesPage() {
+  const branches = [
+    {
+      city: "Kelaniya (Head Office & Main Campus)",
+      province: "Western Province",
+      address: "No 255, 3rd Floor, Kandy Road, Dalugama, Kelaniya, Sri Lanka",
+      phone: "0117 173 030",
+      mobile: "0744 124 772",
+      email: "kelaniya@globalstanfordcampus.com",
+      hours: "Monday – Sunday: 8:30 AM – 5:30 PM",
+      features: "Executive Boardroom, Interactive Lecture Theatres, LMS Digital Studio, Admissions Desk",
+    },
+    {
+      city: "Kandy Regional Campus",
+      province: "Central Province",
+      address: "Kandy City Center Commercial Area, Kandy, Sri Lanka",
+      phone: "0812 121 821",
+      mobile: "0744 124 773",
+      email: "kandy@globalstanfordcampus.com",
+      hours: "Tuesday – Sunday: 8:30 AM – 5:00 PM",
+      features: "Smart Classrooms, Student Counselling Centre, Weekend Batch Lecture Halls",
+    },
+    {
+      city: "Matara Regional Campus",
+      province: "Southern Province",
+      address: "Anagarika Dharmapala Mawatha, Matara, Sri Lanka",
+      phone: "041 765 5556",
+      mobile: "0744 124 780",
+      email: "matara@globalstanfordcampus.com",
+      hours: "Tuesday – Sunday: 8:30 AM – 5:00 PM",
+      features: "Maritime Logistics Desk, Student Study Pods, Exam Centre",
+    },
+    {
+      city: "Badulla Regional Campus",
+      province: "Uva Province",
+      address: "Lower King Street, Badulla, Sri Lanka",
+      phone: "0744 124 771",
+      mobile: "0744 124 771",
+      email: "badulla@globalstanfordcampus.com",
+      hours: "Wednesday – Sunday: 8:30 AM – 5:00 PM",
+      features: "Regional Learning Pod, Digital Lab, Teacher Education Wing",
+    },
+    {
+      city: "Ampara Regional Campus",
+      province: "Eastern Province",
+      address: "Main Street, Ampara, Sri Lanka",
+      phone: "0744 124 774",
+      mobile: "0744 124 774",
+      email: "ampara@globalstanfordcampus.com",
+      hours: "Wednesday – Sunday: 8:30 AM – 5:00 PM",
+      features: "Bilingual Lecture Facilities (Tamil / English), Multimedia Labs",
+    },
+    {
+      city: "Jaffna Regional Campus",
+      province: "Northern Province",
+      address: "Hospital Road, Jaffna, Sri Lanka",
+      phone: "0744 124 772",
+      mobile: "0744 124 772",
+      email: "jaffna@globalstanfordcampus.com",
+      hours: "Wednesday – Sunday: 8:30 AM – 5:00 PM",
+      features: "IT Computer Labs, Regional Library, Undergraduate Study Lounge",
+    },
+  ];
+
   return (
-    <>
-<section className="relative pt-32 pb-8 px-4 sm:px-6 lg:px-8 z-10"><div className="max-w-6xl mx-auto space-y-6"><nav className="flex items-center gap-2 text-xs font-semibold text-slate-600 bg-white/90 backdrop-blur-md w-fit px-3.5 py-1.5 rounded-full border border-slate-200/90 shadow-2xs"><a className="hover:text-red-700 transition-colors flex items-center gap-1" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left w-3.5 h-3.5" aria-hidden="true"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg><span>Home</span></a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right w-3.5 h-3.5 text-slate-400" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg><span className="text-red-700 font-bold">Campus Network</span></nav><div className="relative rounded-3xl p-8 sm:p-12 bg-white border border-slate-200/90 shadow-md overflow-hidden"><div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/50 via-rose-50/40 to-transparent rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div><div className="relative z-10 max-w-3xl space-y-4"><span className="inline-block text-[11px] font-black uppercase tracking-[0.2em] text-red-700 bg-red-50 border border-red-100 px-3 py-1 rounded-full">National Presence • 12 Learning Centres</span><h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">Island-wide <span className="text-red-700">Branch Network</span></h1><p className="text-slate-600 text-base sm:text-lg leading-relaxed">With 12 strategic learning centres situated across Sri Lanka, students have seamless access to in-person lectures, counseling, assignment submission, library services, and administrative support close to home.</p></div></div></div></section><section id="branches" className="relative py-24 px-4 sm:px-6 z-10 scroll-mt-20"><div className="max-w-6xl mx-auto space-y-10"><div className="text-center max-w-2xl mx-auto space-y-4"><p className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">Island-Wide Network</p><h2 className="text-4xl sm:text-5xl font-black text-slate-900 leading-tight tracking-tight">Our Branch Network</h2><div className="w-16 h-1 bg-red-700 mx-auto rounded-full"></div><p className="text-slate-500 text-base leading-relaxed">Six regional learning centres across Sri Lanka providing admissions, lecture halls, examination coordination, and student support services.</p></div><div className="flex flex-wrap justify-center gap-2"><span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-red-700 text-white border-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-3 h-3 shrink-0" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg><span>Kelaniya</span><span className="text-red-200 text-[10px] font-bold">· Head Office</span></span><span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-white text-slate-700 border-slate-200"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-3 h-3 shrink-0" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg><span>Kandy</span></span><span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-white text-slate-700 border-slate-200"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-3 h-3 shrink-0" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg><span>Matara</span></span><span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-white text-slate-700 border-slate-200"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-3 h-3 shrink-0" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg><span>Badulla</span></span><span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-white text-slate-700 border-slate-200"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-3 h-3 shrink-0" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg><span>Ampara</span></span><span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-white text-slate-700 border-slate-200"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-3 h-3 shrink-0" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg><span>Jaffna</span></span></div><div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"><div className="bg-white border rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col border-red-300 ring-1 ring-red-200"><div className="px-5 py-4 border-b border-slate-100 flex items-start justify-between gap-3"><div><div className="flex items-center gap-2 mb-1"><span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Western Province</span><span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-red-100 text-red-700">Head Office</span></div><h3 className="text-lg font-bold text-slate-900">Kelaniya Branch</h3></div><div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-4 h-4 text-white" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div></div><div className="px-5 py-4 flex-1 space-y-1.5"><p className="text-xs font-semibold text-red-700">3rd Floor</p><p className="text-sm text-slate-600 leading-snug">No. 255, Dalugama, Kelaniya</p></div><div className="px-5 py-4 border-t border-slate-100 space-y-1.5"><p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Contact</p><a href="tel:0117173030" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-red-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>0117 173 030</a><a href="tel:0744124772" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-red-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>0744 124 772</a></div></div><div className="bg-white border rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col border-slate-200 hover:border-red-200"><div className="px-5 py-4 border-b border-slate-100 flex items-start justify-between gap-3"><div><div className="flex items-center gap-2 mb-1"><span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Central Province</span></div><h3 className="text-lg font-bold text-slate-900">Kandy Branch</h3></div><div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-4 h-4 text-slate-500" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div></div><div className="px-5 py-4 flex-1 space-y-1.5"><p className="text-sm text-slate-600 leading-snug">No. 483 B, William Gopallawa Mawatha, Kandy</p></div><div className="px-5 py-4 border-t border-slate-100 space-y-1.5"><p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Contact</p><a href="tel:0812121821" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-red-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>0812 121 821</a><a href="tel:0744124773" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-red-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>0744 124 773</a></div></div><div className="bg-white border rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col border-slate-200 hover:border-red-200"><div className="px-5 py-4 border-b border-slate-100 flex items-start justify-between gap-3"><div><div className="flex items-center gap-2 mb-1"><span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Southern Province</span></div><h3 className="text-lg font-bold text-slate-900">Matara Branch</h3></div><div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-4 h-4 text-slate-500" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div></div><div className="px-5 py-4 flex-1 space-y-1.5"><p className="text-xs font-semibold text-red-700">2nd Floor, Wickramasinghe Complex</p><p className="text-sm text-slate-600 leading-snug">No. 312/A/1/2, Nupe Junction, Matara</p></div><div className="px-5 py-4 border-t border-slate-100 space-y-1.5"><p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Contact</p><a href="tel:0417655556" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-red-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>041 765 5556</a><a href="tel:0744124780" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-red-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>074 412 4780</a></div></div><div className="bg-white border rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col border-slate-200 hover:border-red-200"><div className="px-5 py-4 border-b border-slate-100 flex items-start justify-between gap-3"><div><div className="flex items-center gap-2 mb-1"><span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Uva Province</span></div><h3 className="text-lg font-bold text-slate-900">Badulla Branch</h3></div><div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-4 h-4 text-slate-500" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div></div><div className="px-5 py-4 flex-1 space-y-1.5"><p className="text-sm text-slate-600 leading-snug">No. 32/1/1, Badulupitiya Road, Badulla</p></div><div className="px-5 py-4 border-t border-slate-100 space-y-1.5"><p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Contact</p><a href="tel:0744124771" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-red-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>0744 124 771</a></div></div><div className="bg-white border rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col border-slate-200 hover:border-red-200"><div className="px-5 py-4 border-b border-slate-100 flex items-start justify-between gap-3"><div><div className="flex items-center gap-2 mb-1"><span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Eastern Province</span></div><h3 className="text-lg font-bold text-slate-900">Ampara Branch</h3></div><div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-4 h-4 text-slate-500" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div></div><div className="px-5 py-4 flex-1 space-y-1.5"><p className="text-sm text-slate-600 leading-snug">No. B 534/4, Dharmapala Mawatha, Ampara</p></div><div className="px-5 py-4 border-t border-slate-100 space-y-1.5"><p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Contact</p><a href="tel:0744124774" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-red-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>0744 124 774</a></div></div><div className="bg-white border rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col border-slate-200 hover:border-red-200"><div className="px-5 py-4 border-b border-slate-100 flex items-start justify-between gap-3"><div><div className="flex items-center gap-2 mb-1"><span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Northern Province</span></div><h3 className="text-lg font-bold text-slate-900">Jaffna Branch</h3></div><div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin w-4 h-4 text-slate-500" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg></div></div><div className="px-5 py-4 flex-1 space-y-1.5"><p className="text-sm text-slate-600 leading-snug">No. 150, Palay Road, Thirunelly, Jaffna</p></div><div className="px-5 py-4 border-t border-slate-100 space-y-1.5"><p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Contact</p><a href="tel:0744124772" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-red-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>0744 124 772</a></div></div></div><div className="flex flex-col sm:flex-row items-center justify-between gap-5 p-6 sm:p-8 rounded-2xl bg-slate-900 text-white"><div className="space-y-1 text-center sm:text-left"><p className="font-bold text-base">Need help choosing the right campus?</p><p className="text-slate-400 text-sm">Student coordinators are available Monday – Saturday, 8:30 AM – 5:30 PM.</p></div><a href="tel:0117173030" className="shrink-0 flex items-center gap-2 px-6 py-3 rounded-xl bg-red-700 hover:bg-red-600 text-white font-semibold text-sm transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone w-4 h-4" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>Call Central Hotline</a></div></div></section>
-    </>
+    <div className="bg-[#f8fafc] text-slate-900 pt-20">
+      {/* Header Banner */}
+      <section className="bg-[#0f264d] text-white py-16 px-4 sm:px-6 lg:px-8 border-b-4 border-sliit-orange">
+        <div className="max-w-7xl mx-auto space-y-4">
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+            <Link href="/" className="hover:text-sliit-orange transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-sliit-orange">Campuses &amp; Branches</span>
+          </div>
+
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight">
+            Island-wide Campus Network
+          </h1>
+
+          <p className="text-slate-300 text-sm sm:text-base max-w-2xl">
+            Global Stanford Campus brings recognized higher education closer to you with regional centres spanning Western, Central, Southern, Uva, Eastern, and Northern provinces.
+          </p>
+        </div>
+      </section>
+
+      {/* Main Campuses List */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {branches.map((b, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-card hover:shadow-cardHover transition-all flex flex-col justify-between space-y-5"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-sliit-orange/10 text-sliit-orange">
+                    {b.province}
+                  </span>
+                  <Building className="w-5 h-5 text-sliit-navy" />
+                </div>
+
+                <h3 className="text-lg font-bold text-slate-900 leading-snug">
+                  {b.city}
+                </h3>
+
+                <div className="space-y-2 text-xs text-slate-600">
+                  <p className="flex items-start gap-2">
+                    <MapPin className="w-4 h-4 text-sliit-orange shrink-0 mt-0.5" />
+                    <span>{b.address}</span>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-sliit-navy shrink-0" />
+                    <span>Landline: <a href={`tel:${b.phone}`} className="font-bold font-mono hover:underline">{b.phone}</a></span>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Hotline: <a href={`tel:${b.mobile}`} className="font-bold font-mono hover:underline">{b.mobile}</a></span>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-slate-400 shrink-0" />
+                    <span>{b.hours}</span>
+                  </p>
+                </div>
+
+                <div className="pt-2 text-[11px] text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                  <span className="font-bold text-slate-700 block mb-0.5">Facilities Available:</span>
+                  {b.features}
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <a
+                  href={`tel:${b.mobile}`}
+                  className="text-xs font-bold text-sliit-navy hover:text-sliit-orange transition-colors flex items-center gap-1"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>Call Branch</span>
+                </a>
+
+                <a
+                  href={`https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20visit%20the%20${encodeURIComponent(b.city)}.`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-4 py-2 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white font-bold text-xs shadow-sm transition-all"
+                >
+                  WhatsApp Branch
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
