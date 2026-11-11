@@ -690,61 +690,161 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 4. SLIIT STYLE "WHY CHOOSE GSC" 4-PILLAR FEATURE GRID          */}
+      {/* 4. SLIIT STYLE "A LEGACY OF EXCELLENCE" SHOWCASE               */}
       {/* ============================================================== */}
-      <section className="bg-slate-100/70 py-20 px-4 sm:px-6 lg:px-8 border-y border-slate-200/80">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <div className="text-center space-y-3">
-            <span className="text-xs font-black uppercase tracking-wider text-sliit-orange">
-              The Global Stanford Advantage
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              A Legacy of Academic Excellence
-            </h2>
-            <p className="text-slate-600 text-sm max-w-xl mx-auto font-normal">
-              Designed for forward-thinking students and executives who demand recognized credentials and career acceleration.
-            </p>
+      <section className="bg-white py-20 lg:py-28 px-4 sm:px-6 lg:px-8 border-y border-slate-200/80 overflow-hidden">
+        <div className="max-w-7xl mx-auto space-y-16">
+          {/* Top Showcase: Dual-Column Layout as seen on SLIIT */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Left Column: Heading, Narrative, Link, Celebration Photo + Orange Badge */}
+            <div className="lg:col-span-6 space-y-6">
+              <div className="space-y-4">
+                <span className="inline-block text-xs font-black uppercase tracking-[0.2em] text-sliit-orange">
+                  A Legacy of Excellence
+                </span>
+                <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-slate-900 tracking-tight leading-[1.15]">
+                  A Legacy of Excellence with Thousands of Success Stories
+                </h2>
+                <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
+                  With over 19 years of institutional excellence and roots dating back to 2007, Global Stanford Campus has empowered generations of graduates through innovation, academic excellence, and a strong commitment to student success.
+                </p>
+                <div className="pt-1">
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-sliit-orange hover:text-sliit-orange-hover group transition-colors"
+                  >
+                    <span>Our Story</span>
+                    <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Photo Card with Overlapping Orange Badge */}
+              <div className="relative pt-4 sm:pt-6">
+                <div className="relative rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-slate-100 group">
+                  <img
+                    src="/images/gsc-graduates-celebration.jpg"
+                    alt="Global Stanford Campus Graduates Celebrating Convocation"
+                    className="w-full h-72 sm:h-80 md:h-96 object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+
+                {/* Overlapping Orange Badge (Bottom Right) */}
+                <div className="absolute -bottom-6 right-4 sm:right-8 bg-gradient-to-br from-[#f58220] to-[#e07110] text-white p-5 sm:p-6 rounded-3xl shadow-2xl shadow-orange-500/25 border-4 border-white min-w-[170px] sm:min-w-[200px] text-center sm:text-left">
+                  <div className="text-3xl sm:text-4xl font-black tracking-tight leading-none text-white">
+                    4,500+
+                  </div>
+                  <div className="text-xs sm:text-sm font-bold text-white/95 mt-1">
+                    Graduates Empowered
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Navy Experience Badge + Portrait Photo + Narrative + 2 Stats */}
+            <div className="lg:col-span-6 space-y-8 pt-6 lg:pt-0">
+              {/* Top Row: Navy Badge + Main Graduation Portrait */}
+              <div className="flex flex-col sm:flex-row items-stretch gap-4 sm:gap-6">
+                {/* Navy Experience Badge */}
+                <div className="bg-[#16366b] text-white p-6 sm:p-7 rounded-3xl shadow-xl flex flex-col justify-center items-center text-center shrink-0 sm:w-44 border-4 border-white/15">
+                  <span className="text-4xl sm:text-5xl font-black tracking-tight leading-none text-white">
+                    19+
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-slate-200 mt-2">
+                    Years Experience
+                  </span>
+                </div>
+
+                {/* Graduation Portrait Photo */}
+                <div className="flex-1 relative rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-slate-100 group">
+                  <img
+                    src="/images/gsc-graduates-portrait.jpg"
+                    alt="Global Stanford Campus Convocation Graduates in Academic Regalia"
+                    className="w-full h-64 sm:h-72 md:h-80 object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+              </div>
+
+              {/* Bottom narrative */}
+              <div className="space-y-6 pt-2">
+                <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
+                  Our commitment to academic excellence is driven by a distinguished faculty who bring both expertise and mentorship to the classroom. Students benefit from personalised guidance, access to modern facilities, and an inclusive environment that fosters critical thinking, creativity, and lifelong learning.
+                </p>
+
+                {/* Two Stat Callouts with Dark Navy Icons */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-sliit-navy/30 transition-colors">
+                    <div className="w-11 h-11 rounded-xl bg-[#16366b] text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <GraduationCap className="w-6 h-6 text-sliit-gold" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Experience</p>
+                      <p className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">
+                        Over 19+ Years of Academic Heritage
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-sliit-orange/30 transition-colors">
+                    <div className="w-11 h-11 rounded-xl bg-[#16366b] text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <Award className="w-6 h-6 text-sliit-orange" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Alumni Network</p>
+                      <p className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">
+                        Over 4,500+ Success Stories
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-2xl p-6 shadow-card hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
-                <ShieldCheck className="w-6 h-6 text-sliit-orange" />
+          {/* Supporting 4-Pillar Advantage Cards */}
+          <div className="pt-8 border-t border-slate-200/80">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-slate-50/70 rounded-2xl p-6 shadow-sm hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3 hover:-translate-y-1">
+                <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
+                  <ShieldCheck className="w-6 h-6 text-sliit-orange" />
+                </div>
+                <h3 className="font-bold text-base text-slate-900">UGC Recognised Pathways</h3>
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  Degree pathways articulated through UGC-recognized foreign universities and accredited under the Tertiary and Vocational Education Commission (TVEC).
+                </p>
               </div>
-              <h3 className="font-bold text-base text-slate-900">UGC Recognised Pathways</h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Degree pathways articulated through UGC-recognized universities and accredited under the Tertiary and Vocational Education Commission (TVEC).
-              </p>
-            </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-card hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
-                <Briefcase className="w-6 h-6 text-sliit-orange" />
+              <div className="bg-slate-50/70 rounded-2xl p-6 shadow-sm hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3 hover:-translate-y-1">
+                <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
+                  <Briefcase className="w-6 h-6 text-sliit-orange" />
+                </div>
+                <h3 className="font-bold text-base text-slate-900">1-Year Top-Up Completion</h3>
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  Direct final-year entry for HND, CIMA, or experienced diploma holders, saving you 2 years while attaining a full 120-credit BBA degree.
+                </p>
               </div>
-              <h3 className="font-bold text-base text-slate-900">1-Year Top-Up Completion</h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Direct final-year entry for HND, CIMA, or experienced diploma holders, saving you 2 years while attaining a full 120-credit BBA degree.
-              </p>
-            </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-card hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
-                <Laptop className="w-6 h-6 text-sliit-orange" />
+              <div className="bg-slate-50/70 rounded-2xl p-6 shadow-sm hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3 hover:-translate-y-1">
+                <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
+                  <Laptop className="w-6 h-6 text-sliit-orange" />
+                </div>
+                <h3 className="font-bold text-base text-slate-900">Smart Modern Classrooms</h3>
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  Equipped with interactive smart displays, enterprise LMS, hybrid streaming for distance learners, and 24/7 digital library access.
+                </p>
               </div>
-              <h3 className="font-bold text-base text-slate-900">Smart Modern Classrooms</h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Equipped with interactive smart displays, enterprise LMS, hybrid streaming for distance learners, and 24/7 digital library access.
-              </p>
-            </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-card hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
-                <Award className="w-6 h-6 text-sliit-orange" />
+              <div className="bg-slate-50/70 rounded-2xl p-6 shadow-sm hover:shadow-cardHover border border-slate-200/80 transition-all space-y-3 hover:-translate-y-1">
+                <div className="w-12 h-12 rounded-xl bg-sliit-navy-50 text-sliit-navy flex items-center justify-center font-bold">
+                  <Award className="w-6 h-6 text-sliit-orange" />
+                </div>
+                <h3 className="font-bold text-base text-slate-900">Global FinTech &amp; GAFM</h3>
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  Direct partnerships with Asian FinTech Academy (AFTA) and GAFM USA with executive masterclasses at luxury hotels like Hilton Colombo.
+                </p>
               </div>
-              <h3 className="font-bold text-base text-slate-900">Global FinTech &amp; GAFM</h3>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Direct partnerships with Asian FinTech Academy (AFTA) and GAFM USA with executive masterclasses at luxury hotels like Hilton Colombo.
-              </p>
             </div>
           </div>
         </div>

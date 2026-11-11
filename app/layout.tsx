@@ -26,10 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full bg-slate-50 text-slate-800">
+      <body className="min-h-full bg-slate-50 text-slate-800 font-sans antialiased">
         <ToastProvider>
           <AuthProvider>
-            <div className="min-h-screen text-slate-900 bg-[#f8fafc] overflow-x-hidden selection:bg-red-700 selection:text-white flex flex-col justify-between">
+            <div className="min-h-screen text-slate-900 bg-[#f8fafc] overflow-x-hidden selection:bg-sliit-navy selection:text-white flex flex-col justify-between">
               <Navbar />
               <main className="flex-1">{children}</main>
               <Footer />

@@ -48,12 +48,12 @@ export default function Navbar() {
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-slate-300 font-medium">
+          <div className="flex items-center gap-3 xl:gap-4 text-slate-300 font-medium whitespace-nowrap">
             <a
               href="tel:0117173030"
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 hover:text-white transition-colors whitespace-nowrap"
             >
-              <Phone className="w-3 h-3 text-sliit-orange" />
+              <Phone className="w-3 h-3 text-sliit-orange shrink-0" />
               <span>Hotline: 0117 173 030 / 0744 124 772</span>
             </a>
             <span className="text-white/20">|</span>
@@ -61,16 +61,16 @@ export default function Navbar() {
               href="https://wa.me/94741623123"
               target="_blank"
               rel="noreferrer"
-              className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1"
+              className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 whitespace-nowrap"
             >
               <span>WhatsApp: +94 74 162 3123</span>
             </a>
             <span className="text-white/20">|</span>
             <Link
               href="/login"
-              className="text-slate-300 hover:text-sliit-orange transition-colors flex items-center gap-1"
+              className="text-slate-300 hover:text-sliit-orange transition-colors flex items-center gap-1 whitespace-nowrap"
             >
-              <LogIn className="w-3 h-3" />
+              <LogIn className="w-3 h-3 shrink-0" />
               <span>LMS Portal</span>
             </Link>
           </div>
@@ -85,34 +85,34 @@ export default function Navbar() {
             : "bg-white border-b border-slate-100 shadow-xs"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
           {/* Logo & Institute Brand */}
-          <Link className="flex items-center gap-3 group cursor-pointer" href="/">
-            <div className="w-11 h-11 rounded-xl overflow-hidden ring-2 ring-sliit-navy/15 group-hover:ring-sliit-orange transition-all shadow-xs bg-white p-1">
+          <Link className="flex items-center gap-3 shrink-0 group cursor-pointer" href="/">
+            <div className="w-11 h-11 rounded-xl overflow-hidden ring-2 ring-sliit-navy/15 group-hover:ring-sliit-orange transition-all shadow-xs bg-white p-1 shrink-0">
               <img src="/logo.png" alt="GSC Crest" className="w-full h-full object-contain" />
             </div>
-            <div className="leading-tight">
-              <div className="flex items-center gap-1.5">
-                <span className="text-[#16366b] font-black text-lg tracking-tight group-hover:text-sliit-orange transition-colors">
+            <div className="leading-tight shrink-0">
+              <div className="flex items-center gap-1.5 whitespace-nowrap">
+                <span className="text-[#16366b] font-black text-base xl:text-lg tracking-tight group-hover:text-sliit-orange transition-colors">
                   GLOBAL STANFORD
                 </span>
-                <span className="text-sliit-orange font-black text-lg tracking-tight">
+                <span className="text-sliit-orange font-black text-base xl:text-lg tracking-tight">
                   CAMPUS
                 </span>
               </div>
-              <p className="text-slate-500 font-semibold text-[10px] tracking-wider uppercase">
+              <p className="text-slate-500 font-semibold text-[9px] xl:text-[10px] tracking-wider uppercase whitespace-nowrap">
                 Premier Higher Education • Roots Since 2007
               </p>
             </div>
           </Link>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0">
             <Link
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+              className={`px-3 py-2 text-xs xl:text-[13px] font-bold tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                 pathname === "/"
-                  ? "text-white bg-sliit-navy shadow-sm"
-                  : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+                  ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
+                  : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
               }`}
               href="/"
             >
@@ -120,10 +120,10 @@ export default function Navbar() {
             </Link>
 
             <Link
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+              className={`px-3 py-2 text-xs xl:text-[13px] font-bold tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                 pathname === "/about"
-                  ? "text-white bg-sliit-navy shadow-sm"
-                  : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+                  ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
+                  : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
               }`}
               href="/about"
             >
@@ -137,17 +137,17 @@ export default function Navbar() {
               onMouseLeave={() => setProgramsDropdownOpen(false)}
             >
               <Link
-                className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-lg transition-all ${
-                  pathname === "/programmes"
-                    ? "text-white bg-sliit-navy shadow-sm"
-                    : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+                className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs xl:text-[13px] font-bold tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
+                  pathname.startsWith("/programmes")
+                    ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
+                    : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
                 }`}
                 href="/programmes"
               >
-                <span>ACADEMIC PROGRAMMES</span>
+                <span className="whitespace-nowrap">ACADEMIC PROGRAMMES</span>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    programsDropdownOpen ? "rotate-180" : ""
+                  className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
+                    programsDropdownOpen ? "rotate-180 text-sliit-orange" : "text-slate-400"
                   }`}
                 />
               </Link>
@@ -227,17 +227,17 @@ export default function Navbar() {
               onMouseLeave={() => setCertDropdownOpen(false)}
             >
               <Link
-                className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-lg transition-all ${
-                  pathname === "/certifications"
-                    ? "text-white bg-sliit-navy shadow-sm"
-                    : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+                className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs xl:text-[13px] font-bold tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
+                  pathname.startsWith("/certifications")
+                    ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
+                    : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
                 }`}
                 href="/certifications"
               >
-                <span>CERTIFICATIONS</span>
+                <span className="whitespace-nowrap">CERTIFICATIONS</span>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    certDropdownOpen ? "rotate-180" : ""
+                  className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
+                    certDropdownOpen ? "rotate-180 text-sliit-orange" : "text-slate-400"
                   }`}
                 />
               </Link>
@@ -278,10 +278,10 @@ export default function Navbar() {
             </div>
 
             <Link
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+              className={`px-3 py-2 text-xs xl:text-[13px] font-bold tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                 pathname === "/faculty"
-                  ? "text-white bg-sliit-navy shadow-sm"
-                  : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+                  ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
+                  : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
               }`}
               href="/faculty"
             >
@@ -289,10 +289,10 @@ export default function Navbar() {
             </Link>
 
             <Link
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+              className={`px-3 py-2 text-xs xl:text-[13px] font-bold tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                 pathname === "/branches"
-                  ? "text-white bg-sliit-navy shadow-sm"
-                  : "text-slate-700 hover:text-sliit-navy hover:bg-slate-100"
+                  ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
+                  : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
               }`}
               href="/branches"
             >
@@ -301,23 +301,23 @@ export default function Navbar() {
           </nav>
 
           {/* SLIIT Style High-Contrast CTA Buttons */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2.5 shrink-0">
             <a
               href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
               target="_blank"
               rel="noreferrer"
-              className="px-5 py-2.5 rounded-xl bg-sliit-orange hover:bg-sliit-orange-600 text-white text-xs font-black tracking-wide uppercase shadow-md shadow-sliit-orange/30 transition-all hover:scale-[1.03] flex items-center gap-1.5"
+              className="whitespace-nowrap shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sliit-orange hover:bg-sliit-orange-hover text-white text-xs font-black tracking-wider uppercase shadow-md shadow-orange-500/20 transition-all hover:scale-[1.02]"
             >
-              <span>APPLY NOW</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span className="whitespace-nowrap">APPLY NOW</span>
+              <ArrowRight className="w-3.5 h-3.5 shrink-0" />
             </a>
 
             <Link
               href="/login"
-              className="px-4 py-2.5 rounded-xl bg-[#0f264d] hover:bg-[#16366b] text-white text-xs font-bold shadow-sm transition-all hover:scale-[1.02] flex items-center gap-1.5"
+              className="whitespace-nowrap shrink-0 inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#0f264d] hover:bg-[#16366b] text-white text-xs font-bold shadow-sm transition-all hover:scale-[1.02]"
             >
-              <LogIn className="w-3.5 h-3.5 text-sliit-orange" />
-              <span>Portal</span>
+              <LogIn className="w-3.5 h-3.5 text-sliit-orange shrink-0" />
+              <span className="whitespace-nowrap">Portal</span>
             </Link>
           </div>
 
