@@ -358,25 +358,17 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          {/* SLIIT Style High-Contrast CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 shrink-0">
+          {/* SLIIT Style High-Contrast CTA Button */}
+          <div className="hidden lg:flex items-center shrink-0">
             <a
               href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
               target="_blank"
               rel="noreferrer"
-              className="whitespace-nowrap shrink-0 inline-flex items-center gap-1.5 xl:gap-2 px-3 py-1.5 xl:px-4.5 xl:py-2.5 rounded-full bg-sliit-orange hover:bg-sliit-orange-hover text-white text-[11px] xl:text-xs font-black tracking-wider uppercase shadow-md shadow-orange-500/20 transition-all hover:scale-[1.02]"
+              className="whitespace-nowrap shrink-0 inline-flex items-center gap-2 px-4.5 py-2.5 rounded-full bg-sliit-orange hover:bg-sliit-orange-hover text-white text-xs font-black tracking-wider uppercase shadow-md shadow-orange-500/20 transition-all hover:scale-[1.02]"
             >
               <span className="whitespace-nowrap">APPLY NOW</span>
-              <ArrowRight className="w-3 xl:w-3.5 h-3 xl:h-3.5 shrink-0" />
+              <ArrowRight className="w-3.5 h-3.5 shrink-0" />
             </a>
-
-            <Link
-              href="/login"
-              className="whitespace-nowrap shrink-0 inline-flex items-center gap-1 xl:gap-1.5 px-2.5 py-1.5 xl:px-4 xl:py-2.5 rounded-full bg-[#0f264d] hover:bg-[#16366b] text-white text-[11px] xl:text-xs font-bold shadow-sm transition-all hover:scale-[1.02]"
-            >
-              <LogIn className="w-3 xl:w-3.5 h-3 xl:h-3.5 text-sliit-orange shrink-0" />
-              <span className="whitespace-nowrap">Portal</span>
-            </Link>
           </div>
 
           {/* Mobile menu trigger */}
