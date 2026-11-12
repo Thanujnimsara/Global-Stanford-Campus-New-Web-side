@@ -33,15 +33,15 @@ export default function HomePage() {
   // Dynamic Hero Background Slideshow with Smooth Ken Burns Motion
   const heroBackgrounds = [
     {
-      src: "/images/hero-slide-1.jpg",
+      src: "/images/hero-bg-1.jpg",
       alt: "Global Stanford Campus Convocation Ceremony",
     },
     {
-      src: "/images/hero-slide-2.jpg",
+      src: "/images/hero-bg-2.jpg",
       alt: "Academic Excellence & Graduation at Global Stanford Campus",
     },
     {
-      src: "/images/hero-slide-3.jpg",
+      src: "/images/hero-bg-3.jpg",
       alt: "World-Class Library & Research at Global Stanford Campus",
     },
   ];
@@ -256,35 +256,36 @@ export default function HomePage() {
       {/* ============================================================== */}
       {/* 1. SLIIT STYLE HERO BANNER & SEARCH WIDGET                     */}
       {/* ============================================================== */}
-      <section className="relative min-h-[85vh] lg:min-h-[88vh] flex flex-col justify-between overflow-hidden bg-[#0f264d]">
+      <section className="relative min-h-[85vh] lg:min-h-[88vh] flex flex-col justify-between overflow-hidden bg-slate-950 isolate">
         {/* Dynamic Multi-Image Background Slider with Smooth Ken-Burns Motion & Crossfade */}
-        <div className="absolute inset-0 -z-10 overflow-hidden bg-[#09172f]">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {heroBackgrounds.map((bg, idx) => {
             const isActive = idx === currentBgIndex;
             return (
               <div
                 key={bg.src}
                 className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                  isActive ? "opacity-100 z-0" : "opacity-0 -z-10 pointer-events-none"
+                  isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
                 }`}
               >
                 <img
                   src={bg.src}
                   alt={bg.alt}
-                  className={`w-full h-full object-cover object-center transition-transform duration-[6000ms] ease-out ${
-                    isActive ? "scale-110 translate-x-1 translate-y-0.5" : "scale-100 translate-x-0 translate-y-0"
+                  loading={idx === 0 ? "eager" : "lazy"}
+                  className={`w-full h-full object-cover object-center transition-transform duration-[7000ms] ease-out ${
+                    isActive ? "scale-110 translate-x-1.5 translate-y-1" : "scale-100 translate-x-0 translate-y-0"
                   }`}
                 />
               </div>
             );
           })}
-          {/* Rich university navy gradient overlay for maximum contrast and readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#09172f]/92 via-[#0f264d]/85 to-[#16366b]/80" />
-          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#09172f]/35 to-[#09172f]/90" />
+          {/* Cinematic University Overlay: Deep protective navy on left for 100% white text contrast, but translucent on right so the beautiful images clearly show through */}
+          <div className="absolute inset-0 z-20 bg-gradient-to-r from-[#071326]/90 via-[#091b38]/55 to-[#091b38]/20" />
+          <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#071326]/85 via-transparent to-[#071326]/30" />
         </div>
 
         {/* Hero Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 w-full flex-1 flex flex-col justify-center">
+        <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 w-full flex-1 flex flex-col justify-center">
           <div className="max-w-3xl space-y-6">
             {/* Accreditation Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold tracking-wide">
@@ -342,7 +343,7 @@ export default function HomePage() {
         </div>
 
         {/* SLIIT Style Quick Programme Finder Bar */}
-        <div className="w-full bg-white/95 backdrop-blur-md border-t border-white/20 py-5 px-4 sm:px-6 lg:px-8 shadow-2xl">
+        <div className="relative z-30 w-full bg-white/95 backdrop-blur-md border-t border-white/20 py-5 px-4 sm:px-6 lg:px-8 shadow-2xl">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-3.5 items-center">
               <div>
