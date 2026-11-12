@@ -86,9 +86,9 @@ export default function Navbar() {
             : "bg-white border-b border-slate-100 shadow-xs"
         }`}
       >
-        <div className="max-w-[1460px] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8 h-20 flex items-center justify-between gap-2 xl:gap-4">
+        <div className="max-w-[1460px] mx-auto px-3 sm:px-4 lg:px-5 xl:px-6 h-20 flex items-center justify-between gap-2 xl:gap-3">
           {/* Logo & Institute Brand */}
-          <Link className="flex items-center gap-2 xl:gap-3 shrink-0 group cursor-pointer" href="/">
+          <Link className="flex items-center gap-2 xl:gap-2.5 shrink-0 group cursor-pointer" href="/">
             <div className="w-10 h-10 xl:w-11 xl:h-11 rounded-xl overflow-hidden ring-2 ring-sliit-navy/15 group-hover:ring-sliit-orange transition-all shadow-xs bg-white p-1 shrink-0">
               <img src="/logo.png" alt="GSC Crest" className="w-full h-full object-contain" />
             </div>
@@ -104,16 +104,16 @@ export default function Navbar() {
               <p className="text-slate-500 font-semibold text-[9px] xl:text-[10px] tracking-wider uppercase whitespace-nowrap hidden sm:block lg:hidden 2xl:block">
                 Premier Higher Education • Roots Since 2007
               </p>
-              <p className="text-slate-500 font-semibold text-[9px] tracking-wider uppercase whitespace-nowrap hidden xl:block 2xl:hidden">
+              <p className="text-slate-500 font-semibold text-[8px] tracking-wider uppercase whitespace-nowrap hidden xl:block 2xl:hidden">
                 Roots Since 2007
               </p>
             </div>
           </Link>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 2xl:gap-2 shrink">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 2xl:gap-1.5 shrink">
             <Link
-              className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
+              className={`px-1.5 xl:px-2 2xl:px-2.5 py-1.5 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                 pathname === "/"
                   ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
                   : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
@@ -124,7 +124,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
+              className={`px-1.5 xl:px-2 2xl:px-2.5 py-1.5 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                 pathname === "/about"
                   ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
                   : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
@@ -141,7 +141,7 @@ export default function Navbar() {
               onMouseLeave={() => setProgramsDropdownOpen(false)}
             >
               <Link
-                className={`inline-flex items-center gap-1 xl:gap-1.5 px-2 xl:px-2.5 2xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
+                className={`inline-flex items-center gap-1 xl:gap-1.5 px-1.5 xl:px-2 2xl:px-2.5 py-1.5 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                   pathname.startsWith("/programmes")
                     ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
                     : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
@@ -149,7 +149,7 @@ export default function Navbar() {
                 href="/programmes"
               >
                 <span className="whitespace-nowrap">
-                  <span className="hidden xl:inline">ACADEMIC </span>PROGRAMMES
+                  <span className="hidden 2xl:inline">ACADEMIC </span>PROGRAMMES
                 </span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
@@ -233,7 +233,7 @@ export default function Navbar() {
               onMouseLeave={() => setCertDropdownOpen(false)}
             >
               <Link
-                className={`inline-flex items-center gap-1 xl:gap-1.5 px-2 xl:px-2.5 2xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
+                className={`inline-flex items-center gap-1 xl:gap-1.5 px-1.5 xl:px-2 2xl:px-2.5 py-1.5 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                   pathname.startsWith("/certifications")
                     ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
                     : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
@@ -290,7 +290,7 @@ export default function Navbar() {
               onMouseLeave={() => setConvoDropdownOpen(false)}
             >
               <div
-                className={`inline-flex items-center gap-1 xl:gap-1.5 px-2 xl:px-2.5 2xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-1 xl:gap-1.5 px-1.5 xl:px-2 2xl:px-2.5 py-1.5 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all cursor-pointer ${
                   pathname.startsWith("/convocation")
                     ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
                     : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
@@ -333,7 +333,7 @@ export default function Navbar() {
             </div>
 
             <Link
-              className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
+              className={`px-1.5 xl:px-2 2xl:px-2.5 py-1.5 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                 pathname === "/faculty"
                   ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
                   : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
@@ -341,13 +341,13 @@ export default function Navbar() {
               href="/faculty"
             >
               <span className="whitespace-nowrap">
-                <span className="hidden xl:inline">LECTURER PANEL</span>
-                <span className="xl:hidden">FACULTY</span>
+                <span className="hidden 2xl:inline">LECTURER PANEL</span>
+                <span className="2xl:hidden">FACULTY</span>
               </span>
             </Link>
 
             <Link
-              className={`px-2 xl:px-2.5 2xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
+              className={`px-1.5 xl:px-2 2xl:px-2.5 py-1.5 text-[11px] xl:text-xs 2xl:text-[13px] font-bold tracking-tight xl:tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                 pathname === "/branches"
                   ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
                   : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
@@ -359,15 +359,15 @@ export default function Navbar() {
           </nav>
 
           {/* SLIIT Style High-Contrast CTA Button */}
-          <div className="hidden lg:flex items-center shrink-0">
+          <div className="hidden lg:flex items-center shrink-0 pr-1 xl:pr-2">
             <a
               href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
               target="_blank"
               rel="noreferrer"
-              className="whitespace-nowrap shrink-0 inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-sliit-orange hover:bg-sliit-orange-hover text-white text-xs font-black tracking-wider uppercase shadow-md shadow-orange-500/25 transition-all hover:scale-[1.03] active:scale-95"
+              className="whitespace-nowrap shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-sliit-orange hover:bg-sliit-orange-hover text-white text-[11px] xl:text-xs font-black tracking-wider uppercase shadow-md shadow-orange-500/25 transition-all hover:scale-[1.02] active:scale-95"
             >
               <span className="whitespace-nowrap">APPLY NOW</span>
-              <ArrowRight className="w-4 h-4 shrink-0" />
+              <ArrowRight className="w-3.5 h-3.5 shrink-0" />
             </a>
           </div>
 
