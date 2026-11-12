@@ -12,7 +12,6 @@ import {
   ArrowRight,
   CheckCircle2,
   Calendar,
-  Search,
   Sparkles,
   ChevronRight,
   ShieldCheck,
@@ -26,8 +25,6 @@ import {
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"bachelors" | "diplomas" | "higher" | "postgrad" | "phd" | "fintech">("bachelors");
-  const [searchLevel, setSearchLevel] = useState("all");
-  const [searchKeyword, setSearchKeyword] = useState("");
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   // Dynamic Hero Background Slideshow with Smooth Ken Burns Motion
@@ -254,9 +251,9 @@ export default function HomePage() {
   return (
     <div className="bg-[#f8fafc] text-slate-900 pt-20">
       {/* ============================================================== */}
-      {/* 1. SLIIT STYLE HERO BANNER & SEARCH WIDGET                     */}
+      {/* 1. SLIIT STYLE HERO BANNER                                     */}
       {/* ============================================================== */}
-      <section className="relative min-h-[85vh] lg:min-h-[88vh] flex flex-col justify-between overflow-hidden bg-slate-950 isolate">
+      <section className="relative min-h-[90vh] lg:min-h-[94vh] flex items-center overflow-hidden bg-slate-950 isolate">
         {/* Dynamic Multi-Image Background Slider with Smooth Ken-Burns Motion & Crossfade */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {heroBackgrounds.map((bg, idx) => {
@@ -285,7 +282,7 @@ export default function HomePage() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 w-full flex-1 flex flex-col justify-center">
+        <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40 w-full flex flex-col justify-center">
           <div className="max-w-3xl space-y-6">
             {/* Accreditation Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold tracking-wide">
@@ -324,90 +321,20 @@ export default function HomePage() {
             </div>
 
             {/* Slide Navigation Indicators */}
-            <div className="flex items-center gap-2 pt-2">
+            <div className="flex items-center gap-2 pt-3">
               {heroBackgrounds.map((_, idx) => (
                 <button
                   key={idx}
                   type="button"
                   onClick={() => setCurrentBgIndex(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
+                  className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
                     idx === currentBgIndex
-                      ? "w-8 bg-sliit-orange shadow-md shadow-sliit-orange/50"
-                      : "w-2 bg-white/40 hover:bg-white/70"
+                      ? "w-9 bg-sliit-orange shadow-md shadow-sliit-orange/50"
+                      : "w-2.5 bg-white/40 hover:bg-white/70"
                   }`}
                   aria-label={`Switch to background slide ${idx + 1}`}
                 />
               ))}
-            </div>
-          </div>
-        </div>
-
-        {/* SLIIT Style Quick Programme Finder Bar */}
-        <div className="relative z-30 w-full bg-white/95 backdrop-blur-md border-t border-white/20 py-5 px-4 sm:px-6 lg:px-8 shadow-2xl">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-3.5 items-center">
-              <div>
-                <label className="block text-[11px] font-black uppercase text-slate-500 mb-1">
-                  Degree Level
-                </label>
-                <select
-                  value={searchLevel}
-                  onChange={(e) => setSearchLevel(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-sliit-orange"
-                >
-                  <option value="all">All Study Levels</option>
-                  <option value="bachelors">1-Year BBA Top-Up / Bachelors</option>
-                  <option value="diplomas">24 Specialized Diplomas</option>
-                  <option value="higher">Higher Diplomas (60 Cr)</option>
-                  <option value="postgrad">Postgraduate (M.Ed &amp; MBA)</option>
-                  <option value="phd">Doctor of Philosophy (PhD)</option>
-                  <option value="fintech">Asian FinTech &amp; GAFM USA</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-black uppercase text-slate-500 mb-1">
-                  Field of Study
-                </label>
-                <select
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-sliit-orange"
-                >
-                  <option>All Academic Fields</option>
-                  <option>Business Management &amp; HR</option>
-                  <option>Artificial Intelligence &amp; IT</option>
-                  <option>Cybersecurity &amp; Blockchain</option>
-                  <option>Economics &amp; Global Finance</option>
-                  <option>Psychology &amp; Counselling</option>
-                  <option>Education &amp; Teaching</option>
-                  <option>Tourism &amp; Logistics</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-black uppercase text-slate-500 mb-1">
-                  Campus Location
-                </label>
-                <select
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-sliit-orange"
-                >
-                  <option>Kelaniya (Main Campus)</option>
-                  <option>Kandy Regional Campus</option>
-                  <option>Matara Regional Campus</option>
-                  <option>Badulla Regional Campus</option>
-                  <option>Ampara Regional Campus</option>
-                  <option>Jaffna Regional Campus</option>
-                </select>
-              </div>
-
-              <div className="pt-2 md:pt-4">
-                <a
-                  href="#programmes-explorer"
-                  className="w-full py-2.5 px-4 bg-sliit-navy hover:bg-[#0f264d] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-md transition-all"
-                >
-                  <Search className="w-4 h-4 text-sliit-orange" />
-                  <span>FIND PROGRAMMES</span>
-                </a>
-              </div>
             </div>
           </div>
         </div>
