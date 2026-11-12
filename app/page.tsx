@@ -30,6 +30,30 @@ export default function HomePage() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
+  // Dynamic Hero Background Slideshow with Smooth Ken Burns Motion
+  const heroBackgrounds = [
+    {
+      src: "/images/hero-slide-1.jpg",
+      alt: "Global Stanford Campus Convocation Ceremony",
+    },
+    {
+      src: "/images/hero-slide-2.jpg",
+      alt: "Academic Excellence & Graduation at Global Stanford Campus",
+    },
+    {
+      src: "/images/hero-slide-3.jpg",
+      alt: "World-Class Library & Research at Global Stanford Campus",
+    },
+  ];
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+
+  useEffect(() => {
+    const bgInterval = setInterval(() => {
+      setCurrentBgIndex((prev) => (prev + 1) % heroBackgrounds.length);
+    }, 5500);
+    return () => clearInterval(bgInterval);
+  }, [heroBackgrounds.length]);
+
   // Typewriter effect for "Global Stanford Campus"
   const [typedText, setTypedText] = useState("");
 
@@ -233,16 +257,30 @@ export default function HomePage() {
       {/* 1. SLIIT STYLE HERO BANNER & SEARCH WIDGET                     */}
       {/* ============================================================== */}
       <section className="relative min-h-[85vh] lg:min-h-[88vh] flex flex-col justify-between overflow-hidden bg-[#0f264d]">
-        {/* Background Image with Deep Navy Gradient */}
-        <div className="absolute inset-0 -z-10">
-          <img
-            src="/images/hero-campus-bg.jpg"
-            alt="Global Stanford Campus Academic Building"
-            className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
-          />
-          {/* Rich university navy overlay for maximum contrast and readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#09172f]/95 via-[#0f264d]/85 to-[#16366b]/80" />
-          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#09172f]/40 to-[#09172f]/90" />
+        {/* Dynamic Multi-Image Background Slider with Smooth Ken-Burns Motion & Crossfade */}
+        <div className="absolute inset-0 -z-10 overflow-hidden bg-[#09172f]">
+          {heroBackgrounds.map((bg, idx) => {
+            const isActive = idx === currentBgIndex;
+            return (
+              <div
+                key={bg.src}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                  isActive ? "opacity-100 z-0" : "opacity-0 -z-10 pointer-events-none"
+                }`}
+              >
+                <img
+                  src={bg.src}
+                  alt={bg.alt}
+                  className={`w-full h-full object-cover object-center transition-transform duration-[6000ms] ease-out ${
+                    isActive ? "scale-110 translate-x-1 translate-y-0.5" : "scale-100 translate-x-0 translate-y-0"
+                  }`}
+                />
+              </div>
+            );
+          })}
+          {/* Rich university navy gradient overlay for maximum contrast and readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#09172f]/92 via-[#0f264d]/85 to-[#16366b]/80" />
+          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#09172f]/35 to-[#09172f]/90" />
         </div>
 
         {/* Hero Content */}
@@ -282,6 +320,23 @@ export default function HomePage() {
                 <span>About Our Campus</span>
                 <ArrowRight className="w-4 h-4 text-sliit-orange" />
               </Link>
+            </div>
+
+            {/* Slide Navigation Indicators */}
+            <div className="flex items-center gap-2 pt-2">
+              {heroBackgrounds.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setCurrentBgIndex(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
+                    idx === currentBgIndex
+                      ? "w-8 bg-sliit-orange shadow-md shadow-sliit-orange/50"
+                      : "w-2 bg-white/40 hover:bg-white/70"
+                  }`}
+                  aria-label={`Switch to background slide ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
