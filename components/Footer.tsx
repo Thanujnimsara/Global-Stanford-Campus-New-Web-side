@@ -191,6 +191,12 @@ export default function Footer() {
             <Link href="/privacy" className="hover:text-sliit-orange transition-colors">
               Privacy Policy (PDPA)
             </Link>
+            <Link href="/convocation24" className="hover:text-sliit-orange transition-colors">
+              Convocation 2024
+            </Link>
+            <Link href="/convocation25" className="hover:text-sliit-orange transition-colors">
+              Convocation 2025
+            </Link>
             <Link href="/about" className="hover:text-sliit-orange transition-colors">
               Accreditations
             </Link>

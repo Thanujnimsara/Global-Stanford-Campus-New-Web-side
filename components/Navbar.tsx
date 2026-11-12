@@ -23,6 +23,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [programsDropdownOpen, setProgramsDropdownOpen] = useState(false);
   const [certDropdownOpen, setCertDropdownOpen] = useState(false);
+  const [convoDropdownOpen, setConvoDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -277,6 +278,55 @@ export default function Navbar() {
               )}
             </div>
 
+            {/* Convocations Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setConvoDropdownOpen(true)}
+              onMouseLeave={() => setConvoDropdownOpen(false)}
+            >
+              <div
+                className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs xl:text-[13px] font-bold tracking-wide uppercase whitespace-nowrap rounded-lg transition-all cursor-pointer ${
+                  pathname.startsWith("/convocation")
+                    ? "text-sliit-orange bg-orange-50/80 font-extrabold border-b-2 border-sliit-orange"
+                    : "text-slate-700 hover:text-sliit-orange hover:bg-slate-50"
+                }`}
+              >
+                <span className="whitespace-nowrap">CONVOCATIONS</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
+                    convoDropdownOpen ? "rotate-180 text-sliit-orange" : "text-slate-400"
+                  }`}
+                />
+              </div>
+              {convoDropdownOpen && (
+                <div className="absolute top-full left-0 w-64 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="px-3 py-1.5 mb-1 text-[10px] font-black uppercase tracking-wider text-sliit-orange">
+                    Annual Ceremonies
+                  </div>
+                  <Link
+                    href="/convocation24"
+                    className="flex items-center gap-3 px-3.5 py-2.5 text-xs font-semibold text-slate-800 hover:text-rose-600 hover:bg-rose-50/80 rounded-xl transition-colors group"
+                  >
+                    <span className="text-base group-hover:scale-110 transition-transform shrink-0">🎓</span>
+                    <div>
+                      <p className="font-bold">Convocation 2024</p>
+                      <p className="text-[10px] text-slate-500 font-normal">BMICH Ceremony &amp; Gallery</p>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/convocation25"
+                    className="flex items-center gap-3 px-3.5 py-2.5 text-xs font-semibold text-slate-800 hover:text-rose-600 hover:bg-rose-50/80 rounded-xl transition-colors group border-t border-slate-100 mt-1"
+                  >
+                    <span className="text-base group-hover:scale-110 transition-transform shrink-0">🎓</span>
+                    <div>
+                      <p className="font-bold">Convocation 2025</p>
+                      <p className="text-[10px] text-slate-500 font-normal">1,200+ Conferred Graduates</p>
+                    </div>
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link
               className={`px-3 py-2 text-xs xl:text-[13px] font-bold tracking-wide uppercase whitespace-nowrap rounded-lg transition-all ${
                 pathname === "/faculty"
@@ -363,6 +413,27 @@ export default function Navbar() {
           >
             Certifications (AFTA &amp; GAFM)
           </Link>
+
+          {/* Mobile Convocations Group */}
+          <div className="pt-2 pb-1 border-y border-slate-100 my-1 bg-slate-50/50 rounded-xl px-2">
+            <p className="px-2 pt-1 text-[10px] font-black uppercase tracking-wider text-sliit-orange">Annual Convocations</p>
+            <Link
+              onClick={() => setMobileMenuOpen(false)}
+              href="/convocation24"
+              className="flex items-center gap-2 px-2 py-2 text-sm font-bold text-slate-800 hover:text-rose-600 rounded-lg"
+            >
+              <span>🎓</span>
+              <span>Convocation 2024</span>
+            </Link>
+            <Link
+              onClick={() => setMobileMenuOpen(false)}
+              href="/convocation25"
+              className="flex items-center gap-2 px-2 py-2 text-sm font-bold text-slate-800 hover:text-rose-600 rounded-lg"
+            >
+              <span>🎓</span>
+              <span>Convocation 2025</span>
+            </Link>
+          </div>
           <Link
             onClick={() => setMobileMenuOpen(false)}
             href="/faculty"
