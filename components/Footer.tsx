@@ -26,158 +26,96 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 4 Column Main Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          {/* Col 1 & 2: About Institute */}
-          <div className="lg:col-span-2 space-y-5">
-            <Link className="flex items-center gap-3 group inline-flex" href="/">
-              <div className="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-sliit-orange/40 bg-white p-1">
-                <img src="/logo.png" alt="GSC Crest" className="w-full h-full object-contain" />
+        {/* Main Institute Brand & Contact Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start py-2">
+          {/* Col 1: Institute Brand & Narrative (7 cols) */}
+          <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
+            <Link className="flex items-center justify-center lg:justify-start gap-3.5 group inline-flex" href="/">
+              <div className="w-14 h-14 rounded-2xl overflow-hidden ring-2 ring-sliit-orange/50 bg-white p-1.5 shadow-md shrink-0">
+                <img src="/logo.png" alt="Global Stanford Campus Crest" className="w-full h-full object-contain" />
               </div>
-              <div className="leading-tight">
-                <span className="text-white font-black text-lg tracking-tight group-hover:text-sliit-orange transition-colors">
+              <div className="leading-tight text-left">
+                <span className="text-white font-black text-xl sm:text-2xl tracking-tight group-hover:text-sliit-orange transition-colors">
                   GLOBAL STANFORD <span className="text-sliit-orange">CAMPUS</span>
                 </span>
-                <p className="text-slate-400 font-bold text-[10px] tracking-wider uppercase">
-                  Higher Education Since 2007 • UGC Degree Pathways
+                <p className="text-slate-400 font-bold text-xs tracking-wider uppercase mt-0.5">
+                  Higher Education Since 2007 • UGC Recognised Pathways
                 </p>
               </div>
             </Link>
 
-            <p className="text-slate-400 text-xs leading-relaxed max-w-md">
+            <p className="text-slate-300 text-sm leading-relaxed max-w-2xl font-normal">
               Global Stanford Campus is a premier higher educational institute in Sri Lanka, offering UGC-recognised degree pathways, 24 specialized diplomas, 1-year fast-track BBA top-up programmes, postgraduate degrees, and world-renowned GAFM USA and Asian FinTech Academy credentials.
             </p>
 
-            <div className="space-y-2 pt-1 text-xs text-slate-300">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-sliit-orange shrink-0 mt-0.5" />
-                <span>Head Office: No 255, 3rd Floor, Kandy Road, Dalugama, Kelaniya, Sri Lanka</span>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2.5 pt-1">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">
+                <CheckCircle2 className="w-3.5 h-3.5 text-sliit-orange" />
+                UGC Degree Pathways
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">
+                <CheckCircle2 className="w-3.5 h-3.5 text-sliit-orange" />
+                TVEC Registered: P01/0819
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">
+                <CheckCircle2 className="w-3.5 h-3.5 text-sliit-orange" />
+                Triple ISO Certified
+              </span>
+            </div>
+          </div>
+
+          {/* Col 2: High-Clarity Contact Info Card (5 cols) */}
+          <div className="lg:col-span-5 bg-white/5 backdrop-blur-xs border border-white/10 rounded-3xl p-6 sm:p-7 space-y-4 shadow-lg text-left">
+            <h4 className="text-white font-black text-sm uppercase tracking-wider flex items-center gap-2 pb-2 border-b border-white/10">
+              <span className="w-2 h-2 rounded-full bg-sliit-orange"></span>
+              Campus Inquiries &amp; Admissions
+            </h4>
+
+            {/* Address */}
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-xl bg-sliit-orange/15 border border-sliit-orange/30 flex items-center justify-center shrink-0 mt-0.5">
+                <MapPin className="w-4 h-4 text-sliit-orange" />
               </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-sliit-orange shrink-0" />
-                <span>0117 173 030 / +94 11 766 2626 / +94 77 107 0711</span>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Head Office Campus</p>
+                <p className="text-xs sm:text-[13px] text-white font-medium mt-0.5 leading-snug">
+                  No 255, 3rd Floor, Kandy Road, Dalugama, Kelaniya, Sri Lanka
+                </p>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-sliit-orange shrink-0" />
-                <a href="mailto:privacy@globalstanfordcampus.com" className="hover:text-sliit-orange transition-colors">
+            </div>
+
+            {/* Phone */}
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-xl bg-sliit-orange/15 border border-sliit-orange/30 flex items-center justify-center shrink-0 mt-0.5">
+                <Phone className="w-4 h-4 text-sliit-orange" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Admissions Hotlines</p>
+                <p className="text-xs sm:text-[13px] text-white font-medium mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5">
+                  <a href="tel:0117173030" className="hover:text-sliit-orange transition-colors">0117 173 030</a>
+                  <span className="text-slate-500">•</span>
+                  <a href="tel:0744124772" className="hover:text-sliit-orange transition-colors">0744 124 772</a>
+                  <span className="text-slate-500">•</span>
+                  <a href="tel:+94741623123" className="hover:text-sliit-orange transition-colors">+94 74 162 3123</a>
+                </p>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-xl bg-sliit-orange/15 border border-sliit-orange/30 flex items-center justify-center shrink-0 mt-0.5">
+                <Mail className="w-4 h-4 text-sliit-orange" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Email Address</p>
+                <a
+                  href="mailto:privacy@globalstanfordcampus.com"
+                  className="text-xs sm:text-[13px] text-white hover:text-sliit-orange transition-colors font-medium mt-0.5 block"
+                >
                   privacy@globalstanfordcampus.com
                 </a>
               </div>
             </div>
-          </div>
-
-          {/* Col 2: Academic Programmes */}
-          <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm tracking-wide flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-sliit-orange"></span>
-              Academic Catalog
-            </h4>
-            <ul className="space-y-2 text-xs text-slate-400 font-medium">
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/programmes#bachelors">
-                  1-Year BBA Top-Up (120 Cr)
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/programmes#diplomas">
-                  24 Diploma Programmes (30 Cr)
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/programmes#higher-diplomas">
-                  8 Higher Diplomas (60 Cr)
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/programmes#postgraduate">
-                  Master of Education (M.Ed)
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/programmes#postgraduate">
-                  MBA (Banking &amp; Management)
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/programmes#doctorates">
-                  Doctor of Philosophy (PhD)
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 3: Professional Certifications */}
-          <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm tracking-wide flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-sliit-orange"></span>
-              FinTech &amp; GAFM
-            </h4>
-            <ul className="space-y-2 text-xs text-slate-400 font-medium">
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/certifications#fintech">
-                  Asian FinTech Academy (AFTA)
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/certifications#fintech">
-                  HKU FinTech Certification
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/certifications#fintech">
-                  Hilton Executive Cohorts
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/certifications#gafm">
-                  GAFM USA Board Certifications
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/certifications#rpl">
-                  Prior Learning (RPL) Evaluation
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-sliit-orange transition-colors" href="/certifications#gafm">
-                  Triple ISO Standards
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 4: Campus Network Hotlines */}
-          <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm tracking-wide flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-sliit-orange"></span>
-              Campuses Hotline
-            </h4>
-            <ul className="space-y-2 text-xs text-slate-400 font-medium">
-              <li className="flex justify-between items-center py-1 border-b border-white/5">
-                <span className="text-slate-300 font-semibold">Kelaniya (Main):</span>
-                <a href="tel:0117173030" className="text-sliit-orange hover:underline font-mono">0117 173 030</a>
-              </li>
-              <li className="flex justify-between items-center py-1 border-b border-white/5">
-                <span className="text-slate-300 font-semibold">Kandy Branch:</span>
-                <a href="tel:0812121821" className="text-sliit-orange hover:underline font-mono">0812 121 821</a>
-              </li>
-              <li className="flex justify-between items-center py-1 border-b border-white/5">
-                <span className="text-slate-300 font-semibold">Matara Branch:</span>
-                <a href="tel:0417655556" className="text-sliit-orange hover:underline font-mono">041 765 5556</a>
-              </li>
-              <li className="flex justify-between items-center py-1 border-b border-white/5">
-                <span className="text-slate-300 font-semibold">Badulla Branch:</span>
-                <a href="tel:0744124771" className="text-sliit-orange hover:underline font-mono">0744 124 771</a>
-              </li>
-              <li className="flex justify-between items-center py-1 border-b border-white/5">
-                <span className="text-slate-300 font-semibold">Ampara Branch:</span>
-                <a href="tel:0744124774" className="text-sliit-orange hover:underline font-mono">0744 124 774</a>
-              </li>
-              <li className="flex justify-between items-center py-1">
-                <span className="text-slate-300 font-semibold">Jaffna Branch:</span>
-                <a href="tel:0744124772" className="text-sliit-orange hover:underline font-mono">0744 124 772</a>
-              </li>
-            </ul>
           </div>
         </div>
 
@@ -195,15 +133,6 @@ export default function Footer() {
             <Link href="/privacy" className="hover:text-sliit-orange transition-colors">
               Privacy Policy (PDPA)
             </Link>
-            <a
-              href="https://wa.me/94741623123"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30 transition-all font-bold"
-            >
-              <Phone className="w-3 h-3" />
-              WhatsApp Admissions
-            </a>
           </div>
         </div>
       </div>
