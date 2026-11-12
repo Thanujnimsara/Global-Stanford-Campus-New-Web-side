@@ -187,21 +187,13 @@ export default function Footer() {
             © {new Date().getFullYear()} Global Stanford Campus. All rights reserved. Recognized Higher Educational Institute.
           </p>
 
-          <div className="flex flex-wrap items-center gap-5 font-semibold text-slate-300">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-5 font-semibold text-slate-300">
+            <span className="text-slate-300 font-medium">
+              Created by the IT Team of the Global Group
+            </span>
+            <span className="text-white/20 hidden sm:inline">|</span>
             <Link href="/privacy" className="hover:text-sliit-orange transition-colors">
               Privacy Policy (PDPA)
-            </Link>
-            <Link href="/convocation24" className="hover:text-sliit-orange transition-colors">
-              Convocation 2024
-            </Link>
-            <Link href="/convocation25" className="hover:text-sliit-orange transition-colors">
-              Convocation 2025
-            </Link>
-            <Link href="/about" className="hover:text-sliit-orange transition-colors">
-              Accreditations
-            </Link>
-            <Link href="/branches" className="hover:text-sliit-orange transition-colors">
-              Campus Locations
             </Link>
             <a
               href="https://wa.me/94741623123"
