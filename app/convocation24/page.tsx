@@ -249,22 +249,31 @@ export default function Convocation2024Page() {
             <div
               key={idx}
               onClick={() => setSelectedImage(item)}
-              className="group relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer border border-slate-200/70 aspect-4/3 flex flex-col justify-end"
+              className="group relative rounded-2xl overflow-hidden bg-slate-900 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer border border-slate-200/80 h-72 sm:h-80 lg:h-72 flex flex-col justify-end"
             >
               <img
                 src={item.src}
                 alt={item.alt}
-                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-500"
+                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-500 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 via-45% to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
 
-              <div className="relative z-10 p-4 text-white">
-                <div className="flex items-center justify-between">
-                  <p className="font-bold text-xs sm:text-sm text-white drop-shadow-md">{item.caption}</p>
-                  <div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 className="w-3.5 h-3.5 text-white" />
-                  </div>
-                </div>
+              {/* Floating Zoom Icon */}
+              <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white border border-white/20 group-hover:bg-sliit-orange group-hover:scale-110 transition-all shadow-md">
+                <Maximize2 className="w-4 h-4 text-white" />
+              </div>
+
+              <div className="relative z-10 p-4 sm:p-5 text-white">
+                <span className="inline-block px-2 py-0.5 rounded-md bg-sliit-orange text-white text-[10px] font-black uppercase tracking-wider mb-1.5 shadow-xs">
+                  Ceremony Photo
+                </span>
+                <p className="font-bold text-sm sm:text-base text-white drop-shadow-md leading-snug group-hover:text-amber-300 transition-colors">
+                  {item.caption}
+                </p>
+                <p className="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-1 opacity-90">
+                  <span>Click to view photo</span>
+                  <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform text-sliit-orange" />
+                </p>
               </div>
             </div>
           ))}

@@ -364,10 +364,10 @@ export default function Navbar() {
               href="https://wa.me/94741623123?text=Hello%20Global%20Stanford%20Campus%2C%20I%20would%20like%20to%20apply%20for%20admissions."
               target="_blank"
               rel="noreferrer"
-              className="whitespace-nowrap shrink-0 inline-flex items-center gap-2 px-4.5 py-2.5 rounded-full bg-sliit-orange hover:bg-sliit-orange-hover text-white text-xs font-black tracking-wider uppercase shadow-md shadow-orange-500/20 transition-all hover:scale-[1.02]"
+              className="whitespace-nowrap shrink-0 inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-sliit-orange hover:bg-sliit-orange-hover text-white text-xs font-black tracking-wider uppercase shadow-md shadow-orange-500/25 transition-all hover:scale-[1.03] active:scale-95"
             >
               <span className="whitespace-nowrap">APPLY NOW</span>
-              <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </a>
           </div>
 
