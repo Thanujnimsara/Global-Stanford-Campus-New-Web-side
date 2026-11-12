@@ -109,10 +109,10 @@ export default function Footer() {
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Email Address</p>
                 <a
-                  href="mailto:privacy@globalstanfordcampus.com"
+                  href="mailto:info@globalstanfordcampus.com"
                   className="text-xs sm:text-[13px] text-white hover:text-sliit-orange transition-colors font-medium mt-0.5 block"
                 >
-                  privacy@globalstanfordcampus.com
+                  info@globalstanfordcampus.com
                 </a>
               </div>
             </div>
