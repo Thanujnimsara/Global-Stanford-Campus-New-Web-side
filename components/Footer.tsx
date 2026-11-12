@@ -91,12 +91,10 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Admissions Hotlines</p>
-                <p className="text-xs sm:text-[13px] text-white font-medium mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5">
-                  <a href="tel:0117173030" className="hover:text-sliit-orange transition-colors">0117 173 030</a>
+                <p className="text-xs sm:text-[13px] text-white font-medium mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                  <a href="tel:+94774623123" className="hover:text-sliit-orange transition-colors">+94 77 462 3123</a>
                   <span className="text-slate-500">•</span>
-                  <a href="tel:0744124772" className="hover:text-sliit-orange transition-colors">0744 124 772</a>
-                  <span className="text-slate-500">•</span>
-                  <a href="tel:+94741623123" className="hover:text-sliit-orange transition-colors">+94 74 162 3123</a>
+                  <a href="tel:+94114455155" className="hover:text-sliit-orange transition-colors">+94 11 445 5155</a>
                 </p>
               </div>
             </div>
