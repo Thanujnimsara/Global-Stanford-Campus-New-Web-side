@@ -127,6 +127,10 @@ export default function Footer() {
             <Link href="/privacy" className="hover:text-sliit-orange transition-colors">
               Privacy Policy (PDPA)
             </Link>
+            <span className="text-white/20 hidden sm:inline">|</span>
+            <a href="/admin.html" className="hover:text-sliit-orange transition-colors">
+              Admin Portal
+            </a>
           </div>
         </div>
       </div>
