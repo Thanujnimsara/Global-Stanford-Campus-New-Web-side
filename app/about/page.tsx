@@ -56,7 +56,7 @@ export default function AboutPage() {
             </div>
             <h2 className="text-2xl font-black text-slate-900 tracking-tight">Our Mission</h2>
             <p className="text-sm text-slate-600 leading-relaxed font-normal">
-              To deliver affordable, high-quality, UGC-recognised and TVEC-accredited degree pathways, vocational diplomas, and executive certifications through state-of-the-art learning infrastructure, distinguished faculty, and student-centered pedagogy.
+              To deliver affordable, high-quality, UGC-recognised degree pathways, professional diplomas, and executive certifications through state-of-the-art learning infrastructure, distinguished faculty, and student-centered pedagogy.
             </p>
           </div>
         </div>
@@ -69,11 +69,11 @@ export default function AboutPage() {
               Recognitions &amp; Quality Accreditations
             </h3>
             <p className="text-slate-300 text-xs sm:text-sm">
-              We operate under rigorous national regulatory standards and international quality frameworks.
+              We operate under rigorous academic standards and globally articulated higher educational frameworks.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center space-y-2">
               <ShieldCheck className="w-8 h-8 text-sliit-orange mx-auto" />
               <h4 className="font-bold text-sm text-white">UGC Recognised</h4>
@@ -84,17 +84,9 @@ export default function AboutPage() {
 
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center space-y-2">
               <Building className="w-8 h-8 text-sliit-orange mx-auto" />
-              <h4 className="font-bold text-sm text-white">TVEC Registered</h4>
+              <h4 className="font-bold text-sm text-white">Global University Pathways</h4>
               <p className="text-xs text-slate-300">
-                Registered under Tertiary and Vocational Education Commission (P01/0819).
-              </p>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center space-y-2">
-              <Award className="w-8 h-8 text-sliit-orange mx-auto" />
-              <h4 className="font-bold text-sm text-white">Triple ISO Standards</h4>
-              <p className="text-xs text-slate-300">
-                ISO 21001 (EOMS), ISO 29993, and ISO 9001 quality management framework.
+                Direct credit transfers and degree completions through recognized foreign institutions.
               </p>
             </div>
 
@@ -130,7 +122,7 @@ export default function AboutPage() {
               <span className="text-2xl font-black text-sliit-orange">2018</span>
               <h4 className="font-bold text-sm text-slate-900">Campus Expansion</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Formally incorporated as Global Stanford Campus with expanded diploma faculties and TVEC registration.
+                Formally incorporated as Global Stanford Campus with expanded diploma faculties and higher education pathways.
               </p>
             </div>
 

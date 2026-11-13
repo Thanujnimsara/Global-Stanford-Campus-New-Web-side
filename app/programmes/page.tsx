@@ -178,7 +178,7 @@ export default function ProgrammesPage() {
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl">
-            Explore 24 specialized diplomas, 8 higher diplomas, 1-year fast-track BBA top-up degrees, MBA, and PhD research programmes recognised by UGC and TVEC.
+            Explore 24 specialized diplomas, 8 higher diplomas, 1-year fast-track BBA top-up degrees, MBA, and PhD research programmes articulated with UGC-recognised universities.
           </p>
 
           {/* Quick Filters */}

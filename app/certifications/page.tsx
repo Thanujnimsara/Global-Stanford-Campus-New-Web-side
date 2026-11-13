@@ -19,7 +19,7 @@ export default function CertificationsPage() {
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl">
-            World-class chartered certifications, executive masterclasses at luxury venues like Hilton Colombo, and global board qualifications accredited under Triple ISO standards.
+            World-class chartered certifications, executive masterclasses at luxury venues like Hilton Colombo, and globally recognized professional board qualifications.
           </p>
         </div>
       </section>
@@ -86,7 +86,7 @@ export default function CertificationsPage() {
           </div>
         </div>
 
-        {/* SECTION 2: GAFM USA & TRIPLE ISO */}
+        {/* SECTION 2: GAFM USA BOARD CERTIFICATIONS */}
         <div id="gafm" className="space-y-8 scroll-mt-24 pt-8">
           <div className="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
             <div>
@@ -96,7 +96,7 @@ export default function CertificationsPage() {
               </h2>
             </div>
             <span className="text-xs font-bold text-sliit-orange bg-sliit-orange-50 px-3 py-1 rounded-full">
-              Triple ISO Certified Partner
+              Global Standards Council
             </span>
           </div>
 
@@ -111,7 +111,7 @@ export default function CertificationsPage() {
 
             <div className="space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
               <p>
-                The Global Academy of Finance and Management (GAFM USA) is an internationally recognized accreditation council operating under ISO 21001 (Educational Organization Management Systems), ISO 29993, and ISO 9001 quality standards.
+                The Global Academy of Finance and Management (GAFM USA) is an internationally recognized accreditation council operating under world-class professional quality standards.
               </p>
               <p>
                 Professionals across Sri Lanka can obtain chartered designations such as Chartered Financial Manager (CFM), Master Financial Planner (MFP), and Certified Risk Analyst (CRA) directly recognized in over 150 countries.

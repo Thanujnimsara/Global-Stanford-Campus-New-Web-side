@@ -7,22 +7,18 @@ export default function Footer() {
     <footer className="relative bg-[#09172f] text-slate-300 pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-t-4 border-sliit-orange">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Top Accreditation & Trust Strip */}
-        <div className="pb-10 border-b border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+        <div className="pb-10 border-b border-white/10 grid grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto gap-6 text-center">
           <div className="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white/5 border border-white/10">
             <span className="text-sliit-orange font-black text-sm tracking-wide">UGC RECOGNISED</span>
             <span className="text-[11px] text-slate-400">Degree Pathways in Sri Lanka</span>
-          </div>
-          <div className="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-sliit-orange font-black text-sm tracking-wide">TVEC REGISTERED</span>
-            <span className="text-[11px] text-slate-400">Institutional Reg: P01/0819</span>
           </div>
           <div className="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white/5 border border-white/10">
             <span className="text-sliit-orange font-black text-sm tracking-wide">GAFM &amp; AFTA</span>
             <span className="text-[11px] text-slate-400">Global Executive Certifications</span>
           </div>
           <div className="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-sliit-orange font-black text-sm tracking-wide">TRIPLE ISO</span>
-            <span className="text-[11px] text-slate-400">ISO 21001 • 29993 • 9001</span>
+            <span className="text-sliit-orange font-black text-sm tracking-wide">ESTABLISHED 2007</span>
+            <span className="text-[11px] text-slate-400">19+ Years of Academic Heritage</span>
           </div>
         </div>
 
@@ -55,11 +51,11 @@ export default function Footer() {
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">
                 <CheckCircle2 className="w-3.5 h-3.5 text-sliit-orange" />
-                TVEC Registered: P01/0819
+                Global University Articulations
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">
                 <CheckCircle2 className="w-3.5 h-3.5 text-sliit-orange" />
-                Triple ISO Certified
+                Chartered Executive Credentials
               </span>
             </div>
           </div>

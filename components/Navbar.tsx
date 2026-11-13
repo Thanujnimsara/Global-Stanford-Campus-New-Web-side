@@ -45,7 +45,7 @@ export default function Navbar() {
               2026/2027 INTAKES OPEN
             </span>
             <span className="text-slate-300 text-xs hidden lg:inline">
-              UGC Recognised Degree Pathways • TVEC Registered Institute
+              UGC Recognised Degree Pathways • Higher Education Since 2007
             </span>
           </div>
 
@@ -267,7 +267,7 @@ export default function Navbar() {
                   >
                     <p className="font-bold">GAFM USA Board Certifications</p>
                     <p className="text-[10px] text-slate-500">
-                      Triple ISO 21001/29993/9001 Framework
+                      Globally Recognized Board Standards
                     </p>
                   </Link>
                   <Link

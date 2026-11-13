@@ -93,7 +93,7 @@ export default function HomePage() {
     { number: "4,500+", label: "Qualified Graduates", sub: "Across All Disciplines" },
     { number: "24+", label: "Diploma & Degree Streams", sub: "Undergraduate to PhD" },
     { number: "6", label: "Regional Campuses", sub: "Island-wide Network" },
-    { number: "100%", label: "UGC Recognised Pathways", sub: "TVEC Registered Institute" },
+    { number: "100%", label: "UGC Recognised Pathways", sub: "Global University Articulations" },
   ];
 
   const bachelors = [
@@ -209,7 +209,7 @@ export default function HomePage() {
     {
       title: "GAFM USA Board Certifications & Fellowships",
       partner: "Global Academy of Finance & Management (USA)",
-      venue: "Triple ISO 21001 / 29993 / 9001 Certified Framework",
+      venue: "Globally Recognized International Board Framework",
       desc: "Internationally chartered certifications recognised across global financial institutions and multinational corporations.",
     },
     {
@@ -232,7 +232,7 @@ export default function HomePage() {
   const faqs = [
     {
       q: "Are degrees from Global Stanford Campus recognized by UGC Sri Lanka?",
-      a: "Yes. All Bachelor's degrees, BBA top-ups, MBA, and PhD programs offered through Global Stanford Campus are delivered via UGC-recognized partner universities and TVEC registered educational frameworks.",
+      a: "Yes. All Bachelor's degrees, BBA top-ups, MBA, and PhD programs offered through Global Stanford Campus are delivered via UGC-recognized partner universities and established higher educational frameworks.",
     },
     {
       q: "What is the 1-Year Fast-Track BBA Top-Up Degree?",
@@ -244,7 +244,7 @@ export default function HomePage() {
     },
     {
       q: "What certifications are provided by Asian FinTech Academy (AFTA) & GAFM?",
-      a: "AFTA programs feature curriculum based on HKU (Hong Kong University) FinTech courses, with residential/executive sessions held at Hilton Colombo. GAFM USA board certifications operate under Triple ISO 21001/29993/9001 quality frameworks.",
+      a: "AFTA programs feature curriculum based on HKU (Hong Kong University) FinTech courses, with residential/executive sessions held at Hilton Colombo. GAFM USA board certifications operate under globally accredited international professional frameworks.",
     },
   ];
 
@@ -287,7 +287,7 @@ export default function HomePage() {
             {/* Accreditation Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold tracking-wide">
               <span className="w-2 h-2 rounded-full bg-sliit-orange animate-pulse"></span>
-              <span>UGC RECOGNISED PATHWAYS • TVEC REGISTERED • EST. 2007</span>
+              <span>UGC RECOGNISED PATHWAYS • EST. 2007</span>
             </div>
 
             {/* Typewriter Animated Headline */}
@@ -830,7 +830,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="font-bold text-base text-slate-900">UGC Recognised Pathways</h3>
                 <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Degree pathways articulated through UGC-recognized foreign universities and accredited under the Tertiary and Vocational Education Commission (TVEC).
+                  Degree pathways articulated through prestigious UGC-recognized international partner universities.
                 </p>
               </div>
 
